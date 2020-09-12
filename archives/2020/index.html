@@ -42,6 +42,8 @@
   
 
   
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f423.svg">
+  
 
   
 
@@ -439,9 +441,73 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/09/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E8%AE%AD-%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81-%E8%AF%91%E7%A0%81%E5%99%A8/">
+        数据结构实训——哈夫曼编码/译码器
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        哈夫曼(Huffman)编/译码器（限1人完成） 【问题描述】 利用哈夫曼编码进行通信可以大大提高信道利用率，缩短信息传输时间，降低传输成本。但是，这要求在发送端通过一个编码系统对待传数据预先编码，在接收端将传来的数据进行译码（复原）。对于双工信道（即可以双向传输信息的信道），每端都需要一个完整的编/译码系统。试为这样的信息收发站写一个哈夫曼码的编/译码系统。首先输入一段包含27个字符（包含...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-09-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/">实训程序</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/09/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E8%AE%AD-%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81-%E8%AF%91%E7%A0%81%E5%99%A8/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -487,9 +553,401 @@ Qu...
           </div>
         
       
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/">
+        重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user 'alicelmx'@'localhost' 问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        错误信息如下：#mysql -u Tang7O -p Enter password: ERROR 1045 (28000): Access denied for user ‘Tang7O’@’localhost’ (using password: YES)
+解决方案#/etc/init.d/mysql stop //停止MySQL #mysqld_safe –user=mysql –skip...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-05-20</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/05/16/%E6%B1%82%E9%97%AE1%E5%88%B0n%E7%9A%84%E5%9B%A0%E6%95%B0%E4%B8%AA%E6%95%B0%E7%9A%84%E5%92%8C/">
+        求问1到n的因数个数的和
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        题目连接
+123456789101112int main()&#123;    ll n;    cin &gt;&gt; n;    ll ans = 0;    for (ll l = 1, r = 0; l &lt;= n; l = r + 1) &#123;        r = n / (n / l);        ans += 1ll * (r - l + 1) * (n / ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-05-16</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/05/16/%E6%B1%82%E9%97%AE1%E5%88%B0n%E7%9A%84%E5%9B%A0%E6%95%B0%E4%B8%AA%E6%95%B0%E7%9A%84%E5%92%8C/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/13/win10%E4%B8%8B-java%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/">
+        Win10下 Java环境变量配置
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        本文转载于：https://www.cnblogs.com/cnwutianhao/p/5487758.html
+Win10下 Java环境变量配置
+首先，你应该已经安装了 Java 的 JDK 了（如果没有安装JDK，请跳转到此网址：http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html） ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/JAVA/">JAVA</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/13/win10%E4%B8%8B-java%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E6%B1%82%E4%B8%80%E4%B8%AA%E6%95%B0%E6%89%80%E6%9C%89%E7%9A%84%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0%E5%92%8C%E5%9B%A0%E5%AD%90%E5%92%8C/">
+        求一个数所有的因子个数和因子和
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        B站学习视频（图片来源）
+1.所有因子个数如果一个数是因数，就不断除这个数，保存这个因子次方的数 temp++；运用所有因子个数计算公式（见上图），保存因子个数的 ans不断乘（ temp+1 ）。注意 :当最后，在 x 不断除因数得到的值有两种情况：
+
+x == 1，这说明 x 没有其他因子了。
+x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,所以最后再乘（1+1）...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E6%B1%82%E4%B8%80%E4%B8%AA%E6%95%B0%E6%89%80%E6%9C%89%E7%9A%84%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0%E5%92%8C%E5%9B%A0%E5%AD%90%E5%92%8C/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E6%B1%82%E4%B8%89%E8%A7%92%E5%BD%A2%E5%A4%96%E5%BF%83%E5%9D%90%E6%A0%87/">
+        求三角形外心坐标
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        给定三角形三个顶点的坐标，如何求三角形的外心的坐标呢？ 例如 ：给定a（x1,y1） b（x2,y2） c（x3,y3）求外接圆心坐标O（x，y） 首先，外接圆的圆心是三角形三条边的垂直平分线的交点，我们根据圆心到顶点的距离相等，可以列出以下方程： (x1-x)(x1-x)-(y1-y)(y1-y)=(x2-x)(x2-x)+(y2-y)(y2-y); (x2-x)(x2-x)+(y2-y)...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E6%B1%82%E4%B8%89%E8%A7%92%E5%BD%A2%E5%A4%96%E5%BF%83%E5%9D%90%E6%A0%87/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/distinct-subsequences-%E6%B1%82s%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E4%B8%B2%E4%B8%8Et%E7%9B%B8%E5%90%8C/">
+        distinct-subsequences 求S有多少个不同的子串与T相同
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        Given a string S and a string T, count the number of distinct subsequences ofT inS.
+A subsequence of a string is a new string which is formed from the original string by deleting some (can be none)...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/distinct-subsequences-%E6%B1%82s%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E4%B8%B2%E4%B8%8Et%E7%9B%B8%E5%90%8C/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E8%AE%AD-%E6%A0%A1%E5%9B%AD%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F/">
+        数据结构实训——校园导航系统
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        设计一个校园导游系统，为来访的客人提供各种信息查询服务。（限1人完成） （一）基本要求 1、 设计你的学校的校园平面图，所含景点10-15个。以图中顶点表示校园内各景点，存放景点名称、代号、简介等信息；以边表示路径，存放路径长度等相关信息。 2、 为来访客人提供图中任意景点相关信息的查询。 3、 为来访客人提供图中任意景点的问路查询，即查询任意两个景点之间的一条最短的简单路径。 4、 提供图...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/">实训程序</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E8%AE%AD-%E6%A0%A1%E5%9B%AD%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E8%AE%AD-%E9%A3%9E%E6%9C%BA%E8%AE%A2%E7%A5%A8%E7%B3%BB%E7%BB%9F/">
+        数据结构实训——飞机订票系统
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        飞机订票系统（限1 人完成） 任务：通过此系统可以实现如下功能： 1）录入： 可以录入航班情况（数据可以存储在一个数据文件中，数据结构、具体数据自定） 2）查询： 可以查询某个航线的情况（如，输入航班号，查询起降时间，起飞抵达城市，航班票价，票价折扣，确定航班是否满仓）；可以输入起飞抵达城市，查询飞机航班情况； 3）订票：（订票情况可以存在一个数据文件中，结构自己设定） 可以订票，如果该航班...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/">实训程序</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E8%AE%AD-%E9%A3%9E%E6%9C%BA%E8%AE%A2%E7%A5%A8%E7%B3%BB%E7%BB%9F/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
     
   </section>
   
+    
+      <br>
+      <div class="prev-next">
+        
+        <p class="current">
+          1 / 6
+        </p>
+        
+          <a class="next" rel="next" href="/archives/2020/page/2/">
+            <section class="post next white-box shadow">
+              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </section>
+          </a>
+        
+      </div>
     
   
 
@@ -570,12 +1028,71 @@ Qu...
   
     
     
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/ACM/" href="/categories/ACM/"
+            id="categoriesACM"
+            ><div class='name'>ACM</div><div class='badge'>(45)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/C/" href="/categories/C/"
+            id="categoriesC"
+            ><div class='name'>C++</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/JAVA/" href="/categories/JAVA/"
+            id="categoriesJAVA"
+            ><div class='name'>JAVA</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
+            id="categoriesE585B6E4BB96"
+            ><div class='name'>其他</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8F"
+            ><div class='name'>实训程序</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
 
   
 
   
     
     
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/JAVA/" style="font-size: 14px; color: #999">JAVA</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 16.5px; color: #888">数据结构</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 19px; color: #777">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 14px; color: #999">配置环境变量</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 21.5px; color: #666">题目</a>
+    </div>
+  </section>
+
 
   
 
