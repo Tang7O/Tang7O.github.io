@@ -996,8 +996,17 @@ x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,�
       <div class="social-wrapper">
         
           
-            <a href="/atom.xml"
-              class="social fas fa-rss flat-btn"
+            <a href="https://github.com/Tang7O"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://www.zhihu.com/people/tang7o"
+              class="social fab fa-zhihu flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
               
@@ -1014,17 +1023,8 @@ x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,�
           
         
           
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/"
-              class="social fas fa-headphones-alt flat-btn"
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=1747822506&amp;amp;site=qq&amp;amp;menu=yes"
+              class="social fab fa-qq flat-btn"
               target="_blank"
               rel="external nofollow noopener noreferrer">
               
@@ -1117,6 +1117,7 @@ x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,�
 
       </div>
       
+
   
   <footer class="footer clearfix">
     <br><br>
@@ -1130,7 +1131,7 @@ x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,�
       
     
       
-        <br>
+        <br> 
         <div class="social-wrapper">
           
             
@@ -1139,23 +1140,43 @@ x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,�
           
             
           
+          
         </div>
       
     
       
         <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
 </div>
+        
       
     
-      
+      <a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">鲁ICP备-20012065号</a>
         
           <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
 </div>
         
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("01/04/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
       
     
       
         本站使用
+        
         <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4" target="_blank" class="codename">Volantis</a>
         作为主题
       
@@ -1168,6 +1189,7 @@ x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,�
       
     
   </footer>
+
 
 
       <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
@@ -1740,5 +1762,11 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 
     
   </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script>
+
+<!--单击显示文字-->
+	<!--<script type="text/javascript" src="/js/click_show_text.js"></script>-->
+
