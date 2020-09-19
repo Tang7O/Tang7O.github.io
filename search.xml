@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>@Slf4j</title>
+      <link href="2020/09/19/Slf4j/"/>
+      <url>2020/09/19/Slf4j/</url>
+      
+        <content type="html"><![CDATA[<p>@Slf4j 可以代替 </p><p><code>private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);</code></p><p>需要在pom中引用后才可以使用:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--可以引入日志 @Slf4j注解--&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.projectlombok&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;lombok&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure><p>如果使用@Slf4j注解后找不到变量log, 需要在编译器中安装lombok插件.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> JAVA </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JAVA </tag>
+            
+            <tag> JPA </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SpringBootJPA之@Entity,@Table,@Id,@Column</title>
       <link href="2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/"/>
       <url>2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/</url>
