@@ -456,6 +456,54 @@
   
     
     <h2 class="article-title" >
+      <a href="/2020/04/10/%E6%89%A9%E5%B1%95kmp/">
+        扩展KMP
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        1、扩展KMP是什么？解决何种问题？与KMP算法的异同？
+拓展kmp是对KMP算法的扩展，它解决如下问题： 定义母串S，和字串T，设S的长度为n，T的长度为m，求T与S的每一个后缀的最长公共前缀，也就是说，设extend数组,extend[i]表示T与S[i,n-1]的最长公共前缀，要求出所有extend[i](0&lt;=i&lt;n)。
+注意到，如果有一个位置extend[i]=m,则表...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='dashed'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E6%89%A9%E5%B1%95kmp/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2020/04/10/%E6%95%B4%E4%BD%93%E4%BA%8C%E5%88%86%EF%BC%88poj-2104%EF%BC%89/">
         整体二分（poj 2104）
       </a>
@@ -729,56 +777,6 @@ p 至少和另一个人在一个圆圈里。
       
         <div>
           <a class='readmore' href='/2020/04/10/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/10/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80%E5%92%8C%E9%80%86%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/">
-        康托展开和逆康托展开
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        简述
-
-康托展开是一个全排列到一个自然数的双射，常用于构建hash表时的空间压缩。设有n个数（1，2，3，4,…,n），可以有组成不同(n!种)的排列组合，康托展开表示的就是是当前排列组合在n个不同元素的全排列中的名次。
-
-原理X=a[n]*(n-1)!+a[n-1]*(n-2)!+...+a[i]*(i-1)!+...+a[1]*0! 其中, a[i]为整数，并且0 &lt;= a[i] ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/10/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80%E5%92%8C%E9%80%86%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/'>
             阅读全文
           </a>
         </div>
@@ -1619,13 +1617,15 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
 <!--浏览器搞笑标题
 <script type="text/javascript" src="/js/FunnyTitle.js"></script>-->
 
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script> 
+
 <!--动态线条背景-->
 <script type="text/javascript"
 color="20,220,220" opacity='0.6' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
 </script>
 
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/love.js"></script> 
+
 
 <!--单击显示文字
 	<script type="text/javascript" src="/js/click_show_text.js"></script> -->

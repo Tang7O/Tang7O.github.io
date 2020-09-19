@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -19,7 +17,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>归档：2020 - Tang7O&#39;S BLOG</title>
+  <title>SpringBootJPA之@Entity,@Table,@Id,@Column - Tang7O&#39;S BLOG</title>
   
 
   
@@ -329,7 +327,7 @@
   
     
     
-        <div class='cover-wrapper  search' style="display: none;">
+        <div class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
           
@@ -410,8 +408,8 @@
  
  
 <div id="pjax-data" style="display: none"> 
-  <div id="pjax-ispage">false</div> 
-  <div id="pjax-pageTitle"></div> 
+  <div id="pjax-ispage">true</div> 
+  <div id="pjax-pageTitle">SpringBootJPA之@Entity,@Table,@Id,@Column</div> 
   <div id="pjax-enable-cover">true</div> 
   <div id="pjax-comment-path"></div> 
   <div id="pjax-comment-placeholder"></div> 
@@ -420,14 +418,14 @@
  
 <script> 
   // 处理封面 此时 jquery 还没加载 
-  if ("half" == "none") { // 移除封面 
+  if ("none" == "none") { // 移除封面 
     document.getElementsByClassName('cover-wrapper')[0].style.display = "none"; 
     document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show"); 
   } else { 
-    if ("half" == "half") { // 半屏 
+    if ("none" == "half") { // 半屏 
       document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'half'); 
       document.getElementsByClassName('scroll-down')[0].style.display = "none"; 
-    } else if ("half" == "full") { // 全屏 
+    } else if ("none" == "full") { // 全屏 
       document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'full'); 
       document.getElementsByClassName('scroll-down')[0].style.display = ""; 
     } 
@@ -441,271 +439,272 @@
         
 
 <div class='l_main'>
-	
-		
-  <section class="post-list">
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
     
     
-      
+    
+      <h1 class="title">
+        SpringBootJPA之@Entity,@Table,@Id,@Column
+      </h1>
+      <div class='new-meta-box'>
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/09/%E9%98%9F%E5%88%97%E7%9A%84%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3/">
-        队列的简单讲解
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="/" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
+    <p>Tang7O</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年9月18日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
       
-        队列queue的特征：先进先出可以简单将队列看成一个通道，从通道的一头进从另外一头出。 头文件： #include&lt;queue&gt; C++队列queue类成员函数如下: back()返回最后一个元素 empty()如果队列空则返回真 front()返回第一个元素 pop()删除第一个元素 push()在末尾加入一个元素 size()返回队列中元素的个数 下面看个简单的例题
-约瑟夫环...
-      
-    
+      <div id="lc-pv" data-title="SpringBootJPA之@Entity,@Table,@Id,@Column" data-path="/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
+
+
+          
         
-        <time>2020-04-09</time>
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
+          
+            <div>
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">761字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  <p>@Entity: 表明该类为一个实体类</p>
+<p>一般标注在类前.</p>
+<p>参数:</p>
+<pre><code>name: 表示其所对应的数据库中的表名</code></pre>
+<p>@Table:  声明此对象映射到数据库的数据表，通过它可以为实体指定表</p>
+<p>一般标注在类前.</p>
+<p>参数:</p>
+<pre><code>1.name:  用来命名当前实体类对应的数据库表的名字.
+2.catalog: 指定table数据库中的路径，这里指数据库名
+3.uniqueConstraints： 可以创建单个字段或者联合的唯一约束，只有在创建表成功时才执行
+4.indexes：索引，可以指定联合索引，也是只有表生成成功才有效</code></pre>
+<p>@Id:注释指定表的主键 </p>
+<p>一般标注在属性前.也可以标注在属性的getter方法前.</p>
+<p>参数:</p>
+<pre><code>1.TABLE：容器指定用底层的数据表确保唯一;
+2.SEQUENCE：使用数据库德SEQUENCE列莱保证唯一(Oracle数据库通过序列来生成唯一ID);
+3.IDENTITY：使用数据库的IDENTITY列莱保证唯一;
+4.AUTO：由容器挑选一个合适的方式来保证唯一;
+5.NONE：容器不负责主键的生成，由程序来完成.</code></pre>
+<p>@Column: 用来标识实体类中属性与数据表中字段的对应关系</p>
+<p>一般标注在属性前.也可以标注在属性的getter方法前.</p>
+<p>参数:</p>
+<pre><code>1.name: 定义了被标注字段在数据库表中所对应字段的名称;
+2.nullable: 表示该字段是否可以为null值，默认为true。
+3.insertable: 表示在使用“INSERT”脚本插入数据时，是否需要插入该字段的值。
+4.updatable: 表示在使用“UPDATE”脚本插入数据时，是否需要更新该字段的值。insertable和updatable属性一般多用于只读的属性，例如主键和外键等。这些字段的值通常是自动生成的。
+5.columnDefinition（大多数情况，几乎不用）: 表示创建表时，该字段创建的SQL语句，一般用于通过Entity生成表定义时使用。（也就是说，如果DB中表已经建好，该属性没有必要使用。）
+6.table: 表示当映射多个表时，指定表的表中的字段。默认值为主表的表名。
+7.length: 表示字段的长度，当字段的类型为varchar时，该属性才有效，默认为255个字符。
+8.precision和scale: 当字段类型为double时，precision表示数值的总长度，scale表示小数点所占的位数。</code></pre>
+<p>举个例子:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span> </span><br><span class="line"><span class="meta">@Table(name = &quot;user&quot;)</span>  <span class="comment">//这二个注解有可以写成 @Entity(name = &quot;user&quot;), 因为类名与表名一致(不区分大小写),也可以省略</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;id&quot;)</span>  <span class="comment">//如果属性名与表中的列名一致可以不写此注解</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2020/04/09/%E9%98%9F%E5%88%97%E7%9A%84%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3/'>
-            阅读全文
-          </a>
+      
+      <!-- 打赏 -->
+       <!-- %- partial('donate') % -->
+      <iframe src="https://alioss.tang7o.cn/blog/simple/index.html" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe>
+        <div class='donate'>
+          <div class='imgs'> 
+            
+            
+          </div>
         </div>
+      
+      <!-- 博客说明/协议 -->
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://tang7o.cn/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/>https://tang7o.cn/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-19T09:49:55+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020年9月19日</p>
+  </a>
 </div>
 
-          </div>
         
       
         
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/09/%E4%BC%9A%E5%9C%BA%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%20%EF%BC%88%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%EF%BC%89/">
-        会场安排问题 （贪心算法）
-      </a>
-    </h2>
-  
-  <div class='md'>
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
       
-        题目如下Description假设要在足够多的会场里安排一批活动，并希望使用尽可能少的会场。设计一个有效的贪心算法进行安排。（这个问题实际上是著名的图着色问题。若将每一个活动作为图的一个顶点，不相容活动间用边相连。使相邻顶点着有不同颜色的最小着色数，相应于要找的最小会场数。） 对于给定的k个待安排的活动，计算使用最少会场的时间表。
-Input输入数据的第一行有1 个正整数k（k≤10000）...
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/&title=SpringBootJPA之@Entity,@Table,@Id,@Column - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/&title=SpringBootJPA之@Entity,@Table,@Id,@Column - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/&title=SpringBootJPA之@Entity,@Table,@Id,@Column - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
       
     
   </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/09/%E4%BC%9A%E5%9C%BA%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%20%EF%BC%88%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%EF%BC%89/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/09/gcd/">
-        GCD EXGCD
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        GCD原理：a=b*q+r1; (a,b)==(b1,r1) ）( (a，b)为a，b的最小公约数） 代码如下：
-1234567int gcd(int a,int b)&#123;    if(b==0)        return a;    gcd(b,a%b);&#125;
 
-EXGCD1234void exgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123...
+
+        
       
-    
+    </div>
   </div>
+
+
   
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
+  
+
+  
+    <div class="prev-next">
       
-        <div>
-          <a class='readmore' href='/2020/04/09/gcd/'>
-            阅读全文
-          </a>
-        </div>
+      
+        <a class='next' href='/2020/09/14/hello-world/'>
+          <p class='title'>Hello World<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
+        </a>
       
     </div>
   
+</article>
 
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
 </div>
 
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/09/%E5%BF%AB%E9%80%9F%E4%B9%98%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%B9%82/">
-        快速乘与快速幂
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        快速乘：(a*b)%c原理：将b转化为二进制的形式 用b每一位的权重乘a再相加 举个例子：20* 10=20_(1010)2=(20_(2^3)_1) + (20 *(2^2)_0) + (20 _(2^1)_1) + (20 _(2^0)_0)=160+40=200 代码如下：
-12345678910111213int fast_mul(int a,int b,int c)&#123;  ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/09/%E5%BF%AB%E9%80%9F%E4%B9%98%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%B9%82/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/08/%E7%B4%A0%E6%95%B0%E6%89%93%E8%A1%A8/">
-        素数打表
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        哈希打表1234567891011121314#include&lt;stdio.h&gt;int main()&#123;    int s[10000]=&#123;0&#125;,a,b,i,j;     for(i=2;i&lt;10000;i++) //素数从2开始        if(s[i]==0)            for(j=i*i;j&lt;10000;j+=i)  ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/08/%E7%B4%A0%E6%95%B0%E6%89%93%E8%A1%A8/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/archives/2020/page/7/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          8 / 8
-        </p>
-        
-      </div>
-    
-  
+  </article>
 
 
-	
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -713,146 +712,14 @@ EXGCD1234void exgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123...
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Tang7O'S BLOG</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="https://github.com/Tang7O"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://www.zhihu.com/people/tang7o"
-              class="social fab fa-zhihu flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=1747822506&amp;amp;site=qq&amp;amp;menu=yes"
-              class="social fab fa-qq flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget category shadow desktop">
-    
-  <header>
-    
-      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
 
 
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/ACM/" href="/categories/ACM/"
-            id="categoriesACM"
-            ><div class='name'>ACM</div><div class='badge'>(45)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/C/" href="/categories/C/"
-            id="categoriesC"
-            ><div class='name'>C++</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/JAVA/" href="/categories/JAVA/"
-            id="categoriesJAVA"
-            ><div class='name'>JAVA</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
-            id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
-            id="categoriesE5AE9EE8AEADE7A88BE5BA8F"
-            ><div class='name'>实训程序</div><div class='badge'>(3)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow desktop mobile">
-    
-  <header>
-    
-      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/JAVA/" style="font-size: 14px; color: #999">JAVA</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 16.5px; color: #888">数据结构</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 19px; color: #777">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 14px; color: #999">配置环境变量</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 21.5px; color: #666">题目</a>
-    </div>
-  </section>
-
-
-  
 
   
 
 
 </aside>
+
 
 
       </div>
