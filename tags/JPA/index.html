@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>分类：ACM - Tang7O&#39;S BLOG</title>
+  <title>标签：JPA - Tang7O&#39;S BLOG</title>
   
 
   
@@ -451,18 +451,6 @@
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
       
     
     
@@ -476,16 +464,24 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/05/16/%E6%B1%82%E9%97%AE1%E5%88%B0n%E7%9A%84%E5%9B%A0%E6%95%B0%E4%B8%AA%E6%95%B0%E7%9A%84%E5%92%8C/">
-        求问1到n的因数个数的和
+      <a href="/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/">
+        SpringBootJPA之@Entity,@Table,@Id,@Column
       </a>
     </h2>
   
   <div class='md'>
     
       
-        题目连接
-123456789101112int main()&#123;    ll n;    cin &gt;&gt; n;    ll ans = 0;    for (ll l = 1, r = 0; l &lt;= n; l = r + 1) &#123;        r = n / (n / l);        ans += 1ll * (r - l + 1) * (n / ...
+        @Entity: 表明该类为一个实体类
+一般标注在类前.
+参数:
+name: 表示其所对应的数据库中的表名
+@Table:  声明此对象映射到数据库的数据表，通过它可以为实体指定表
+一般标注在类前.
+参数:
+1.name:  用来命名当前实体类对应的数据库表的名字.
+2.catalog: 指定table数据库中的路径，这里指数据库名
+3.uniqueConstraints： 可以创建单个字段...
       
     
   </div>
@@ -493,296 +489,15 @@
     <div class='meta-v3' line_style='dashed'>
       <div>
         
-        <time>2020-05-16</time>
+        <time>2020-09-18</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
+          <a class="category-link" href="/categories/JAVA/">JAVA</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/05/16/%E6%B1%82%E9%97%AE1%E5%88%B0n%E7%9A%84%E5%9B%A0%E6%95%B0%E4%B8%AA%E6%95%B0%E7%9A%84%E5%92%8C/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/10/%E6%B1%82%E4%B8%80%E4%B8%AA%E6%95%B0%E6%89%80%E6%9C%89%E7%9A%84%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0%E5%92%8C%E5%9B%A0%E5%AD%90%E5%92%8C/">
-        求一个数所有的因子个数和因子和
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        B站学习视频（图片来源）
-1.所有因子个数如果一个数是因数，就不断除这个数，保存这个因子次方的数 temp++；运用所有因子个数计算公式（见上图），保存因子个数的 ans不断乘（ temp+1 ）。注意 :当最后，在 x 不断除因数得到的值有两种情况：
-
-x == 1，这说明 x 没有其他因子了。
-x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,所以最后再乘（1+1）...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/10/%E6%B1%82%E4%B8%80%E4%B8%AA%E6%95%B0%E6%89%80%E6%9C%89%E7%9A%84%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0%E5%92%8C%E5%9B%A0%E5%AD%90%E5%92%8C/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/10/%E6%B1%82%E4%B8%89%E8%A7%92%E5%BD%A2%E5%A4%96%E5%BF%83%E5%9D%90%E6%A0%87/">
-        求三角形外心坐标
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        给定三角形三个顶点的坐标，如何求三角形的外心的坐标呢？ 例如 ：给定a（x1,y1） b（x2,y2） c（x3,y3）求外接圆心坐标O（x，y） 首先，外接圆的圆心是三角形三条边的垂直平分线的交点，我们根据圆心到顶点的距离相等，可以列出以下方程： (x1-x)(x1-x)-(y1-y)(y1-y)=(x2-x)(x2-x)+(y2-y)(y2-y); (x2-x)(x2-x)+(y2-y)...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/10/%E6%B1%82%E4%B8%89%E8%A7%92%E5%BD%A2%E5%A4%96%E5%BF%83%E5%9D%90%E6%A0%87/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/10/distinct-subsequences-%E6%B1%82s%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E4%B8%B2%E4%B8%8Et%E7%9B%B8%E5%90%8C/">
-        distinct-subsequences 求S有多少个不同的子串与T相同
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Given a string S and a string T, count the number of distinct subsequences ofT inS.
-A subsequence of a string is a new string which is formed from the original string by deleting some (can be none)...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/10/distinct-subsequences-%E6%B1%82s%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E4%B8%B2%E4%B8%8Et%E7%9B%B8%E5%90%8C/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/10/%E5%88%A4%E6%96%AD%E5%9B%9B%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%BB%84%E6%88%90%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%96%B9%E5%BD%A2/">
-        判断四个点是否可以组成一个正方形
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        123456789101112131415161718192021222324252627282930313233double Distance(int x1,int y1,int x2,int y2)&#123;//求边长    return sqrt(pow((x1-x2),2)+pow((y1-y2),2));&#125;bool IsRightAngle(int x1,int y1,...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/10/%E5%88%A4%E6%96%AD%E5%9B%9B%E4%B8%AA%E7%82%B9%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E7%BB%84%E6%88%90%E4%B8%80%E4%B8%AA%E6%AD%A3%E6%96%B9%E5%BD%A2/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/10/%E5%8C%BA%E9%97%B4dp/">
-        区间DP
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        区间dp就是在区间上进行动态规划，求解一段区间上的最优解。主要是通过合并小区间的 最优解进而得出整个大区间上最优解的dp算法。核心思路：既然要求解在一个区间上的最优解，那么把这个区间分割成一个个小区间，求解每个小区间的最优解，再合并小区间得到大区间即可。所以在代码实现上，我可以枚举区间长度len为每次分割成的小区间长度（由短到长不断合并），内层枚举该长度下可以的起点，自然终点也就明了了。然后...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/10/%E5%8C%BA%E9%97%B4dp/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/10/%E6%89%AB%E6%8F%8F%E7%BA%BF/">
-        扫描线
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        题意:二维平面有n个平行于坐标轴的矩形,现在要求出这些矩形的总面积. 重叠部分只能算一次. 分析: 线段树的典型扫描线用法. 首先假设有下图两个矩阵,我们如果用扫描线的方法如何计算它们的总面积呢?首先我们将矩形的上下边分为上位边(即y坐标大的那条平行于x轴的边),和下位边(y坐标小的平行于x轴的边).然后我们把所有矩形的上下位边按照他们y坐标从小到大排序,可以得到4条扫描线:又因为上面2个矩...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='dashed'>
-      <div>
-        
-        <time>2020-04-10</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/ACM/">ACM</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2020/04/10/%E6%89%AB%E6%8F%8F%E7%BA%BF/'>
+          <a class='readmore' href='/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/'>
             阅读全文
           </a>
         </div>
@@ -798,21 +513,6 @@ A subsequence of a string is a new string which is formed from the original stri
     
   </section>
   
-    
-      <br>
-      <div class="prev-next">
-        
-        <p class="current">
-          1 / 7
-        </p>
-        
-          <a class="next" rel="next" href="/categories/ACM/page/2/">
-            <section class="post next white-box shadow">
-              &nbsp;下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i>
-            </section>
-          </a>
-        
-      </div>
     
   
 
