@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>标签：知识 - Tang7O&#39;S BLOG</title>
+  <title>分类：知识 - Tang7O&#39;S BLOG</title>
   
 
   
@@ -447,6 +447,20 @@
       
   <section class="post-list">
     
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+    
     
       
         
@@ -458,16 +472,21 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/04/10/new%E5%92%8Cmalloc%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        new和malloc的区别
+      <a href="/2020/04/10/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/">
+        斯特林数
       </a>
     </h2>
   
   <div class='md'>
     
       
-        1 . malloc()函数 1.1 malloc的全称是memory allocation，中文叫动态内存分配。原型：extern void *malloc(unsigned int num_bytes);说明：分配长度为num_bytes字节的内存块。如果分配成功则返回指向被分配内存的指针，分配失败返回空指针NULL。当内存不再使用时，应使用free()函数将内存块释放。
-1.2 voi...
+        【第一类斯特林数】1.定理第一类斯特林数 S1(n,m) 表示的是将 n 个不同元素构成 m 个圆排列的数目。
+2.递推式设人被标上1,2,…..p，则将这 p 个人排成 m 个圆有两种情况：
+
+在一个圆圈里只有标号为 p 的人自己，排法有 S1(n-1,m-1) 个。
+p 至少和另一个人在一个圆圈里。
+
+这些排法通过把 1,2….n-1 排成 m 个圆再把 n 放在 1,2….n-1 任何...
       
     
   </div>
@@ -478,12 +497,203 @@
         <time>2020-04-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/C/">C++</a>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E7%9F%A5%E8%AF%86/">知识</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/04/10/new%E5%92%8Cmalloc%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+          <a class='readmore' href='/2020/04/10/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F/">
+        斯特林公式
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+斯特林公式是一条用来取n阶乘近似值的数学公式。一般来说，当n很大的时候，n阶乘的计算量十分大，所以斯特灵公式十分好用。
+
+斯特林公式可以用来估算某数的大小，结合lg可以估算某数的位数，或者可以估算某数的阶乘是另一个数的倍数。Stirling公式的意义在于：当n足够大时，n!计算起来十分困难，虽然有很多关于n!的等式，但并不能很好地对阶乘结果进行估计，尤其是n很大之后，误差将会非常大。但利用...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='dashed'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E7%9F%A5%E8%AF%86/">知识</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80%E5%92%8C%E9%80%86%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/">
+        康托展开和逆康托展开
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        简述
+
+康托展开是一个全排列到一个自然数的双射，常用于构建hash表时的空间压缩。设有n个数（1，2，3，4,…,n），可以有组成不同(n!种)的排列组合，康托展开表示的就是是当前排列组合在n个不同元素的全排列中的名次。
+
+原理X=a[n]*(n-1)!+a[n-1]*(n-2)!+...+a[i]*(i-1)!+...+a[1]*0! 其中, a[i]为整数，并且0 &lt;= a[i] ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='dashed'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E7%9F%A5%E8%AF%86/">知识</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80%E5%92%8C%E9%80%86%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/">
+        卡特兰数
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        一、关于卡特兰数卡特兰数是一种经典的组合数，经常出现在各种计算中，其前几项为 : 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190, 6564120420, 24466267020, ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='dashed'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E7%9F%A5%E8%AF%86/">知识</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/10/%E6%AF%8D%E5%87%BD%E6%95%B0/">
+        母函数
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        普通母函数： 在用到母函数之前啊，恐怕很少有人听过母函数，我也一样，我当时是做杭电acm的2082题要用母函数做才去了解母函数的。当然母函数分为很多种，包括普通母函数、指数母函数、L级数、贝尔级数和狄利克雷级数，我这里说的都是普通母函数。 什么是普通母函数呢，——把组合问题的加法法则和幂级数的的乘幂的相加对应起来，这句话可能一开始难以理解，不过其实学完了之后很容易理解，母函数的思想很简单—就...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='dashed'>
+      <div>
+        
+        <time>2020-04-10</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E7%9F%A5%E8%AF%86/">知识</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/10/%E6%AF%8D%E5%87%BD%E6%95%B0/'>
             阅读全文
           </a>
         </div>
@@ -499,21 +709,6 @@
     
   </section>
   
-    
-      <br>
-      <div class="prev-next">
-        
-          <a class="prev" rel="prev" href="/tags/%E7%9F%A5%E8%AF%86/">
-            <section class="post prev white-box shadow" >
-              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
-            </section>
-          </a>
-        
-        <p class="current">
-          2 / 2
-        </p>
-        
-      </div>
     
   
 
@@ -614,30 +809,75 @@
             id="categoriesACM"
             ><div class='name'>ACM</div><div class='badge'>(45)</div></a></li>
         
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E6%A8%A1%E6%9D%BF/" href="/categories/ACM/%E6%A8%A1%E6%9D%BF/"
+            id="categoriesACME6A8A1E69DBF"
+            ><div class='name'>模板</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E7%9F%A5%E8%AF%86/" href="/categories/ACM/%E7%9F%A5%E8%AF%86/"
+            id="categoriesACME79FA5E8AF86"
+            ><div class='name'>知识</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E7%AE%97%E6%B3%95/" href="/categories/ACM/%E7%AE%97%E6%B3%95/"
+            id="categoriesACME7AE97E6B395"
+            ><div class='name'>算法</div><div class='badge'>(25)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E9%A2%98%E7%9B%AE/" href="/categories/ACM/%E9%A2%98%E7%9B%AE/"
+            id="categoriesACME9A298E79BAE"
+            ><div class='name'>题目</div><div class='badge'>(10)</div></a></li>
+        
           <li><a class="flat-box"
             title="/categories/C/" href="/categories/C/"
             id="categoriesC"
             ><div class='name'>C++</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/JAVA/" href="/categories/JAVA/"
-            id="categoriesJAVA"
-            ><div class='name'>JAVA</div><div class='badge'>(1)</div></a></li>
+            title="/categories/Java/" href="/categories/Java/"
+            id="categoriesJava"
+            ><div class='name'>Java</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/Java/SpringBoot/" href="/categories/Java/SpringBoot/"
+            id="categoriesJavaSpringBoot"
+            ><div class='name'>SpringBoot</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/Java/%E6%90%AD%E9%85%8D%E7%8E%AF%E5%A2%83/" href="/categories/Java/%E6%90%AD%E9%85%8D%E7%8E%AF%E5%A2%83/"
+            id="categoriesJavaE690ADE9858DE78EAFE5A283"
+            ><div class='name'>搭配环境</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(2)</div></a></li>
+            title="/categories/MarkDown/" href="/categories/MarkDown/"
+            id="categoriesMarkDown"
+            ><div class='name'>MarkDown</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
             id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>其他</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%85%B6%E4%BB%96/%E9%94%99%E8%AF%AF/" href="/categories/%E5%85%B6%E4%BB%96/%E9%94%99%E8%AF%AF/"
+            id="categoriesE585B6E4BB96E99499E8AFAF"
+            ><div class='name'>错误</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
             id="categoriesE5AE9EE8AEADE7A88BE5BA8F"
-            ><div class='name'>实训程序</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>实训程序</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE6938DE4BD9CE7B3BBE7BB9F"
+            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE695B0E68DAEE7BB93E69E84"
+            ><div class='name'>数据结构</div><div class='badge'>(3)</div></a></li>
         
       </ul>
     </div>
@@ -661,7 +901,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/JAVA/" style="font-size: 18px; color: #7e7e7e">JAVA</a> <a href="/tags/SpringBoot/" style="font-size: 16px; color: #8b8b8b">SpringBoot</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px; color: #7e7e7e">数据结构</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 20px; color: #707070">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 14px; color: #999">配置环境变量</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/JAVA/" style="font-size: 15.67px; color: #8e8e8e">JAVA</a> <a href="/tags/Java/" style="font-size: 14px; color: #999">Java</a> <a href="/tags/MarkDown/" style="font-size: 14px; color: #999">MarkDown</a> <a href="/tags/SpringBoot/" style="font-size: 15.67px; color: #8e8e8e">SpringBoot</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 17.33px; color: #828282">数据结构</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 19px; color: #777">模板</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 20.67px; color: #6c6c6c">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 14px; color: #999">配置环境变量</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22.33px; color: #606060">题目</a>
     </div>
   </section>
 

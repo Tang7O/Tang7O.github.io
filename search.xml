@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>操作系统实训——进程运行模拟</title>
+      <link href="2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/"/>
+      <url>2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/</url>
+      
+        <content type="html"><![CDATA[<p>输入 n 个进程(id 运行时间 优先级),根据优先级简单的模拟进程的运行(等待 运行 堵塞).</p><p><del>由于感觉用链表比较麻烦,于是开了个数组简单的模拟了一下</del></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Pcb</span> //进程结构体</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> pid; <span class="comment">//id</span></span><br><span class="line">    <span class="keyword">int</span> runTime; <span class="comment">//运行时间</span></span><br><span class="line">    <span class="keyword">int</span> run; <span class="comment">// 已经运行了多久</span></span><br><span class="line">    <span class="keyword">int</span> ji; <span class="comment">//优先级  数值越小优先级越高</span></span><br><span class="line">    Pcb()&#123; <span class="comment">//初始化</span></span><br><span class="line">        run = <span class="number">1</span>;</span><br><span class="line">        ji = <span class="number">99</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> maxNumRun=<span class="number">0</span>;  <span class="comment">//最多可以同时运行几个进程</span></span><br><span class="line"><span class="keyword">int</span> cntRun=<span class="number">0</span>; <span class="comment">//正在运行的进程数目</span></span><br><span class="line"><span class="keyword">int</span> cntWait=<span class="number">0</span>; <span class="comment">//正在等待的进程数目</span></span><br><span class="line">Pcb pcbRun[<span class="number">100</span>]; <span class="comment">//用来存储正在运行的进程</span></span><br><span class="line">Pcb pcbWait[<span class="number">100</span>]; <span class="comment">//用来存储正在等待的进程</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Pcb a,Pcb b)</span> <span class="comment">//将进程按照优先级从小到大的顺序排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.ji&lt;b.ji;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/******** 输入 *********/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Pcb t;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入进程id(pid) 运行时间 优先级: &quot;</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t.pid;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t.runTime;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t.ji;</span><br><span class="line">    <span class="keyword">if</span>(cntRun&gt;=maxNumRun)</span><br><span class="line">    &#123;</span><br><span class="line">        pcbWait[cntWait++]=t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        pcbRun[cntRun++]=t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/******** 输出 *********/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;============================&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;正在运行的进程有:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cntRun; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;pid 为 %d 的进程,已经运行了 %d ,总运行时间为 %d \n&quot;</span>,pcbRun[i].pid,pcbRun[i].run,pcbRun[i].runTime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="string">&quot;正在等待的进程有:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cntWait; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;pid 为 %d 的进程\n&quot;</span>,pcbWait[i].pid);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;============================&quot;</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*********模拟进程运行*********/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sort(pcbWait,pcbWait+cntWait,cmp);</span><br><span class="line">    Pcb t;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cntRun; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        pcbRun[i].run++;</span><br><span class="line">        <span class="comment">//pcbRun[i].ji++;</span></span><br><span class="line">        <span class="keyword">if</span>(pcbRun[i].runTime&lt;pcbRun[i].run)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;pid 为 &quot;</span>&lt;&lt;pcbRun[i].pid&lt;&lt;<span class="string">&quot; 的进程运行结束&quot;</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;cntRun<span class="number">-1</span>; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                pcbRun[j]=pcbRun[j+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            cntRun--;</span><br><span class="line">            <span class="keyword">if</span>(cntWait&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;  pid 为&quot;</span>&lt;&lt;pcbWait[<span class="number">0</span>].pid&lt;&lt;<span class="string">&quot; 的进程开始运行&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">                pcbRun[cntRun++]=pcbWait[<span class="number">0</span>];</span><br><span class="line">                cntWait--;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;cntWait;j++)</span><br><span class="line">                    pcbWait[j]=pcbWait[j+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cntWait)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cntRun;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pcbWait[<span class="number">0</span>].ji&lt;pcbRun[i].ji)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;pid 为 %d 的进程开始运行,pid 为 %d 的进程进入阻塞状\n&quot;</span>,pcbWait[<span class="number">0</span>].pid,pcbRun[i].pid);</span><br><span class="line"></span><br><span class="line">                pcbRun[i].ji=pcbWait[<span class="number">0</span>].ji;</span><br><span class="line">                t=pcbRun[i];</span><br><span class="line">                pcbRun[i]=pcbWait[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">                cntWait--;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cntWait;i++)</span><br><span class="line">                    pcbWait[i]=pcbWait[i+<span class="number">1</span>];</span><br><span class="line">                pcbWait[cntWait++]=t;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/****** 杀死进程**********</span></span><br><span class="line"><span class="comment">void kill()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int pid;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;请输入你要杀死的进程pid:&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;pid;</span></span><br><span class="line"><span class="comment">    for(int i=0; i&lt;cntRun; i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        if(pcbRun[i].pid==pid)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            for(int j=i; j&lt;cntRun-1; j++)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                pcbRun[j]=pcbRun[j+1];</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            cntRun--;</span></span><br><span class="line"><span class="comment">            cout&lt;&lt;&quot;pid为 &quot;&lt;&lt;pid&lt;&lt;&quot; 的进程已被杀死,现在还在运行的进程有:&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">            for(int i=0; i&lt;cntRun; i++)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                printf(&quot;pid 为 %d 的进程\n&quot;,pcbRun[i].pid);</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            return;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;未找到pid为 &quot;&lt;&lt;pid&lt;&lt;&quot; 的进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"><span class="comment">/****菜单***</span></span><br><span class="line"><span class="comment">void menu()&#123;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;=======================&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;1.输入进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;2.输出进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;3.杀死进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;4.退出&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;请输入你的操作:&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//int choice;</span></span><br><span class="line">    <span class="keyword">char</span> ok=<span class="string">&#x27;y&#x27;</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入可以同时运行的进程数目:&quot;</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;maxNumRun;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请依次输入进程：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">while</span>(ok!=<span class="string">&#x27;n&#x27;</span>&amp;&amp;ok!=<span class="string">&#x27;N&#x27;</span>)&#123;</span><br><span class="line">        input();</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;是否继续输入 y or n: &quot;</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;ok;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="comment">//  cout&lt;&lt;cntRun&lt;&lt;&quot; &quot;&lt;&lt;cntWait&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">if</span>(cntRun==<span class="number">0</span>&amp;&amp;cntWait==<span class="number">0</span>) <span class="comment">//进程全部运行结束 结束循环</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        print();</span><br><span class="line">       <span class="comment">/* menu();</span></span><br><span class="line"><span class="comment">        cin&gt;&gt;choice;</span></span><br><span class="line"><span class="comment">        switch(choice)&#123;</span></span><br><span class="line"><span class="comment">            case 1: input();break;</span></span><br><span class="line"><span class="comment">            case 2: print(); break;</span></span><br><span class="line"><span class="comment">            case 3: kill();break;</span></span><br><span class="line"><span class="comment">            default: return 0;</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        run();</span><br><span class="line">        system(<span class="string">&quot;pause&quot;</span>); <span class="comment">//按任意键继续</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 实训程序 </category>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 操作系统 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>@Slf4j</title>
       <link href="2020/09/19/Slf4j/"/>
       <url>2020/09/19/Slf4j/</url>
@@ -12,6 +39,8 @@
       
       
       <categories>
+          
+          <category> Java </category>
           
           <category> SpringBoot </category>
           
@@ -40,6 +69,8 @@
       
       <categories>
           
+          <category> Java </category>
+          
           <category> SpringBoot </category>
           
       </categories>
@@ -47,9 +78,9 @@
       
         <tags>
             
-            <tag> JAVA </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Java </tag>
             
         </tags>
       
@@ -82,6 +113,8 @@
           
           <category> 其他 </category>
           
+          <category> 错误 </category>
+          
       </categories>
       
       
@@ -107,6 +140,8 @@
           
           <category> ACM </category>
           
+          <category> 模板 </category>
+          
       </categories>
       
       
@@ -130,7 +165,9 @@
       
       <categories>
           
-          <category> JAVA </category>
+          <category> Java </category>
+          
+          <category> 搭配环境 </category>
           
       </categories>
       
@@ -159,6 +196,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -183,6 +222,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 模板 </category>
           
       </categories>
       
@@ -209,6 +250,8 @@
           
           <category> ACM </category>
           
+          <category> 题目 </category>
+          
       </categories>
       
       
@@ -233,6 +276,8 @@
       <categories>
           
           <category> 实训程序 </category>
+          
+          <category> 数据结构 </category>
           
       </categories>
       
@@ -259,6 +304,8 @@
           
           <category> 实训程序 </category>
           
+          <category> 数据结构 </category>
+          
       </categories>
       
       
@@ -284,12 +331,14 @@
           
           <category> ACM </category>
           
+          <category> 模板 </category>
+          
       </categories>
       
       
         <tags>
             
-            <tag> 算法 </tag>
+            <tag> 模板 </tag>
             
         </tags>
       
@@ -308,6 +357,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -334,6 +385,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -358,6 +411,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -384,6 +439,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -408,6 +465,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -434,6 +493,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -458,6 +519,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -484,6 +547,8 @@
           
           <category> ACM </category>
           
+          <category> 题目 </category>
+          
       </categories>
       
       
@@ -508,6 +573,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 知识 </category>
           
       </categories>
       
@@ -536,6 +603,8 @@
           
           <category> ACM </category>
           
+          <category> 知识 </category>
+          
       </categories>
       
       
@@ -562,6 +631,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 知识 </category>
           
       </categories>
       
@@ -590,6 +661,8 @@
           
           <category> ACM </category>
           
+          <category> 知识 </category>
+          
       </categories>
       
       
@@ -617,6 +690,8 @@
           
           <category> ACM </category>
           
+          <category> 知识 </category>
+          
       </categories>
       
       
@@ -642,6 +717,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -666,6 +743,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -694,6 +773,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -721,12 +802,16 @@
           
           <category> ACM </category>
           
+          <category> 模板 </category>
+          
       </categories>
       
       
         <tags>
             
             <tag> 算法 </tag>
+            
+            <tag> 模板 </tag>
             
         </tags>
       
@@ -745,6 +830,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -771,12 +858,16 @@
           
           <category> ACM </category>
           
+          <category> 模板 </category>
+          
       </categories>
       
       
         <tags>
             
             <tag> 算法 </tag>
+            
+            <tag> 模板 </tag>
             
         </tags>
       
@@ -795,6 +886,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -821,6 +914,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -846,14 +941,14 @@
       
       <categories>
           
-          <category> 其他 </category>
+          <category> MarkDown </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 知识 </tag>
+            <tag> MarkDown </tag>
             
         </tags>
       
@@ -872,6 +967,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 题目 </category>
           
       </categories>
       
@@ -925,6 +1022,8 @@
           
           <category> ACM </category>
           
+          <category> 题目 </category>
+          
       </categories>
       
       
@@ -949,6 +1048,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -975,6 +1076,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -999,6 +1102,8 @@
       <categories>
           
           <category> 实训程序 </category>
+          
+          <category> 数据结构 </category>
           
       </categories>
       
@@ -1025,6 +1130,8 @@
           
           <category> ACM </category>
           
+          <category> 题目 </category>
+          
       </categories>
       
       
@@ -1050,6 +1157,8 @@
           
           <category> ACM </category>
           
+          <category> 题目 </category>
+          
       </categories>
       
       
@@ -1074,6 +1183,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 题目 </category>
           
       </categories>
       
@@ -1102,12 +1213,14 @@
           
           <category> ACM </category>
           
+          <category> 题目 </category>
+          
       </categories>
       
       
         <tags>
             
-            <tag> 算法 </tag>
+            <tag> 题目 </tag>
             
         </tags>
       
@@ -1126,6 +1239,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -1152,6 +1267,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -1176,6 +1293,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 题目 </category>
           
       </categories>
       
@@ -1202,6 +1321,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -1226,6 +1347,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -1252,6 +1375,8 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
@@ -1276,6 +1401,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -1302,6 +1429,8 @@
           
           <category> ACM </category>
           
+          <category> 题目 </category>
+          
       </categories>
       
       
@@ -1327,12 +1456,16 @@
           
           <category> ACM </category>
           
+          <category> 算法 </category>
+          
       </categories>
       
       
         <tags>
             
             <tag> 算法 </tag>
+            
+            <tag> 模板 </tag>
             
         </tags>
       
@@ -1351,6 +1484,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       
@@ -1376,6 +1511,8 @@
       <categories>
           
           <category> ACM </category>
+          
+          <category> 算法 </category>
           
       </categories>
       

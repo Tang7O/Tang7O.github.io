@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>分类：SpringBoot - Tang7O&#39;S BLOG</title>
+  <title>分类：题目 - Tang7O&#39;S BLOG</title>
   
 
   
@@ -447,14 +447,6 @@
       
   <section class="post-list">
     
-      
-        
-          
-        
-          
-        
-      
-    
     
       
         
@@ -466,18 +458,15 @@
   
     
     <h2 class="article-title" >
-      <a href="/2020/09/19/Slf4j/">
-        @Slf4j
+      <a href="/2020/04/09/prime-path-%EF%BC%88bfs%E6%89%93%E8%A1%A8%EF%BC%89/">
+        Prime Path （BFS+打表）
       </a>
     </h2>
   
   <div class='md'>
     
       
-        @Slf4j 可以代替 
-private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
-需要在pom中引用后才可以使用:
-12345&lt;!--可以引入日志 @Slf4j注解--&gt;&lt;dependency&gt;    &lt;groupId&gt;org.projectlombok&lt;&#x...
+        DescriptionThe ministers of the cabinet were quite upset by the message from the Chief of Security stating that they would all have to change the four-digit room numbers on their offices. — It is a...
       
     
   </div>
@@ -485,15 +474,15 @@ private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
     <div class='meta-v3' line_style='dashed'>
       <div>
         
-        <time>2020-09-19</time>
+        <time>2020-04-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E9%A2%98%E7%9B%AE/">题目</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/09/19/Slf4j/'>
+          <a class='readmore' href='/2020/04/09/prime-path-%EF%BC%88bfs%E6%89%93%E8%A1%A8%EF%BC%89/'>
             阅读全文
           </a>
         </div>
@@ -515,24 +504,16 @@ private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
   
     
     <h2 class="article-title" >
-      <a href="/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/">
-        SpringBootJPA之@Entity,@Table,@Id,@Column
+      <a href="/2020/04/09/hello-2019-b-petr-and-a-combination-lock%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9E%9A%E4%B8%BE-dfs/">
+        Hello 2019 B. Petr and a Combination Lock(二进制枚举 || dfs)
       </a>
     </h2>
   
   <div class='md'>
     
       
-        @Entity: 表明该类为一个实体类
-一般标注在类前.
-参数:
-name: 表示其所对应的数据库中的表名
-@Table:  声明此对象映射到数据库的数据表，通过它可以为实体指定表
-一般标注在类前.
-参数:
-1.name:  用来命名当前实体类对应的数据库表的名字.
-2.catalog: 指定table数据库中的路径，这里指数据库名
-3.uniqueConstraints： 可以创建单个字段...
+        题目链接: 题意：给你n个数字，让这n个数字相加减，如果是360的倍数或者是0就输出YES，否则输出NO。 思路：二进制枚举每一种状态，或者直接暴力搜索。
+二进制枚举123456789101112131415161718192021#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=4005,inf=1e8;int ...
       
     
   </div>
@@ -540,15 +521,62 @@ name: 表示其所对应的数据库中的表名
     <div class='meta-v3' line_style='dashed'>
       <div>
         
-        <time>2020-09-18</time>
+        <time>2020-04-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/categories/SpringBoot/">SpringBoot</a>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E9%A2%98%E7%9B%AE/">题目</a>
         
       </div>
       
         <div>
-          <a class='readmore' href='/2020/09/18/SpringBootJPA%E4%B9%8B-Entity%E5%92%8C-Table%E6%B3%A8%E8%A7%A3-1/'>
+          <a class='readmore' href='/2020/04/09/hello-2019-b-petr-and-a-combination-lock%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9E%9A%E4%B8%BE-dfs/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2020/04/09/%E4%BC%9A%E5%9C%BA%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%20%EF%BC%88%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%EF%BC%89/">
+        会场安排问题 （贪心算法）
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        题目如下Description假设要在足够多的会场里安排一批活动，并希望使用尽可能少的会场。设计一个有效的贪心算法进行安排。（这个问题实际上是著名的图着色问题。若将每一个活动作为图的一个顶点，不相容活动间用边相连。使相邻顶点着有不同颜色的最小着色数，相应于要找的最小会场数。） 对于给定的k个待安排的活动，计算使用最少会场的时间表。
+Input输入数据的第一行有1 个正整数k（k≤10000）...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='dashed'>
+      <div>
+        
+        <time>2020-04-09</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/ACM/">ACM</a><span class="sep"></span><a class="category-link" href="/categories/ACM/%E9%A2%98%E7%9B%AE/">题目</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2020/04/09/%E4%BC%9A%E5%9C%BA%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%20%EF%BC%88%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%EF%BC%89/'>
             阅读全文
           </a>
         </div>
@@ -564,6 +592,21 @@ name: 表示其所对应的数据库中的表名
     
   </section>
   
+    
+      <br>
+      <div class="prev-next">
+        
+          <a class="prev" rel="prev" href="/categories/ACM/%E9%A2%98%E7%9B%AE/">
+            <section class="post prev white-box shadow" >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一页&nbsp;
+            </section>
+          </a>
+        
+        <p class="current">
+          2 / 2
+        </p>
+        
+      </div>
     
   
 
@@ -664,30 +707,75 @@ name: 表示其所对应的数据库中的表名
             id="categoriesACM"
             ><div class='name'>ACM</div><div class='badge'>(45)</div></a></li>
         
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E6%A8%A1%E6%9D%BF/" href="/categories/ACM/%E6%A8%A1%E6%9D%BF/"
+            id="categoriesACME6A8A1E69DBF"
+            ><div class='name'>模板</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E7%9F%A5%E8%AF%86/" href="/categories/ACM/%E7%9F%A5%E8%AF%86/"
+            id="categoriesACME79FA5E8AF86"
+            ><div class='name'>知识</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E7%AE%97%E6%B3%95/" href="/categories/ACM/%E7%AE%97%E6%B3%95/"
+            id="categoriesACME7AE97E6B395"
+            ><div class='name'>算法</div><div class='badge'>(25)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E9%A2%98%E7%9B%AE/" href="/categories/ACM/%E9%A2%98%E7%9B%AE/"
+            id="categoriesACME9A298E79BAE"
+            ><div class='name'>题目</div><div class='badge'>(10)</div></a></li>
+        
           <li><a class="flat-box"
             title="/categories/C/" href="/categories/C/"
             id="categoriesC"
             ><div class='name'>C++</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/JAVA/" href="/categories/JAVA/"
-            id="categoriesJAVA"
-            ><div class='name'>JAVA</div><div class='badge'>(1)</div></a></li>
+            title="/categories/Java/" href="/categories/Java/"
+            id="categoriesJava"
+            ><div class='name'>Java</div><div class='badge'>(3)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/Java/SpringBoot/" href="/categories/Java/SpringBoot/"
+            id="categoriesJavaSpringBoot"
+            ><div class='name'>SpringBoot</div><div class='badge'>(2)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/Java/%E6%90%AD%E9%85%8D%E7%8E%AF%E5%A2%83/" href="/categories/Java/%E6%90%AD%E9%85%8D%E7%8E%AF%E5%A2%83/"
+            id="categoriesJavaE690ADE9858DE78EAFE5A283"
+            ><div class='name'>搭配环境</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/SpringBoot/" href="/categories/SpringBoot/"
-            id="categoriesSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(2)</div></a></li>
+            title="/categories/MarkDown/" href="/categories/MarkDown/"
+            id="categoriesMarkDown"
+            ><div class='name'>MarkDown</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
             id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>其他</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%85%B6%E4%BB%96/%E9%94%99%E8%AF%AF/" href="/categories/%E5%85%B6%E4%BB%96/%E9%94%99%E8%AF%AF/"
+            id="categoriesE585B6E4BB96E99499E8AFAF"
+            ><div class='name'>错误</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
             id="categoriesE5AE9EE8AEADE7A88BE5BA8F"
-            ><div class='name'>实训程序</div><div class='badge'>(3)</div></a></li>
+            ><div class='name'>实训程序</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE6938DE4BD9CE7B3BBE7BB9F"
+            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE695B0E68DAEE7BB93E69E84"
+            ><div class='name'>数据结构</div><div class='badge'>(3)</div></a></li>
         
       </ul>
     </div>
@@ -711,7 +799,7 @@ name: 表示其所对应的数据库中的表名
 
 
     <div class='content'>
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/JAVA/" style="font-size: 18px; color: #7e7e7e">JAVA</a> <a href="/tags/SpringBoot/" style="font-size: 16px; color: #8b8b8b">SpringBoot</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px; color: #7e7e7e">数据结构</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 20px; color: #707070">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 14px; color: #999">配置环境变量</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/JAVA/" style="font-size: 15.67px; color: #8e8e8e">JAVA</a> <a href="/tags/Java/" style="font-size: 14px; color: #999">Java</a> <a href="/tags/MarkDown/" style="font-size: 14px; color: #999">MarkDown</a> <a href="/tags/SpringBoot/" style="font-size: 15.67px; color: #8e8e8e">SpringBoot</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 17.33px; color: #828282">数据结构</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 19px; color: #777">模板</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 20.67px; color: #6c6c6c">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 14px; color: #999">配置环境变量</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22.33px; color: #606060">题目</a>
     </div>
   </section>
 
