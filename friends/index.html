@@ -327,7 +327,7 @@
     
         <div class='cover-wrapper links search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -397,6 +397,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -454,7 +455,7 @@
           
             
 <div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
+  <a class='author' href="" rel="nofollow">
     <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
     <p>Tang7O</p>
   </a>
@@ -471,7 +472,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年9月20日</p>
+    <p>发布于：2020年9月26日</p>
   </a>
 </div>
 
@@ -494,14 +495,12 @@
           
         
           
-        
-          
             <div>
     <span class="post-time">
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">54字</span>
+        <span class="post-count">50字</span>
       </span>
     </span>
 
@@ -524,16 +523,7 @@
 
 
   
-   <a class="site-card" target="_blank" rel="external nofollow noopener noreferrer" href="https://colsrch.top/">
-<div class="info">
-<img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-<span class="title">Gleaming</span>
-<span class="desc">#JAVA #后端</span>
-</div>
-</a>
-
-
-<p>各位大佬想交换友链的话可以在下方留言，下面有留言格式哦~</p>
+  <p>各位大佬想交换友链的话可以在下方留言，下面有留言格式哦~</p>
 <blockquote>
 <p>title: Tang7O<br>avatar: <a target="_blank" rel="noopener" href="https://alioss.tang7o.cn/blog/logo_ce.png">https://alioss.tang7o.cn/blog/logo_ce.png</a><br>url: <a href="https://tang7o.cn/">https://tang7o.cn</a><br>description:今日事,今日毕<br>tags: [蒟蒻,Java,后端] </p>
 </blockquote>
@@ -709,6 +699,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1194,6 +1197,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         

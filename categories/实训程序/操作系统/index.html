@@ -331,7 +331,7 @@
     
         <div class='cover-wrapper  search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -401,6 +401,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -471,15 +472,11 @@
   
   <div class='md'>
     
-      
-        输入 n 个进程(id 运行时间 优先级),根据优先级简单的模拟进程的运行(等待 运行 堵塞).
-由于感觉用链表比较麻烦,于是开了个数组简单的模拟了一下
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-09-23</time>
@@ -505,6 +502,7 @@
       
     
   </section>
+  
   
     
   
@@ -849,6 +847,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1334,6 +1345,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         

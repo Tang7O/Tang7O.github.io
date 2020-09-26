@@ -331,7 +331,7 @@
     
         <div class='cover-wrapper  search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -401,6 +401,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -477,15 +478,11 @@
   
   <div class='md'>
     
-      
-        输入 n 个进程(id 运行时间 优先级),根据优先级简单的模拟进程的运行(等待 运行 堵塞).
-由于感觉用链表比较麻烦,于是开了个数组简单的模拟了一下
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-09-23</time>
@@ -525,13 +522,11 @@
   
   <div class='md'>
     
-      
-        设计一个校园导游系统，为来访的客人提供各种信息查询服务。（限1人完成） （一）基本要求 1、 设计你的学校的校园平面图，所含景点10-15个。以图中顶点表示校园内各景点，存放景点名称、代号、简介等信息；以边表示路径，存放路径长度等相关信息。 2、 为来访客人提供图中任意景点相关信息的查询。 3、 为来访客人提供图中任意景点的问路查询，即查询任意两个景点之间的一条最短的简单路径。 4、 提供图...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-10</time>
@@ -571,13 +566,11 @@
   
   <div class='md'>
     
-      
-        飞机订票系统（限1 人完成） 任务：通过此系统可以实现如下功能： 1）录入： 可以录入航班情况（数据可以存储在一个数据文件中，数据结构、具体数据自定） 2）查询： 可以查询某个航线的情况（如，输入航班号，查询起降时间，起飞抵达城市，航班票价，票价折扣，确定航班是否满仓）；可以输入起飞抵达城市，查询飞机航班情况； 3）订票：（订票情况可以存在一个数据文件中，结构自己设定） 可以订票，如果该航班...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-10</time>
@@ -617,13 +610,11 @@
   
   <div class='md'>
     
-      
-        哈夫曼(Huffman)编/译码器（限1人完成） 【问题描述】 利用哈夫曼编码进行通信可以大大提高信道利用率，缩短信息传输时间，降低传输成本。但是，这要求在发送端通过一个编码系统对待传数据预先编码，在接收端将传来的数据进行译码（复原）。对于双工信道（即可以双向传输信息的信道），每端都需要一个完整的编/译码系统。试为这样的信息收发站写一个哈夫曼码的编/译码系统。首先输入一段包含27个字符（包含...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-10</time>
@@ -649,6 +640,7 @@
       
     
   </section>
+  
   
     
   
@@ -993,6 +985,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1478,6 +1483,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         

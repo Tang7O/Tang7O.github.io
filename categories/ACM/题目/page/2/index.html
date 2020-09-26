@@ -331,7 +331,7 @@
     
         <div class='cover-wrapper  search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -401,6 +401,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -465,13 +466,11 @@
   
   <div class='md'>
     
-      
-        DescriptionThe ministers of the cabinet were quite upset by the message from the Chief of Security stating that they would all have to change the four-digit room numbers on their offices. — It is a...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-09</time>
@@ -511,14 +510,11 @@
   
   <div class='md'>
     
-      
-        题目链接: 题意：给你n个数字，让这n个数字相加减，如果是360的倍数或者是0就输出YES，否则输出NO。 思路：二进制枚举每一种状态，或者直接暴力搜索。
-二进制枚举123456789101112131415161718192021#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=4005,inf=1e8;int ...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-09</time>
@@ -558,14 +554,11 @@
   
   <div class='md'>
     
-      
-        题目如下Description假设要在足够多的会场里安排一批活动，并希望使用尽可能少的会场。设计一个有效的贪心算法进行安排。（这个问题实际上是著名的图着色问题。若将每一个活动作为图的一个顶点，不相容活动间用边相连。使相邻顶点着有不同颜色的最小着色数，相应于要找的最小会场数。） 对于给定的k个待安排的活动，计算使用最少会场的时间表。
-Input输入数据的第一行有1 个正整数k（k≤10000）...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-09</time>
@@ -591,6 +584,7 @@ Input输入数据的第一行有1 个正整数k（k≤10000）...
       
     
   </section>
+  
   
     
       <br>
@@ -950,6 +944,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1435,6 +1442,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         

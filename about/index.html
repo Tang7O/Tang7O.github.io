@@ -329,7 +329,7 @@
     
         <div class='cover-wrapper page search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -399,6 +399,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -456,7 +457,7 @@
           
             
 <div class='new-meta-item author'>
-  <a class='author' href="/" rel="nofollow">
+  <a class='author' href="" rel="nofollow">
     <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
     <p>Tang7O</p>
   </a>
@@ -496,14 +497,12 @@
           
         
           
-        
-          
             <div>
     <span class="post-time">
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
+        <span class="post-count">72字</span>
       </span>
     </span>
 
@@ -526,7 +525,8 @@
 
 
   
-  
+  <p>未曾清贫难做人,不经打击永天真.<br>自古英雄出炼狱,从来富贵入凡尘.<br>成熟不过是善于隐藏,沧桑不过是无泪的忧伤.<br>经年以后,你会失去倾诉欲和表达欲.<br>能抗就抗,不能抗就死抗.</p>
+
   
   
   
@@ -537,10 +537,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-20T09:38:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T17:13:53+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月20日</p>
+    <p>更新于：2020年9月26日</p>
   </a>
 </div>
 
@@ -785,6 +785,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1270,6 +1283,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         

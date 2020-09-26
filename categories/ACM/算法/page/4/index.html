@@ -331,7 +331,7 @@
     
         <div class='cover-wrapper  search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -401,6 +401,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -465,14 +466,11 @@
   
   <div class='md'>
     
-      
-        队列queue的特征：先进先出可以简单将队列看成一个通道，从通道的一头进从另外一头出。 头文件： #include&lt;queue&gt; C++队列queue类成员函数如下: back()返回最后一个元素 empty()如果队列空则返回真 front()返回第一个元素 pop()删除第一个元素 push()在末尾加入一个元素 size()返回队列中元素的个数 下面看个简单的例题
-约瑟夫环...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-09</time>
@@ -512,16 +510,11 @@
   
   <div class='md'>
     
-      
-        GCD原理：a=b*q+r1; (a,b)==(b1,r1) ）( (a，b)为a，b的最小公约数） 代码如下：
-1234567int gcd(int a,int b)&#123;    if(b==0)        return a;    gcd(b,a%b);&#125;
-
-EXGCD1234void exgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-09</time>
@@ -561,14 +554,11 @@ EXGCD1234void exgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123...
   
   <div class='md'>
     
-      
-        快速乘：(a*b)%c原理：将b转化为二进制的形式 用b每一位的权重乘a再相加 举个例子：20* 10=20_(1010)2=(20_(2^3)_1) + (20 *(2^2)_0) + (20 _(2^1)_1) + (20 _(2^0)_0)=160+40=200 代码如下：
-12345678910111213int fast_mul(int a,int b,int c)&#123;  ...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-09</time>
@@ -608,13 +598,11 @@ EXGCD1234void exgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123...
   
   <div class='md'>
     
-      
-        哈希打表1234567891011121314#include&lt;stdio.h&gt;int main()&#123;    int s[10000]=&#123;0&#125;,a,b,i,j;     for(i=2;i&lt;10000;i++) //素数从2开始        if(s[i]==0)            for(j=i*i;j&lt;10000;j+=i)  ...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-08</time>
@@ -640,6 +628,7 @@ EXGCD1234void exgcd(ll a,ll b,ll &amp;x,ll &amp;y)&#123...
       
     
   </section>
+  
   
     
       <br>
@@ -999,6 +988,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1484,6 +1486,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         

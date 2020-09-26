@@ -331,7 +331,7 @@
     
         <div class='cover-wrapper  search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -401,6 +401,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -479,14 +480,11 @@
   
   <div class='md'>
     
-      
-        题目连接
-123456789101112int main()&#123;    ll n;    cin &gt;&gt; n;    ll ans = 0;    for (ll l = 1, r = 0; l &lt;= n; l = r + 1) &#123;        r = n / (n / l);        ans += 1ll * (r - l + 1) * (n / ...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-05-16</time>
@@ -526,13 +524,11 @@
   
   <div class='md'>
     
-      
-        给定三角形三个顶点的坐标，如何求三角形的外心的坐标呢？ 例如 ：给定a（x1,y1） b（x2,y2） c（x3,y3）求外接圆心坐标O（x，y） 首先，外接圆的圆心是三角形三条边的垂直平分线的交点，我们根据圆心到顶点的距离相等，可以列出以下方程： (x1-x)(x1-x)-(y1-y)(y1-y)=(x2-x)(x2-x)+(y2-y)(y2-y); (x2-x)(x2-x)+(y2-y)...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-10</time>
@@ -572,13 +568,11 @@
   
   <div class='md'>
     
-      
-        123456789101112131415161718192021222324252627282930313233double Distance(int x1,int y1,int x2,int y2)&#123;//求边长    return sqrt(pow((x1-x2),2)+pow((y1-y2),2));&#125;bool IsRightAngle(int x1,int y1,...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-10</time>
@@ -618,14 +612,11 @@
   
   <div class='md'>
     
-      
-        nex[i]存的是从字符串起点到下标位i的字符真前缀和真后缀相同的最大长度
-123456789101112131415161718192021222324252627282930313233void Getnex(char * m)&#123;    nex[0]=-1;    int k=-1,j=0;    int len=strlen(m);    while(j&lt;len)   ...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-10</time>
@@ -665,14 +656,11 @@
   
   <div class='md'>
     
-      
-        （原文有详解，若点击链接跳转失败，直接在浏览器输入 bestsort.cn 即可） 从多个字符串中查找是否有某个字符串
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-10</time>
@@ -698,6 +686,7 @@
       
     
   </section>
+  
   
     
   
@@ -1042,6 +1031,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1527,6 +1529,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         

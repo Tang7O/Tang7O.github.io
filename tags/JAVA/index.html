@@ -331,7 +331,7 @@
     
         <div class='cover-wrapper  search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -401,6 +401,7 @@
   
   </div>
   
+
     <div class='safearea'>
       <div class='body-wrapper' id="pjax-container">
         
@@ -473,16 +474,11 @@
   
   <div class='md'>
     
-      
-        @Slf4j 可以代替 
-private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
-需要在pom中引用后才可以使用:
-12345&lt;!--可以引入日志 @Slf4j注解--&gt;&lt;dependency&gt;    &lt;groupId&gt;org.projectlombok&lt;&#x...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-09-19</time>
@@ -522,15 +518,11 @@ private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
   
   <div class='md'>
     
-      
-        本文转载于：https://www.cnblogs.com/cnwutianhao/p/5487758.html
-Win10下 Java环境变量配置
-首先，你应该已经安装了 Java 的 JDK 了（如果没有安装JDK，请跳转到此网址：http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html） ...
-      
+      <p> </p>
     
   </div>
   
-    <div class='meta-v3' line_style='dashed'>
+    <div class='meta-v3' line_style='solid'>
       <div>
         
         <time>2020-04-13</time>
@@ -556,6 +548,7 @@ Win10下 Java环境变量配置
       
     
   </section>
+  
   
     
   
@@ -900,6 +893,19 @@ setInterval("createtime()",250);
 
 
 
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
 
 
 
@@ -1385,6 +1391,10 @@ const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
         
         
         
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
         
         
         
