@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">459字</span>
+        <span class="post-count">463字</span>
       </span>
     </span>
 
@@ -536,12 +536,29 @@
 
 
   
-  <h4 id="队列queue的特征：先进先出"><a href="#队列queue的特征：先进先出" class="headerlink" title="队列queue的特征：先进先出"></a>队列queue的特征：<strong>先进先出</strong></h4><p>可以简单将队列看成一个通道，从通道的一头进从另外一头出。 头文件： <code>#include&lt;queue&gt;</code> C++队列queue类成员函数如下: back()返回最后一个元素 empty()如果队列空则返回真 front()返回第一个元素 pop()删除第一个元素 push()在末尾加入一个元素 size()返回队列中元素的个数 下面看个简单的例题</p>
-<h2 id="约瑟夫环"><a href="#约瑟夫环" class="headerlink" title="约瑟夫环"></a>约瑟夫环</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>题目：n个数字（1,2,3…,n）形成一个圆圈，从数字1开始，每次从这个圆圈中删除第m个数字（第一个为当前数字本身，第二个为当前数字的下一个数字）。 当一个数字删除后，从被删除数字的下一个继续删除第m个数字。 求出在这个圆圈中剩下的最后一个数字。</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>n=9 m=5</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>The last one is 8</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><p>9 5</p>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><p>8 思路：把所有数字存入队列，把队列中的第一个数据存入队列并删除第一个数据，第m个数据不存入队列就OK了 AC代码如下：</p>
+  <h4 id="队列queue的特征先进先出">队列queue的特征：<strong>先进先出</strong></h4>
+<p>可以简单将队列看成一个通道，从通道的一头进从另外一头出。</p>
+<p>头文件： <code>#include&lt;queue&gt;</code></p>
+<p>C++队列queue类成员函数如下:</p>
+<p>back()返回最后一个元素</p>
+<p>empty()如果队列空则返回真</p>
+<p>front()返回第一个元素</p>
+<p>pop()删除第一个元素</p>
+<p>push()在末尾加入一个元素</p>
+<p>size()返回队列中元素的个数</p>
+<p>下面看个简单的例题</p>
+<h2 id="约瑟夫环">约瑟夫环</h2>
+<h3 id="description">Description</h3>
+<p>题目：n个数字（1,2,3…,n）形成一个圆圈，从数字1开始，每次从这个圆圈中删除第m个数字（第一个为当前数字本身，第二个为当前数字的下一个数字）。 当一个数字删除后，从被删除数字的下一个继续删除第m个数字。 求出在这个圆圈中剩下的最后一个数字。</p>
+<h3 id="input">Input</h3>
+<p>n=9 m=5</p>
+<h3 id="output">Output</h3>
+<p>The last one is 8</p>
+<h3 id="sample-input">Sample Input</h3>
+<p>9 5</p>
+<h3 id="sample-output">Sample Output</h3>
+<p>8</p>
+<p>思路：把所有数字存入队列，把队列中的第一个数据存入队列并删除第一个数据，第m个数据不存入队列就OK了 AC代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;p; <span class="comment">//开辟队列</span></span><br><span class="line">    <span class="keyword">int</span> n,m,x=<span class="number">0</span>,i;</span><br><span class="line">    <span class="keyword">while</span>(!p.empty()) <span class="comment">//清空队列</span></span><br><span class="line">        p.pop();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        p.push(i);  <span class="comment">//把数据存入队列</span></span><br><span class="line">    &#125;</span><br><span class="line">    i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x++;</span><br><span class="line">        <span class="keyword">if</span>(x!=<span class="number">5</span>)  <span class="comment">//如果不是你要删掉的那个数据 就存到队列最后</span></span><br><span class="line">        p.push(p.front());  </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            x=<span class="number">0</span>;  <span class="comment">//删除一个数据后要重新计数</span></span><br><span class="line">        p.pop();  <span class="comment">//删除队列中第一个数据</span></span><br><span class="line">        <span class="keyword">if</span>(p.size()==<span class="number">1</span>)   </span><br><span class="line">        &#123;  <span class="comment">//如果还剩一个数据 输出该数据</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,p.front());</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
   
@@ -588,10 +605,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:19:10+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T12:42:16+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -669,13 +686,20 @@
       
         <a class='prev' href='/2020/04/09/%E6%A0%88%E7%9A%84%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>栈的简单讲解</p>
-          <p class='content'>栈stack的特征：后进先出 可以把栈想象成一个木桶，后放进去的东西先拿出来； C++队列queue类成员函数如下: push(): 向栈内压入一个成员； pop(): 从栈顶弹出一个成员； e...</p>
+          <p class='content'>栈stack的特征：后进先出
+可以把栈想象成一个木桶，后放进去的东西先拿出来；
+C++队列queue类成员函数如下:
+push(): 向栈内压入一个成员；
+pop(): 从栈顶弹出一个成员；
+e...</p>
         </a>
       
       
         <a class='next' href='/2020/04/09/%E4%BC%9A%E5%9C%BA%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%20%EF%BC%88%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95%EF%BC%89/'>
           <p class='title'>会场安排问题 （贪心算法）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>题目如下Description假设要在足够多的会场里安排一批活动，并希望使用尽可能少的会场。设计一个有效的贪心算法进行安排。（这个问题实际上是著名的图着色问题。若将每一个活动作为图的一个顶点，不...</p>
+          <p class='content'>题目如下
+Description
+假设要在足够多的会场里安排一批活动，并希望使用尽可能少的会场。设计一个有效的贪心算法进行安排。（这个问题实际上是著名的图着色问题。若将每一个活动作为图的一个顶点...</p>
         </a>
       
     </div>
@@ -718,7 +742,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%9F%E5%88%97queue%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%9A%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA"><span class="toc-text">队列queue的特征：先进先出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF"><span class="toc-text">约瑟夫环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-text">Sample Output</span></a>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%9F%E5%88%97queue%E7%9A%84%E7%89%B9%E5%BE%81%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA"><span class="toc-text">队列queue的特征：先进先出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF"><span class="toc-text">约瑟夫环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample-input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample-output"><span class="toc-text">Sample Output</span></a>
     </div>
   </section>
 
@@ -996,7 +1020,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

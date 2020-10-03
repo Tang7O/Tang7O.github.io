@@ -536,18 +536,18 @@
 
 
   
-  <p>@Entity: 表明该类为一个实体类</p>
+  <p><span class="citation" data-cites="Entity">@Entity</span>: 表明该类为一个实体类</p>
 <p>一般标注在类前.</p>
 <p>参数:</p>
 <pre><code>name: 表示其所对应的数据库中的表名</code></pre>
-<p>@Table:  声明此对象映射到数据库的数据表，通过它可以为实体指定表</p>
+<p><span class="citation" data-cites="Table">@Table</span>: 声明此对象映射到数据库的数据表，通过它可以为实体指定表</p>
 <p>一般标注在类前.</p>
 <p>参数:</p>
 <pre><code>1.name:  用来命名当前实体类对应的数据库表的名字.
 2.catalog: 指定table数据库中的路径，这里指数据库名
 3.uniqueConstraints： 可以创建单个字段或者联合的唯一约束，只有在创建表成功时才执行
 4.indexes：索引，可以指定联合索引，也是只有表生成成功才有效</code></pre>
-<p>@Id:注释指定表的主键 </p>
+<p><span class="citation" data-cites="Id:注释指定表的主键">@Id:注释指定表的主键</span></p>
 <p>一般标注在属性前.也可以标注在属性的getter方法前.</p>
 <p>参数:</p>
 <pre><code>1.TABLE：容器指定用底层的数据表确保唯一;
@@ -555,7 +555,7 @@
 3.IDENTITY：使用数据库的IDENTITY列莱保证唯一;
 4.AUTO：由容器挑选一个合适的方式来保证唯一;
 5.NONE：容器不负责主键的生成，由程序来完成.</code></pre>
-<p>@Column: 用来标识实体类中属性与数据表中字段的对应关系</p>
+<p><span class="citation" data-cites="Column">@Column</span>: 用来标识实体类中属性与数据表中字段的对应关系</p>
 <p>一般标注在属性前.也可以标注在属性的getter方法前.</p>
 <p>参数:</p>
 <pre><code>1.name: 定义了被标注字段在数据库表中所对应字段的名称;
@@ -566,8 +566,7 @@
 6.table: 表示当映射多个表时，指定表的表中的字段。默认值为主表的表名。
 7.length: 表示字段的长度，当字段的类型为varchar时，该属性才有效，默认为255个字符。
 8.precision和scale: 当字段类型为double时，precision表示数值的总长度，scale表示小数点所占的位数。</code></pre>
-<p>举个例子:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span> </span><br><span class="line"><span class="meta">@Table(name = &quot;user&quot;)</span>  <span class="comment">//这二个注解有可以写成 @Entity(name = &quot;user&quot;), 因为类名与表名一致(不区分大小写),也可以省略</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;id&quot;)</span>  <span class="comment">//如果属性名与表中的列名一致可以不写此注解</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>举个例子: <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span> </span><br><span class="line"><span class="meta">@Table(name = &quot;user&quot;)</span>  <span class="comment">//这二个注解有可以写成 @Entity(name = &quot;user&quot;), 因为类名与表名一致(不区分大小写),也可以省略</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;id&quot;)</span>  <span class="comment">//如果属性名与表中的列名一致可以不写此注解</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.password = password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 
   
   
@@ -694,9 +693,9 @@
       
         <a class='prev' href='/2020/09/19/Slf4j/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>@Slf4j</p>
-          <p class='content'>@Slf4j 可以代替 
+          <p class='content'>@Slf4j 可以代替
 private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
-需要在pom中引用后才...</p>
+需要在pom中引用后才可...</p>
         </a>
       
       
@@ -1009,7 +1008,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

@@ -536,11 +536,17 @@
 
 
   
-  <p><a target="_blank" rel="noopener" href="http://www.bilibili.com/video/av29909369?share_medium=android&share_source=qq&bbid=XYD34D2DB5FC5AE0E36F87BCC1946D23FEBE1&ts=1548990920723">B站学习视频（图片来源）</a><br><img src="https://img-blog.csdnimg.cn/20190201111550672.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMzY3OTUy,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190201111550672.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMzY3OTUy,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="求解公式"></p>
-<h2 id="1-所有因子个数"><a href="#1-所有因子个数" class="headerlink" title="1.所有因子个数"></a>1.所有因子个数</h2><p>如果一个数是因数，就不断除这个数，保存这个因子次方的数 temp++；<br>运用所有因子个数计算公式（见上图），保存因子个数的 ans不断乘（ temp+1 ）。<br>注意 :<br>当最后，在 x 不断除因数得到的值有两种情况：</p>
-<ol>
+  <p><a target="_blank" rel="noopener" href="http://www.bilibili.com/video/av29909369?share_medium=android&amp;share_source=qq&amp;bbid=XYD34D2DB5FC5AE0E36F87BCC1946D23FEBE1&amp;ts=1548990920723">B站学习视频（图片来源）</a><br />
+<img src="https://img-blog.csdnimg.cn/20190201111550672.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMzY3OTUy,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190201111550672.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzMzY3OTUy,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="求解公式" /></p>
+<h2 id="所有因子个数">1.所有因子个数</h2>
+<p>如果一个数是因数，就不断除这个数，保存这个因子次方的数 temp++；<br />
+运用所有因子个数计算公式（见上图），保存因子个数的 ans不断乘（ temp+1 ）。<br />
+注意 :<br />
+当最后，在 x 不断除因数得到的值有两种情况：</p>
+<ol type="1">
 <li>x == 1，这说明 x 没有其他因子了。</li>
-<li>x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,所以最后再乘（1+1）。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sxh759151483/article/details/80137459">代码学习链接</a></li>
+<li>x != 1, 这时 x 为其一个素数因子（且这个因子大于 根号x ）,所以最后再乘（1+1）。<br />
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/sxh759151483/article/details/80137459">代码学习链接</a></li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">dcpCount</span><span class="params">(ll x)</span></span>&#123;<span class="comment">//所有因子的个数（包括1） </span></span><br><span class="line">    ll ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i = <span class="number">2</span>; i * i &lt;= x; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(x % i == <span class="number">0</span>)&#123;</span><br><span class="line">            ll temp = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span>(x % i == <span class="number">0</span>)&#123;</span><br><span class="line">                x /= i;</span><br><span class="line">                temp++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans *= (temp+<span class="number">1</span>);<span class="comment">//运用上面的公式，计算所有因子的个数</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(x &gt; <span class="number">1</span>) ans *= <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -720,7 +726,7 @@ Win10下 Java环境变量配置
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%80%E6%9C%89%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0"><span class="toc-text">1.所有因子个数</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E5%9B%A0%E5%AD%90%E4%B8%AA%E6%95%B0"><span class="toc-text">1.所有因子个数</span></a></li></ol>
     </div>
   </section>
 
@@ -998,7 +1004,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

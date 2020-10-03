@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">525字</span>
+        <span class="post-count">556字</span>
       </span>
     </span>
 
@@ -522,7 +522,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -536,9 +536,36 @@
 
 
   
-  <p><img src="https://img-blog.csdnimg.cn/20190410204354725.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190410204354725.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述"><img src="https://img-blog.csdnimg.cn/20190410204405498.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190410204405498.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述">  </p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><h4 id="如果将题目中原先的序列，（假设n为5）我们可以通过一个构造转换矩阵来实现对原先序列的一个转换，转换如下："><a href="#如果将题目中原先的序列，（假设n为5）我们可以通过一个构造转换矩阵来实现对原先序列的一个转换，转换如下：" class="headerlink" title="如果将题目中原先的序列，（假设n为5）我们可以通过一个构造转换矩阵来实现对原先序列的一个转换，转换如下："></a>如果将题目中原先的序列，（假设n为5）我们可以通过一个构造转换矩阵来实现对原先序列的一个转换，转换如下：</h4><p>S(0,T-1) 　 B C 0 0 0 　 S(0,T) S(1,T-1) 　 A B C 0 0 　 S(1,T) S(2,T-1) X 0 A B C 0 = 　S(2,T) S(3,T-1) 　 0 0 A B C 　 S(3,T) S(4,T-1) 　 0 0 0 A B 　 S(4,T)</p>
-<h4 id="这样转化后就变成一个求某矩阵的T次幂，然后再做一次矩阵乘法就可以了，T很大，但是可以通过快速幂来实现。"><a href="#这样转化后就变成一个求某矩阵的T次幂，然后再做一次矩阵乘法就可以了，T很大，但是可以通过快速幂来实现。" class="headerlink" title="这样转化后就变成一个求某矩阵的T次幂，然后再做一次矩阵乘法就可以了，T很大，但是可以通过快速幂来实现。"></a>这样转化后就变成一个求某矩阵的T次幂，然后再做一次矩阵乘法就可以了，T很大，但是可以通过快速幂来实现。</h4><p>AC代码：</p>
+  <p><img src="https://img-blog.csdnimg.cn/20190410204354725.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190410204354725.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述" /><img src="https://img-blog.csdnimg.cn/20190410204405498.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" class="lazyload" data-srcset="https://img-blog.csdnimg.cn/20190410204405498.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzMxMDE5,size_16,color_FFFFFF,t_70" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="在这里插入图片描述" /></p>
+<h3 id="思路">思路：</h3>
+<h4 id="如果将题目中原先的序列假设n为5我们可以通过一个构造转换矩阵来实现对原先序列的一个转换转换如下">如果将题目中原先的序列，（假设n为5）我们可以通过一个构造转换矩阵来实现对原先序列的一个转换，转换如下：</h4>
+<p><span class="math display">\[
+\begin{Bmatrix}
+   S(0,T-1) \\
+   S(1,T-1) \\
+   S(2,T-1) \\
+   S(3,T-1) \\
+   S(4,T-1) \\
+  \end{Bmatrix}
+  *
+  \begin{Bmatrix}
+   B &amp; C &amp; 0 &amp; 0 &amp; 0 \\
+   A &amp; B &amp; C &amp; 0 &amp; 0 \\
+   0 &amp; A &amp; B &amp; C &amp; 0 \\
+   0 &amp; 0 &amp; A &amp; B &amp; C \\
+   0 &amp; 0 &amp; 0 &amp; A &amp; B \\
+  \end{Bmatrix}
+  =
+  \begin{Bmatrix}
+   S(0,T) \\
+   S(1,T) \\
+   S(2,T) \\
+   S(3,T) \\
+   S(4,T) \\
+  \end{Bmatrix}
+\]</span></p>
+<h4 id="这样转化后就变成一个求某矩阵的t次幂然后再做一次矩阵乘法就可以了t很大但是可以通过快速幂来实现">这样转化后就变成一个求某矩阵的T次幂，然后再做一次矩阵乘法就可以了，T很大，但是可以通过快速幂来实现。</h4>
+<p>AC代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a, b) memset(a, b, sizeof(a))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PI 3.1415926535</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn = <span class="number">55</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">matirix</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a[MAXn][MAXn];</span><br><span class="line">&#125; r, o;  <span class="comment">//o为转换矩阵</span></span><br><span class="line"><span class="keyword">int</span> sum[MAXn], n, m, a, b, c, t; <span class="comment">//sum[MAXn]为初始矩阵</span></span><br><span class="line"><span class="function">matirix <span class="title">cheng</span><span class="params">(matirix a, matirix b)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">//矩阵相乘</span></span><br><span class="line">    <span class="keyword">int</span> x, y, z;</span><br><span class="line">    matirix t;</span><br><span class="line">    mem(t.a, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (x = <span class="number">0</span>; x &lt; n; x++)</span><br><span class="line">        <span class="keyword">for</span> (y = <span class="number">0</span>; y &lt; n; y++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (z = <span class="number">0</span>; z &lt; n; z++)</span><br><span class="line">            &#123;</span><br><span class="line">                t.a[x][y] += (a.a[x][z] * b.a[z][y]) % m;</span><br><span class="line">                t.a[x][y] %= m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort_pow</span><span class="params">(<span class="keyword">int</span> t)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">//矩阵快速幂</span></span><br><span class="line">    <span class="keyword">while</span> (t)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (t &amp; <span class="number">1</span>)</span><br><span class="line">            r = cheng(r, o);</span><br><span class="line">        o = cheng(o, o);</span><br><span class="line">        t &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mem(r.a,<span class="number">0</span>); <span class="comment">//清零</span></span><br><span class="line">    mem(o.a,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d%d&quot;</span>, &amp;m, &amp;a, &amp;b, &amp;c, &amp;t);</span><br><span class="line">    r.a[<span class="number">0</span>][<span class="number">0</span>] = r.a[n - <span class="number">1</span>][n - <span class="number">1</span>] = <span class="number">1</span>; <span class="comment">//构建矩阵</span></span><br><span class="line">    o.a[<span class="number">0</span>][<span class="number">0</span>] = b;</span><br><span class="line">    o.a[<span class="number">0</span>][<span class="number">1</span>] = c;</span><br><span class="line">    o.a[n - <span class="number">1</span>][n - <span class="number">2</span>] = a;</span><br><span class="line">    o.a[n - <span class="number">1</span>][n - <span class="number">1</span>] = b;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        o.a[i][i - <span class="number">1</span>] = a;</span><br><span class="line">        o.a[i][i] = b;</span><br><span class="line">        o.a[i][i + <span class="number">1</span>] = c;</span><br><span class="line">        r.a[i][i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sort_pow(t); </span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, sum + i);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            ans += sum[j] * r.a[i][j];</span><br><span class="line">            ans %= m;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i != <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
   
@@ -585,10 +612,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:17:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T21:03:52+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -666,13 +693,16 @@
       
         <a class='prev' href='/2020/04/10/new%E5%92%8Cmalloc%E7%9A%84%E5%8C%BA%E5%88%AB/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>new和malloc的区别</p>
-          <p class='content'>1 . malloc()函数 1.1 malloc的全称是memory allocation，中文叫动态内存分配。原型：extern void *malloc(unsigned int num_...</p>
+          <p class='content'>1 . malloc()函数
+1.1 malloc的全称是memory allocation，中文叫动态内存分配。
+原型：extern void *malloc(unsigned int num...</p>
         </a>
       
       
         <a class='next' href='/2020/04/10/%E5%B9%B6%E6%9F%A5%E9%9B%86/'>
           <p class='title'>并查集<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>故事读完，并查集就会了~ 江湖上散落着各式各样的大侠，有上千个之多。他们没有什么正当职业，整天背着剑在外面走来走去，碰到和自己不是一路人的，就免不了要打一架。但大侠们有一个优点就是讲义气，绝对不...</p>
+          <p class='content'>故事读完，并查集就会了~~~~~
+江湖上散落着各式各样的大侠，有上千个之多。他们没有什么正当职业，整天背着剑在外面走来走去，碰到和自己不是一路人的，就免不了要打一架。但大侠们有一个优点就是讲义气...</p>
         </a>
       
     </div>
@@ -695,6 +725,59 @@
 
 
 
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
 
 </div>
 <aside class='l_side'>
@@ -715,7 +798,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="toc-text">思路：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%B0%86%E9%A2%98%E7%9B%AE%E4%B8%AD%E5%8E%9F%E5%85%88%E7%9A%84%E5%BA%8F%E5%88%97%EF%BC%8C%EF%BC%88%E5%81%87%E8%AE%BEn%E4%B8%BA5%EF%BC%89%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E6%9E%84%E9%80%A0%E8%BD%AC%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%AF%B9%E5%8E%9F%E5%85%88%E5%BA%8F%E5%88%97%E7%9A%84%E4%B8%80%E4%B8%AA%E8%BD%AC%E6%8D%A2%EF%BC%8C%E8%BD%AC%E6%8D%A2%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">如果将题目中原先的序列，（假设n为5）我们可以通过一个构造转换矩阵来实现对原先序列的一个转换，转换如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%99%E6%A0%B7%E8%BD%AC%E5%8C%96%E5%90%8E%E5%B0%B1%E5%8F%98%E6%88%90%E4%B8%80%E4%B8%AA%E6%B1%82%E6%9F%90%E7%9F%A9%E9%98%B5%E7%9A%84T%E6%AC%A1%E5%B9%82%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E5%81%9A%E4%B8%80%E6%AC%A1%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86%EF%BC%8CT%E5%BE%88%E5%A4%A7%EF%BC%8C%E4%BD%86%E6%98%AF%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%BF%AB%E9%80%9F%E5%B9%82%E6%9D%A5%E5%AE%9E%E7%8E%B0%E3%80%82"><span class="toc-text">这样转化后就变成一个求某矩阵的T次幂，然后再做一次矩阵乘法就可以了，T很大，但是可以通过快速幂来实现。</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E5%B0%86%E9%A2%98%E7%9B%AE%E4%B8%AD%E5%8E%9F%E5%85%88%E7%9A%84%E5%BA%8F%E5%88%97%E5%81%87%E8%AE%BEn%E4%B8%BA5%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E6%9E%84%E9%80%A0%E8%BD%AC%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%AF%B9%E5%8E%9F%E5%85%88%E5%BA%8F%E5%88%97%E7%9A%84%E4%B8%80%E4%B8%AA%E8%BD%AC%E6%8D%A2%E8%BD%AC%E6%8D%A2%E5%A6%82%E4%B8%8B"><span class="toc-text">如果将题目中原先的序列，（假设n为5）我们可以通过一个构造转换矩阵来实现对原先序列的一个转换，转换如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%99%E6%A0%B7%E8%BD%AC%E5%8C%96%E5%90%8E%E5%B0%B1%E5%8F%98%E6%88%90%E4%B8%80%E4%B8%AA%E6%B1%82%E6%9F%90%E7%9F%A9%E9%98%B5%E7%9A%84t%E6%AC%A1%E5%B9%82%E7%84%B6%E5%90%8E%E5%86%8D%E5%81%9A%E4%B8%80%E6%AC%A1%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86t%E5%BE%88%E5%A4%A7%E4%BD%86%E6%98%AF%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%BF%AB%E9%80%9F%E5%B9%82%E6%9D%A5%E5%AE%9E%E7%8E%B0"><span class="toc-text">这样转化后就变成一个求某矩阵的T次幂，然后再做一次矩阵乘法就可以了，T很大，但是可以通过快速幂来实现。</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -993,7 +1076,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">519字</span>
+        <span class="post-count">534字</span>
       </span>
     </span>
 
@@ -536,18 +536,23 @@
 
 
   
-  <p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/HandsomeHow/article/details/51325463">https://blog.csdn.net/HandsomeHow/article/details/51325463</a> 定义：欧拉函数是小于n的数中与n互质的数的数目。例如φ(8)=4，因为1,3,5,7均和8互质。 欧拉函数的通式为φ(x)=x (1-1/p1)(1-1/p2)…(1-1/pk)：,其中pi表示x的质因数。特别声明，φ(1)=1。 注意：每种质因数只一个。比如12=2_2_3那么φ（12）=12*（1-1/2）*(1-1/3)=4。 其中还有比较特殊的几个。</p>
-<ol>
-<li>若p为质数，n=pk ，则φ(n)=pk-pk-1 。</li>
-<li>如果n是奇数，那么φ(2n)=φ(n)</li>
-<li>如果n是质数，那么，φ(n)=n-1 ,即所有小于n的数都与他互质。</li>
-<li>φ(a*b)=φ(a)*φ(b)</li>
-<li>如果i%p==0，那么，φ(i*p)=φ(i)*p;</li>
+  <p>定义：欧拉函数是小于n的数中与n互质的数的数目。例如φ(8)=4，因为1,3,5,7均和8互质。</p>
+<p>欧拉函数的通式为<span class="math inline">\(φ(x)=x (1-\left(\frac{1}{p1}\right))(1-\left(\frac{1}{p2}\right))…(1-\left(\frac{1}{pk}\right))\)</span>：,其中pi表示x的质因数。</p>
+<p>特别声明，φ(1)=1。</p>
+<p>注意：每种质因数只一个。比如<span class="math inline">\(12=2*2*3\)</span>那么<span class="math inline">\(φ（12）=12*（1-\left(\frac{1}{2}\right)）*(1-\left(\frac{1}{3}\right))=4\)</span></p>
+<p>其中还有比较特殊的几个。</p>
+<ol type="1">
+<li>若p为质数，<span class="math inline">\(n=p^k\)</span> ，则<span class="math inline">\(φ(n)=p^k-p^k-1\)</span> 。</li>
+<li>如果n是奇数，那么<span class="math inline">\(φ(2n)=φ(n)\)</span></li>
+<li>如果n是质数，那么，<span class="math inline">\(φ(n)=n-1\)</span> ,即所有小于n的数都与他互质。</li>
+<li><span class="math inline">\(φ(a*b)=φ(a)*φ(b)\)</span></li>
+<li>如果i%p==0，那么，<span class="math inline">\(φ(i*p)=φ(i)*p\)</span>;</li>
 </ol>
-<p>计算时phi(x)=x(1-1/p1)…(1-1/pi)中的x(1-1/pi)可以转化为x/pi*(pi-1)用来避免小数的产生，同时先除后乘可以避免溢出。 <strong>单个欧拉函数</strong></p>
+<p>计算时<span class="math inline">\(phi(x)=x(1-\left(\frac{1}{p1}\right))…(1-\left(\frac{1}{pi}\right))\)</span>中的x(1-1/pi)可以转化为x/pi*(pi-1)用来避免小数的产生，同时先除后乘可以避免溢出。</p>
+<p><strong>单个欧拉函数</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) phi[i]=i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (phi[i]==i)<span class="comment">//这代表i是质数</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=i;j&lt;=n;j+=i)</span><br><span class="line">            &#123;</span><br><span class="line">                phi[j]=phi[j]/i*(i<span class="number">-1</span>);<span class="comment">//把i的倍数更新掉</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>线性筛</strong><br><strong>思想</strong>：保证每个合数只会被他的最小之质因子筛去。</p>
+<p><strong>线性筛</strong></p>
+<p><strong>思想</strong>：保证每个合数只会被他的最小之质因子筛去。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">euler</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    phi[<span class="number">1</span>]=<span class="number">1</span>;<span class="comment">//1要特判 </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (flag[i]==<span class="number">0</span>)<span class="comment">//这代表i是质数 </span></span><br><span class="line">        &#123;</span><br><span class="line">            prime[++num]=i;</span><br><span class="line">            phi[i]=i<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=num&amp;&amp;prime[j]*i&lt;=n;j++)<span class="comment">//经典的欧拉筛写法 </span></span><br><span class="line">        &#123;</span><br><span class="line">            flag[i*prime[j]]=<span class="number">1</span>;<span class="comment">//先把这个合数标记掉 </span></span><br><span class="line">            <span class="keyword">if</span> (i%prime[j]==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                phi[i*prime[j]]=phi[i]*prime[j];<span class="comment">//若prime[j]是i的质因子，则根据计算公式，i已经包括i*prime[j]的所有质因子 </span></span><br><span class="line">                <span class="keyword">break</span>;<span class="comment">//经典欧拉筛的核心语句，这样能保证每个数只会被自己最小的因子筛掉一次 </span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> phi[i*prime[j]]=phi[i]*phi[prime[j]];<span class="comment">//利用了欧拉函数是个积性函数的性质 </span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
   
@@ -594,10 +599,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:18:41+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T21:53:39+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -673,18 +678,20 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/04/10/%E6%AF%8D%E5%87%BD%E6%95%B0/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>母函数</p>
-          <p class='content'>普通母函数： 在用到母函数之前啊，恐怕很少有人听过母函数，我也一样，我当时是做杭电acm的2082题要用母函数做才去了解母函数的。当然母函数分为很多种，包括普通母函数、指数母函数、L级数、贝尔级...</p>
+        <a class='prev' href='/2020/04/10/usaco-4-2-2-the-perfect-stall-%E5%AE%8C%E7%BE%8E%E7%9A%84%E7%89%9B%E6%A0%8F/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>[USACO 4.2.2] The Perfect Stall 完美的牛栏</p>
+          <p class='content'>题目链接
+匈牙利算法模板题
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546...</p>
         </a>
       
       
         <a class='next' href='/2020/04/10/%E7%BB%84%E5%90%88%E6%B8%B8%E6%88%8F-sg%E5%87%BD%E6%95%B0%E5%92%8Csg%E5%AE%9A%E7%90%86/'>
           <p class='title'>组合游戏 - SG函数和SG定理<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>        在介绍SG函数和SG定理之前我们先介绍介绍必胜点与必败点吧.  
+          <p class='content'>        在介绍SG函数和SG定理之前我们先介绍介绍必胜点与必败点吧.
 必胜点和必败点的概念：
        P点：必败点，换而言之，就是谁处于此位置，则在双方操作正确的情况下必败。
-...</p>
+  ...</p>
         </a>
       
     </div>
@@ -705,6 +712,59 @@
 
 
 
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
 
 
@@ -991,7 +1051,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

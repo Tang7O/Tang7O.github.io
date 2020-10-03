@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">833字</span>
+        <span class="post-count">835字</span>
       </span>
     </span>
 
@@ -536,60 +536,25 @@
 
 
   
-  <p>双向队列，顾名思义就是队列二边都可以操作的队列。 双向队列和向量很相似，但是它允许在容器头部快速插入和删除（就像在尾部一样）。双向都可以进行相应的操作。</p>
-<p>Constructors</p>
-<p>创建一个新双向队列</p>
-<p>Operators</p>
-<p>比较和赋值双向队列</p>
-<p>assign()</p>
-<p>设置双向队列的值</p>
-<p>at()</p>
-<p>返回指定的元素</p>
-<p>back()</p>
-<p>返回最后一个元素</p>
-<p>begin()</p>
-<p>返回指向第一个元素的迭代器</p>
-<p>clear()</p>
-<p>删除所有元素</p>
-<p>empty()</p>
-<p>返回真如果双向队列为空</p>
-<p>end()</p>
-<p>返回指向尾部的迭代器</p>
-<p>erase()</p>
-<p>删除一个元素</p>
-<p>front()</p>
-<p>返回第一个元素</p>
-<p>get_allocator()</p>
-<p>返回双向队列的配置器</p>
-<p>insert()</p>
-<p>插入一个元素到双向队列中</p>
-<p>max_size()</p>
-<p>返回双向队列能容纳的最大元素个数</p>
-<p>pop_back()</p>
-<p>删除尾部的元素</p>
-<p>pop_front()</p>
-<p>删除头部的元素</p>
-<p>push_back()</p>
-<p>在尾部加入一个元素</p>
-<p>push_front()</p>
-<p>在头部加入一个元素</p>
-<p>rbegin()</p>
-<p>返回指向尾部的逆向迭代器</p>
-<p>rend()</p>
-<p>返回指向头部的逆向迭代器</p>
-<p>resize()</p>
-<p>改变双向队列的大小</p>
-<p>size()</p>
-<p>返回双向队列中元素的个数</p>
-<p>swap()</p>
-<p>和另一个双向队列交换元素</p>
+  <p>双向队列，顾名思义就是队列二边都可以操作的队列。 双向队列和向量很相似，但是它允许在容器头部快速插入和删除（就像在尾部一样）。双向都可以进行相应的操作。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Constructors 创建一个新双向队列</span><br><span class="line">Operators 比较和赋值双向队列</span><br><span class="line">assign() 设置双向队列的值</span><br><span class="line">at()  返回指定的元素</span><br><span class="line">back()  返回最后一个元素</span><br><span class="line">begin()   返回指向第一个元素的迭代器</span><br><span class="line">clear()  删除所有元素</span><br><span class="line">empty()  返回真如果双向队列为空</span><br><span class="line">end()  返回指向尾部的迭代器</span><br><span class="line">erase()  删除一个元素</span><br><span class="line">front()  返回第一个元素</span><br><span class="line">get\_allocator()  返回双向队列的配置器</span><br><span class="line">insert()  插入一个元素到双向队列中</span><br><span class="line">max\_size()  返回双向队列能容纳的最大元素个数</span><br><span class="line">pop\_back()  删除尾部的元素</span><br><span class="line">pop\_front()  删除头部的元素</span><br><span class="line">push\_back()  在尾部加入一个元素</span><br><span class="line">push\_front() 在头部加入一个元素</span><br><span class="line">rbegin() 返回指向尾部的逆向迭代器</span><br><span class="line">rend()  返回指向头部的逆向迭代器</span><br><span class="line">resize()  改变双向队列的大小</span><br><span class="line">size()  返回双向队列中元素的个数</span><br><span class="line">swap()  和另一个双向队列交换元素</span><br></pre></td></tr></table></figure></p>
 <p>看个例题</p>
-<h2 id="双向队列"><a href="#双向队列" class="headerlink" title="双向队列"></a>双向队列</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>想想双向链表……双向队列的定义差不多，也就是说一个队列的队尾同时也是队首；两头都可以做出队，入队的操作。 现在给你一系列的操作，请输出最后队列的状态； 命令格式： LIN X X表示一个整数，命令代表左边进队操作； RIN X 表示右边进队操作； ROUT LOUT 表示出队操作；</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>第一行包含一个整数M(M&lt;=10000)，表示有M个操作； 以下M行每行包含一条命令； 命令可能不合法，对于不合法的命令，请在输出中处理；</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出的第一行包含队列进行了M次操作后的状态，从左往右输出，每两个之间用空格隔开； 以下若干行处理不合法的命令（如果存在）； 对于不合法的命令，请输出一行X ERROR 其中X表示是第几条命令；</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><p>8 LIN 5 RIN 6 LIN 3 LOUT ROUT ROUT ROUT LIN 3 1 2 3 4 5 6 7 8 9</p>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><p>3 7 ERROR</p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 10010</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;q;  <span class="comment">//创建双向队列</span></span><br><span class="line">    <span class="keyword">while</span>(!q.empty())<span class="comment">//清空双向队列</span></span><br><span class="line">        q.pop_front();</span><br><span class="line">    <span class="keyword">int</span> n,a,i,m[MAX]= &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s[<span class="number">10</span>];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot; %s&quot;</span>,s);</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;LIN&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a);</span><br><span class="line">            q.push_front(a);  <span class="comment">//在队列头（左边）存入数据</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;RIN&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a);</span><br><span class="line">            q.push_back(a);<span class="comment">//在队列尾（右边）存入数据</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;LOUT&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!q.empty())</span><br><span class="line">                q.pop_front();  <span class="comment">//如果队列非空删除队列头（最左边）的数据</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                m[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;ROUT&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q.empty())</span><br><span class="line">                m[i]++;   </span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                q.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,q.front()); </span><br><span class="line">    q.pop_front();</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>,q.front());<span class="comment">//输出队列中的数据</span></span><br><span class="line">    q.pop_front();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">if</span>(m[i])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d ERROR\n&quot;</span>,i);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="双向队列">双向队列</h2>
+<h3 id="description">Description</h3>
+<p>​ 想想双向链表……双向队列的定义差不多，也就是说一个队列的队尾同时也是队首；两头都可以做出队，入队的操作。 现在给你一系列的操作，请输出最后队列的状态；</p>
+<p>命令格式：</p>
+<p>LIN X X表示一个整数，命令代表左边进队操作；</p>
+<p>RIN X 表示右边进队操作；</p>
+<p>ROUT LOUT 表示出队操作；</p>
+<h3 id="input">Input</h3>
+<p>第一行包含一个整数M(M&lt;=10000)，表示有M个操作； 以下M行每行包含一条命令； 命令可能不合法，对于不合法的命令，请在输出中处理；</p>
+<h3 id="output">Output</h3>
+<p>输出的第一行包含队列进行了M次操作后的状态，从左往右输出，每两个之间用空格隔开； 以下若干行处理不合法的命令（如果存在）； 对于不合法的命令，请输出一行X ERROR 其中X表示是第几条命令；</p>
+<h3 id="sample-input">Sample Input</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">8 </span><br><span class="line">LIN 5 </span><br><span class="line">RIN 6 </span><br><span class="line">LIN 3 </span><br><span class="line">LOUT </span><br><span class="line">ROUT </span><br><span class="line">ROUT </span><br><span class="line">ROUT </span><br><span class="line">LIN 3</span><br></pre></td></tr></table></figure>
+<h3 id="sample-output">Sample Output</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3 </span><br><span class="line">7 ERROR</span><br></pre></td></tr></table></figure>
+<p>AC代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 10010</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt;q;  <span class="comment">//创建双向队列</span></span><br><span class="line">    <span class="keyword">while</span>(!q.empty())<span class="comment">//清空双向队列</span></span><br><span class="line">        q.pop_front();</span><br><span class="line">    <span class="keyword">int</span> n,a,i,m[MAX]= &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> s[<span class="number">10</span>];</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot; %s&quot;</span>,s);</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;LIN&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a);</span><br><span class="line">            q.push_front(a);  <span class="comment">//在队列头（左边）存入数据</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;RIN&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a);</span><br><span class="line">            q.push_back(a);<span class="comment">//在队列尾（右边）存入数据</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;LOUT&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!q.empty())</span><br><span class="line">                q.pop_front();  <span class="comment">//如果队列非空删除队列头（最左边）的数据</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                m[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!<span class="built_in">strcmp</span>(s,<span class="string">&quot;ROUT&quot;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(q.empty())</span><br><span class="line">                m[i]++;   </span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                q.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,q.front()); </span><br><span class="line">    q.pop_front();</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>,q.front());<span class="comment">//输出队列中的数据</span></span><br><span class="line">    q.pop_front();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">if</span>(m[i])</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d ERROR\n&quot;</span>,i);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
   
   
@@ -635,10 +600,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:18:07+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T17:38:00+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -717,13 +682,18 @@
         <a class='prev' href='/2020/04/09/hello-2019-b-petr-and-a-combination-lock%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9E%9A%E4%B8%BE-dfs/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Hello 2019 B. Petr and a Combination Lock(二进制枚举 || dfs)</p>
           <p class='content'>题目链接: 题意：给你n个数字，让这n个数字相加减，如果是360的倍数或者是0就输出YES，否则输出NO。 思路：二进制枚举每一种状态，或者直接暴力搜索。
-二进制枚举12345678910111...</p>
+二进制枚举
+1234567891011...</p>
         </a>
       
       
         <a class='next' href='/2020/04/09/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3/'>
           <p class='title'>优先队列简单讲解<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>优先队列就是会自动排序的队列； 头文件#include &lt;queue&gt; ； 声明格式为：priority_queue&lt;int&gt; ans;//声明一个名为ans的整形的优先...</p>
+          <p class='content'>优先队列就是会自动排序的队列；
+头文件`#include  ；
+声明格式为：priority_queue ans;//声明一个名为ans的整形的优先队列`
+基本操作有：
+12345empty( ...</p>
         </a>
       
     </div>
@@ -766,7 +736,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%98%9F%E5%88%97"><span class="toc-text">双向队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-text">Sample Output</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AC%E4%BB%A3%E7%A0%81"><span class="toc-text">AC代码</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%90%91%E9%98%9F%E5%88%97"><span class="toc-text">双向队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample-input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample-output"><span class="toc-text">Sample Output</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -1044,7 +1014,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

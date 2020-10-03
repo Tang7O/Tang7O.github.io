@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">123字</span>
+        <span class="post-count">113字</span>
       </span>
     </span>
 
@@ -536,8 +536,10 @@
 
 
   
-  <h3 id="错误信息如下："><a href="#错误信息如下：" class="headerlink" title="错误信息如下："></a>错误信息如下：</h3><p>#mysql -u Tang7O -p Enter password: ERROR 1045 (28000): Access denied for user ‘Tang7O’@’localhost’ (using password: YES)</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>#/etc/init.d/mysql stop //停止MySQL #mysqld_safe –user=mysql –skip-grant-tables –skip-networking &amp; #mysql -u root mysql mysql&gt; UPDATE user SET Password=PASSWORD(‘newpassword’) where USER=’root’ and host=’root’ or host=’localhost’; //把空的用户密码都修改成非空的密码就行了。 mysql&gt; FLUSH PRIVILEGES; //立即生效 mysql&gt; quit //退出 #/etc/init.d/mysqld restart //启动MySQL #mysql -uroot -p //登录 Enter password: &lt;输入新设的密码newpassword&gt;</p>
+  <h3 id="错误信息如下">错误信息如下：</h3>
+<p>#mysql -u Tang7O -p Enter password: ERROR 1045 (28000): Access denied for user 'Tang7O'@'localhost' (using password: YES)</p>
+<h3 id="解决方案">解决方案</h3>
+<p>#/etc/init.d/mysql stop //停止MySQL #mysqld_safe --user=mysql --skip-grant-tables --skip-networking &amp; #mysql -u root mysql mysql&gt; UPDATE user SET Password=PASSWORD('newpassword') where USER='root' and host='root' or host='localhost'; //把空的用户密码都修改成非空的密码就行了。 mysql&gt; FLUSH PRIVILEGES; //立即生效 mysql&gt; quit //退出 #/etc/init.d/mysqld restart //启动MySQL #mysql -uroot -p //登录 Enter password: <输入新设的密码newpassword></p>
 
   
   
@@ -714,7 +716,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-text">错误信息如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E5%A6%82%E4%B8%8B"><span class="toc-text">错误信息如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol>
     </div>
   </section>
 
@@ -992,7 +994,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

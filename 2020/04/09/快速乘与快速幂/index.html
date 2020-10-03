@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">215字</span>
+        <span class="post-count">213字</span>
       </span>
     </span>
 
@@ -536,11 +536,11 @@
 
 
   
-  <h2 id="快速乘：-a-b-c"><a href="#快速乘：-a-b-c" class="headerlink" title="快速乘：(a*b)%c"></a>快速乘：(a*b)%c</h2><p><strong>原理：将b转化为二进制的形式 用b每一位的权重乘a再相加</strong> 举个例子：20* 10=20_(1010)2=(20_(2^3)_1) + (20 *(2^2)_0) + (20 _(2^1)_1) + (20 _(2^0)_0)=160+40=200 代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fast_mul</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b%<span class="number">2</span>)</span><br><span class="line">            ans=ans%c+a%c;</span><br><span class="line">        a=(a%c+a%c)%c;</span><br><span class="line">        b/=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="快速幂：-a-b-c"><a href="#快速幂：-a-b-c" class="headerlink" title="快速幂：(a^b)%c"></a>快速幂：(a^b)%c</h2><p>原理：将b转化为二进制的形式 用a^(b每一位的权重的和) 举个例子： 11的二进制是1011, 11 = 2³×1 + 2²×0 + 2¹×1 + 2º×1，我们将a¹¹转化为算 a^ 11=a^ (2^ 0+2^ 1+2^ 3)=a^ (2^ 0)_a^ (2^ 1)_a^ (2^3) 代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fast_pow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b%<span class="number">2</span>)</span><br><span class="line">            ans=(ans%c*a%c)%c;</span><br><span class="line">        a=(a%c*a%c)%c;</span><br><span class="line">        b/=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  <h2 id="快速乘abc">快速乘：(a*b)%c</h2>
+<p><strong>原理：将b转化为二进制的形式 用b每一位的权重乘a再相加</strong> 举个例子：<span class="math inline">\(20* 10=20*(1010)_2=(20*2^3*1) + (20*2^2*0) + (20*2^1*1) + (20*2^0*0)=160+40=200\)</span> 代码如下： <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fast_mul</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b%<span class="number">2</span>)</span><br><span class="line">			ans=ans%c+a%c;</span><br><span class="line">		a=(a%c+a%c)%c;</span><br><span class="line">		b/=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="快速幂abc">快速幂：(a^b)%c</h2>
+<p><strong>原理：将b转化为二进制的形式 用a^(b每一位的权重的和)</strong> 举个例子： 11的二进制是1011, 11 = 2³×1 + 2²×0 + 2¹×1 + 2º×1，我们将a¹¹转化为算 <span class="math inline">\(a^ {11}=a^ {(2^ 0+2^ 1+2^ 3)}=a^ {2^ 0}*a^ {2^ 1}*a^ {2^3}\)</span> 代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fast_pow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(b)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(b%<span class="number">2</span>)</span><br><span class="line">			ans=(ans%c*a%c)%c;</span><br><span class="line">		a=(a%c*a%c)%c;</span><br><span class="line">		b/=<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
   
   
@@ -586,10 +586,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:18:50+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T17:20:38+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -667,14 +667,16 @@
       
         <a class='prev' href='/2020/04/09/gcd/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>GCD EXGCD</p>
-          <p class='content'>GCD原理：a=b*q+r1; (a,b)==(b1,r1) ）( (a，b)为a，b的最小公约数） 代码如下：
-1234567int gcd(int a,int b)&#123;    if(...</p>
+          <p class='content'>GCD
+原理：a=b*q+r1; (a,b)==(b1,r1) ）( (a，b)为a，b的最小公约数） 代码如下：
+1234567int gcd(int a,int b)&#123;    if...</p>
         </a>
       
       
         <a class='next' href='/2020/04/08/%E7%B4%A0%E6%95%B0%E6%89%93%E8%A1%A8/'>
           <p class='title'>素数打表<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>哈希打表1234567891011121314#include&lt;stdio.h&gt;int main()&#123;    int s[10000]=&#123;0&#125;,a,b,...</p>
+          <p class='content'>哈希打表
+1234567891011121314#include&lt;stdio.h&gt;int main()&#123;    int s[10000]=&#123;0&#125;,a,b...</p>
         </a>
       
     </div>
@@ -697,6 +699,59 @@
 
 
 
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
 
 </div>
 <aside class='l_side'>
@@ -717,7 +772,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B9%98%EF%BC%9A-a-b-c"><span class="toc-text">快速乘：(a*b)%c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%9A-a-b-c"><span class="toc-text">快速幂：(a^b)%c</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B9%98abc"><span class="toc-text">快速乘：(a*b)%c</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82abc"><span class="toc-text">快速幂：(a^b)%c</span></a></li></ol>
     </div>
   </section>
 
@@ -995,7 +1050,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

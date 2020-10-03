@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.6k字</span>
+        <span class="post-count">2.7k字</span>
       </span>
     </span>
 
@@ -536,20 +536,104 @@
 
 
   
-  <p>&lt; div id=”content_views” class=”markdown_views prism-atom-one-light”&gt;</p>
-<h1 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h1><p>广度优先搜索（也称宽度优先搜索，缩写BFS，以下采用广度来描述）是<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/3148644.htm">连通图</a>的一种<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/549585.htm">遍历</a>策略。因为它的思想是从一个顶点V0开始，辐射状地优先遍历其周围较广的区域，故得名。 一般可以用它做什么呢？一个</p>
-<h1 id="广度-宽度优先搜索-BFS"><a href="#广度-宽度优先搜索-BFS" class="headerlink" title="广度/宽度优先搜索(BFS)"></a>广度/宽度优先搜索(BFS)</h1><p>  算法导论里边会给出不少严格的证明，我想尽量写得通俗一点，因此采用一些直观的讲法来伪装成证明，关键的point能够帮你get到就好。</p>
-<h1 id="2-图的概念"><a href="#2-图的概念" class="headerlink" title="2.图的概念"></a>2.图的概念</h1><p>刚刚说的广度优先搜索是连通图的一种遍历策略，那就有必要将图先简单解释一下。 <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741570.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741570.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">   图2-1连通图示例图 如图2-1所示，这就是我们所说的连通图，这里展示的是一个无向图，连通即每2个点都有至少一条路径相连，例如V0到V4的路径就是V0-&gt;V1-&gt;V4。 一般我们把顶点用V缩写，把边用E缩写。</p>
-<h1 id="3-广度优先搜索"><a href="#3-广度优先搜索" class="headerlink" title="3.广度优先搜索"></a>3.广度优先搜索</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>3.1.算法的基本思路</p>
-<p>常常我们有这样一个问题，从一个起点开始要到一个终点，我们要找寻一条最短的路径，从图2-1举例，如果我们要求V0到V6的一条最短路（假设走一个节点按一步来算）【注意：此处你可以选择不看这段文字直接看图3-1】，我们明显看出这条路径就是V0-&gt;V2-&gt;V6，而不是V0-&gt;V3-&gt;V5-&gt;V6。先想想你自己刚刚是怎么找到这条路径的：首先看跟V0直接连接的节点V1、V2、V3，发现没有V6，进而再看刚刚V1、V2、V3的直接连接节点分别是：{V0、V4}、{V0、V1、V6}、{V0、V1、V5}（这里画删除线的意思是那些顶点在我们刚刚的搜索过程中已经找过了，我们不需要重新回头再看他们了）。这时候我们从V2的连通节点集中找到了V6，那说明我们找到了这条V0到V6的最短路径：V0-&gt;V2-&gt;V6，虽然你再进一步搜索V5的连接节点集合后会找到另一条路径V0-&gt;V3-&gt;V5-&gt;V6，但显然他不是最短路径。 你会看到这里有点像辐射形状的搜索方式，从一个节点，向其旁边节点传递病毒，就这样一层一层的传递辐射下去，知道目标节点被辐射中了，此时就已经找到了从起点到终点的路径。 我们采用示例图来说明这个过程，在搜索的过程中，初始所有节点是白色（代表了所有点都还没开始搜索），把起点V0标志成灰色（表示即将辐射V0），下一步搜索的时候，我们把所有的灰色节点访问一次，然后将其变成黑色（表示已经被辐射过了），进而再将他们所能到达的节点标志成灰色（因为那些节点是下一步搜索的目标点了），但是这里有个判断，就像刚刚的例子，当访问到V1节点的时候，它的下一个节点应该是V0和V4，但是V0已经在前面被染成黑色了，所以不会将它染灰色。这样持续下去，直到目标节点V6被染灰色，说明了下一步就到终点了，没必要再搜索（染色）其他节点了，此时可以结束搜索了，整个搜索就结束了。然后根据搜索过程，反过来把最短路径找出来，图3-1中把最终路径上的节点标志成绿色。 整个过程的实例图如图3-1所示。 <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741571.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741571.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">初始全部都是白色（未访问） <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741572.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741572.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">即将搜索起点V0（灰色） <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741573.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741573.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">已搜索V0，即将搜索V1、V2、V3 <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741574.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741574.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">……终点V6被染灰色，终止 <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741575.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741575.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">找到最短路径 图3-1寻找V0到V6的过程</p>
-<h2 id="3-2-广度优先搜索流程图"><a href="#3-2-广度优先搜索流程图" class="headerlink" title="3.2.广度优先搜索流程图"></a>3.2.广度优先搜索流程图</h2><p>  <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741577.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741577.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="> 图3-2广度优先搜索的流程图 在写具体代码之前有必要先举个实例，详见第4节。</p>
-<h1 id="4-实例"><a href="#4-实例" class="headerlink" title="4.实例"></a>4.实例</h1><p>第一节就讲过广度优先搜索适用于迷宫类问题，这里先给出<a target="_blank" rel="noopener" href="http://poj.org/problem?id=3984">POJ3984</a><a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=%E3%80%8A%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98%E3%80%8B&tn=24004469_oem_dg&rsv_dl=gh_pl_sl_csd">《迷宫问题》</a>。   《迷宫问题》 定义一个二维数组：<br>intmaze[5][5]={<br>0,1,0,0,0,<br>0,1,0,1,0,<br>0,0,0,0,0,<br>0,1,1,1,0,<br>0,0,0,1,0,<br>};<br>它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。   题目保证了输入是一定有解的。 也许你会问，这个跟广度优先搜索的图怎么对应起来？BFS的第一步就是要识别图的节点跟边！</p>
-<h2 id="4-1-识别出节点跟边"><a href="#4-1-识别出节点跟边" class="headerlink" title="4.1.识别出节点跟边"></a>4.1.识别出节点跟边</h2><p>节点就是某种状态，边就是节点与节点间的某种规则。 对应于《迷宫问题》，你可以这么认为，节点就是迷宫路上的每一个格子（非墙），走迷宫的时候，格子间的关系是什么呢？按照题目意思，我们只能横竖走，因此我们可以这样看，格子与它横竖方向上的格子是有连通关系的，只要这个格子跟另一个格子是连通的，那么两个格子节点间就有一条边。 如果说本题再修改成斜方向也可以走的话，那么就是格子跟周围8个格子都可以连通，于是一个节点就会有8条边（除了边界的节点）。</p>
-<h2 id="4-2-解题思路"><a href="#4-2-解题思路" class="headerlink" title="4.2.解题思路"></a>4.2.解题思路</h2><p>对应于题目的输入数组： 0,1,0,0,0,<br>0,1,0,1,0,<br>0,0,0,0,0,<br>0,1,1,1,0,<br>0,0,0,1,0, 我们把节点定义为(x,y)，(x,y)表示数组maze的项maze[x][y]。 于是起点就是(0,0)，终点是(4,4)。按照刚刚的思路，我们大概手工梳理一遍： 初始条件： 起点Vs为(0,0) 终点Vd为(4,4) 灰色节点集合Q={} 初始化所有节点为白色节点 开始我们的广度搜索！ 手工执行步骤【PS：你可以直接看图4-1】: 1.起始节点Vs变成灰色，加入队列Q，Q={(0,0)} 2.取出队列Q的头一个节点Vn，Vn={0,0}，Q={} 3.把Vn={0,0}染成黑色，取出Vn所有相邻的白色节点{(1,0)} 4.不包含终点(4,4)，染成灰色，加入队列Q，Q={(1,0)} 5.取出队列Q的头一个节点Vn，Vn={1,0}，Q={} 6.把Vn={1,0}染成黑色，取出Vn所有相邻的白色节点{(2,0)} 7.不包含终点(4,4)，染成灰色，加入队列Q，Q={(2,0)} 8.取出队列Q的头一个节点Vn，Vn={2,0}，Q={} 9.把Vn={2,0}染成黑色，取出Vn所有相邻的白色节点{(2,1),(3,0)} 10.不包含终点(4,4)，染成灰色，加入队列Q，Q={(2,1),(3,0)} 11.取出队列Q的头一个节点Vn，Vn={2,1}，Q={(3,0)} 12. 把Vn={2,1}染成黑色，取出Vn所有相邻的白色节点{(2,2)} 13.不包含终点(4,4)，染成灰色，加入队列Q，Q={(3,0),(2,2)} 14.持续下去，知道Vn的所有相邻的白色节点中包含了(4,4)…… 15.此时获得了答案   起始你很容易模仿上边过程走到终点，那为什么它就是最短的呢？ 怎么保证呢？ 我们来看看广度搜索的过程中节点的顺序情况：   <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741578.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741578.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="> 图4-1迷宫问题的搜索树 你是否观察到了，广度搜索的顺序是什么样子的？ 图中标号即为我们搜索过程中的顺序，我们观察到，这个搜索顺序是按照上图的层次关系来的，例如节点(0,0)在第1层，节点(1,0)在第2层，节点(2,0)在第3层，节点(2,1)和节点(3,0)在第3层。 我们的搜索顺序就是第一层-&gt;第二层-&gt;第三层-&gt;第N层这样子。 我们假设终点在第N层，因此我们搜索到的路径长度肯定是N，而且这个N一定是所求最短的。 我们用简单的反证法来证明：假设终点在第N层上边出现过，例如第M层，M 所以根据广度优先搜索的话，搜索到终点时，该路径一定是最短的。</p>
-<h2 id="4-3-代码"><a href="#4-3-代码" class="headerlink" title="4.3.代码"></a>4.3.代码</h2><p>我给出以下代码用于解决上述题目(仅仅只是核心代码)：</p>
+  <h1 id="前言">1.前言</h1>
+<p>广度优先搜索（也称宽度优先搜索，缩写BFS，以下采用广度来描述）是<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/3148644.htm">连通图</a>的一种<a target="_blank" rel="noopener" href="http://baike.baidu.com/view/549585.htm">遍历</a>策略。因为它的思想是从一个顶点V0开始，辐射状地优先遍历其周围较广的区域，故得名。</p>
+<p>一般可以用它做什么呢？一个</p>
+<h1 id="广度宽度优先搜索bfs">广度/宽度优先搜索(BFS)</h1>
+<p>  算法导论里边会给出不少严格的证明，我想尽量写得通俗一点，因此采用一些直观的讲法来伪装成证明，关键的point能够帮你get到就好。</p>
+<h1 id="图的概念">2.图的概念</h1>
+<p>刚刚说的广度优先搜索是连通图的一种遍历策略，那就有必要将图先简单解释一下。</p>
+<p><img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741570.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741570.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>  图2-1连通图示例图</p>
+<p>如图2-1所示，这就是我们所说的连通图，这里展示的是一个无向图，连通即每2个点都有至少一条路径相连，例如V0到V4的路径就是V0-&gt;V1-&gt;V4。</p>
+<p>一般我们把顶点用V缩写，把边用E缩写。</p>
+<h1 id="广度优先搜索">3.广度优先搜索</h1>
+<h2 id="算法的基本思路">3.1.算法的基本思路</h2>
+<p>常常我们有这样一个问题，从一个起点开始要到一个终点，我们要找寻一条最短的路径，从图2-1举例，如果我们要求V0到V6的一条最短路（假设走一个节点按一步来算）【注意：此处你可以选择不看这段文字直接看图3-1】，我们明显看出这条路径就是V0-&gt;V2-&gt;V6，而不是V0-&gt;V3-&gt;V5-&gt;V6。先想想你自己刚刚是怎么找到这条路径的：首先看跟V0直接连接的节点V1、V2、V3，发现没有V6，进而再看刚刚V1、V2、V3的直接连接节点分别是：{V0、V4}、{V0、V1、V6}、{V0、V1、V5}（这里画删除线的意思是那些顶点在我们刚刚的搜索过程中已经找过了，我们不需要重新回头再看他们了）。这时候我们从V2的连通节点集中找到了V6，那说明我们找到了这条V0到V6的最短路径：V0-&gt;V2-&gt;V6，虽然你再进一步搜索V5的连接节点集合后会找到另一条路径V0-&gt;V3-&gt;V5-&gt;V6，但显然他不是最短路径。</p>
+<p>你会看到这里有点像辐射形状的搜索方式，从一个节点，向其旁边节点传递病毒，就这样一层一层的传递辐射下去，知道目标节点被辐射中了，此时就已经找到了从起点到终点的路径。</p>
+<p>我们采用示例图来说明这个过程，在搜索的过程中，初始所有节点是白色（代表了所有点都还没开始搜索），把起点V0标志成灰色（表示即将辐射V0），下一步搜索的时候，我们把所有的灰色节点访问一次，然后将其变成黑色（表示已经被辐射过了），进而再将他们所能到达的节点标志成灰色（因为那些节点是下一步搜索的目标点了），但是这里有个判断，就像刚刚的例子，当访问到V1节点的时候，它的下一个节点应该是V0和V4，但是V0已经在前面被染成黑色了，所以不会将它染灰色。这样持续下去，直到目标节点V6被染灰色，说明了下一步就到终点了，没必要再搜索（染色）其他节点了，此时可以结束搜索了，整个搜索就结束了。然后根据搜索过程，反过来把最短路径找出来，图3-1中把最终路径上的节点标志成绿色。</p>
+<p>整个过程的实例图如图3-1所示。</p>
+<p><img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741571.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741571.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>初始全部都是白色（未访问）</p>
+<p><img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741572.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741572.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>即将搜索起点V0（灰色）</p>
+<p><img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741573.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741573.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>已搜索V0，即将搜索V1、V2、V3</p>
+<p><img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741574.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741574.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>……终点V6被染灰色，终止</p>
+<p><img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741575.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741575.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>找到最短路径 图3-1寻找V0到V6的过程</p>
+<h2 id="广度优先搜索流程图">3.2.广度优先搜索流程图</h2>
+<p>  <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741577.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741577.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>图3-2广度优先搜索的流程图</p>
+<p>在写具体代码之前有必要先举个实例，详见第4节。</p>
+<h1 id="实例">4.实例</h1>
+<p>第一节就讲过广度优先搜索适用于迷宫类问题，这里先给出<a target="_blank" rel="noopener" href="http://poj.org/problem?id=3984">POJ3984</a><a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=%E3%80%8A%E8%BF%B7%E5%AE%AB%E9%97%AE%E9%A2%98%E3%80%8B&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd">《迷宫问题》</a>。  </p>
+<p>《迷宫问题》</p>
+<p>定义一个二维数组：<br />
+intmaze[5][5]={<br />
+0,1,0,0,0,<br />
+0,1,0,1,0,<br />
+0,0,0,0,0,<br />
+0,1,1,1,0,<br />
+0,0,0,1,0,<br />
+};<br />
+它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的最短路线。  </p>
+<p>题目保证了输入是一定有解的。</p>
+<p>也许你会问，这个跟广度优先搜索的图怎么对应起来？BFS的第一步就是要识别图的节点跟边！</p>
+<h2 id="识别出节点跟边">4.1.识别出节点跟边</h2>
+<p>节点就是某种状态，边就是节点与节点间的某种规则。</p>
+<p>对应于《迷宫问题》，你可以这么认为，节点就是迷宫路上的每一个格子（非墙），走迷宫的时候，格子间的关系是什么呢？按照题目意思，我们只能横竖走，因此我们可以这样看，格子与它横竖方向上的格子是有连通关系的，只要这个格子跟另一个格子是连通的，那么两个格子节点间就有一条边。</p>
+<p>如果说本题再修改成斜方向也可以走的话，那么就是格子跟周围8个格子都可以连通，于是一个节点就会有8条边（除了边界的节点）。</p>
+<h2 id="解题思路">4.2.解题思路</h2>
+<p>对应于题目的输入数组：</p>
+<p>0,1,0,0,0,<br />
+0,1,0,1,0,<br />
+0,0,0,0,0,<br />
+0,1,1,1,0,<br />
+0,0,0,1,0,</p>
+<p>我们把节点定义为(x,y)，(x,y)表示数组maze的项maze[x][y]。</p>
+<p>于是起点就是(0,0)，终点是(4,4)。按照刚刚的思路，我们大概手工梳理一遍：</p>
+<p>初始条件：</p>
+<p>起点Vs为(0,0)</p>
+<p>终点Vd为(4,4)</p>
+<p>灰色节点集合Q={}</p>
+<p>初始化所有节点为白色节点</p>
+<p>开始我们的广度搜索！</p>
+<p>手工执行步骤【PS：你可以直接看图4-1】:</p>
+<p>1.起始节点Vs变成灰色，加入队列Q，Q={(0,0)}</p>
+<p>2.取出队列Q的头一个节点Vn，Vn={0,0}，Q={}</p>
+<p>3.把Vn={0,0}染成黑色，取出Vn所有相邻的白色节点{(1,0)}</p>
+<p>4.不包含终点(4,4)，染成灰色，加入队列Q，Q={(1,0)}</p>
+<p>5.取出队列Q的头一个节点Vn，Vn={1,0}，Q={}</p>
+<p>6.把Vn={1,0}染成黑色，取出Vn所有相邻的白色节点{(2,0)}</p>
+<p>7.不包含终点(4,4)，染成灰色，加入队列Q，Q={(2,0)}</p>
+<p>8.取出队列Q的头一个节点Vn，Vn={2,0}，Q={}</p>
+<p>9.把Vn={2,0}染成黑色，取出Vn所有相邻的白色节点{(2,1),(3,0)}</p>
+<p>10.不包含终点(4,4)，染成灰色，加入队列Q，Q={(2,1),(3,0)}</p>
+<p>11.取出队列Q的头一个节点Vn，Vn={2,1}，Q={(3,0)}</p>
+<ol start="12" type="1">
+<li>把Vn={2,1}染成黑色，取出Vn所有相邻的白色节点{(2,2)}</li>
+<li>13.不包含终点(4,4)，染成灰色，加入队列Q，Q={(3,0),(2,2)}</li>
+</ol>
+<p>14.持续下去，知道Vn的所有相邻的白色节点中包含了(4,4)……</p>
+<p>15.此时获得了答案  </p>
+<p>起始你很容易模仿上边过程走到终点，那为什么它就是最短的呢？</p>
+<p>怎么保证呢？</p>
+<p>我们来看看广度搜索的过程中节点的顺序情况：</p>
+<p>  <img src="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741578.png" class="lazyload" data-srcset="http://www.2cto.com/uploadfile/Collfiles/20160516/20160516092741578.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p>图4-1迷宫问题的搜索树</p>
+<p>你是否观察到了，广度搜索的顺序是什么样子的？</p>
+<p>图中标号即为我们搜索过程中的顺序，我们观察到，这个搜索顺序是按照上图的层次关系来的，例如节点(0,0)在第1层，节点(1,0)在第2层，节点(2,0)在第3层，节点(2,1)和节点(3,0)在第3层。</p>
+<p>我们的搜索顺序就是第一层-&gt;第二层-&gt;第三层-&gt;第N层这样子。</p>
+<p>我们假设终点在第N层，因此我们搜索到的路径长度肯定是N，而且这个N一定是所求最短的。</p>
+<p>我们用简单的反证法来证明：假设终点在第N层上边出现过，例如第M层，M&lt;n，那么我们在搜索的过程中，肯定是先搜索到第m层的，此时搜索到第m层的时候发现终点出现过了，那么最短路径应该是m，而不是n了。</p>
+<p>所以根据广度优先搜索的话，搜索到终点时，该路径一定是最短的。</p>
+<h2 id="代码">4.3.代码</h2>
+<p>我给出以下代码用于解决上述题目(仅仅只是核心代码)：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">BFS</span><span class="params">(Node&amp; Vs, Node&amp; Vd)</span></span>&#123; </span><br><span class="line">    <span class="built_in">queue</span>&lt;node&gt; Q; </span><br><span class="line">    Node Vn, Vw; </span><br><span class="line">    inti; </span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于标记颜色当visit[i][j]==true时，说明节点访问过，也就是黑色 </span></span><br><span class="line">    <span class="keyword">bool</span> visit[MAXL][MAXL]; </span><br><span class="line"></span><br><span class="line">    <span class="comment">//四个方向 </span></span><br><span class="line">    intdir[][<span class="number">2</span>] = &#123; </span><br><span class="line">        &#123;<span class="number">0</span>,<span class="number">1</span>&#125;, &#123;<span class="number">1</span>,<span class="number">0</span>&#125;, </span><br><span class="line">        &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;, &#123;<span class="number">-1</span>,<span class="number">0</span>&#125; </span><br><span class="line">    &#125;; </span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始状态将起点放进队列Q </span></span><br><span class="line">    Q.push(Vs); </span><br><span class="line">    visit[Vs.x][Vs.y] = <span class="literal">true</span>;<span class="comment">//设置节点已经访问过了！ </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!Q.empty())&#123;<span class="comment">//队列不为空，继续搜索！ </span></span><br><span class="line">        <span class="comment">//取出队列的头Vn </span></span><br><span class="line">        Vn = Q.front(); </span><br><span class="line">        Q.pop(); </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">4</span>; ++i)&#123; </span><br><span class="line">            Vw = Node(Vn.x+dir[i][<span class="number">0</span>], Vn.y+dir[i][<span class="number">1</span>]);<span class="comment">//计算相邻节点 </span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(Vw == Vd)&#123;<span class="comment">//找到终点了！ </span></span><br><span class="line">                <span class="comment">//把路径记录，这里没给出解法 </span></span><br><span class="line">                returntrue;<span class="comment">//返回 </span></span><br><span class="line">            &#125; </span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(isValid(Vw) &amp;&amp; !visit[Vw.x][Vw.y])&#123; </span><br><span class="line">                <span class="comment">//Vw是一个合法的节点并且为白色节点 </span></span><br><span class="line">                Q.push(Vw);<span class="comment">//加入队列Q </span></span><br><span class="line">                visit[Vw.x][Vw.y] = <span class="literal">true</span>;<span class="comment">//设置节点颜色 </span></span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">    returnfalse;<span class="comment">//无解 </span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
-
-<h2 id="5-核心代码"><a href="#5-核心代码" class="headerlink" title="5.核心代码"></a>5.核心代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">BFS</span><span class="params">(Node&amp; Vs, Node&amp; Vd)</span></span>&#123; </span><br><span class="line">    <span class="built_in">queue</span>&lt;node&gt; Q; </span><br><span class="line">    Node Vn, Vw; </span><br><span class="line">    inti; </span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始状态将起点放进队列Q </span></span><br><span class="line">    Q.push(Vs); </span><br><span class="line">    hash(Vw) = <span class="literal">true</span>;<span class="comment">//设置节点已经访问过了！ </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!Q.empty())&#123;<span class="comment">//队列不为空，继续搜索！ </span></span><br><span class="line">        <span class="comment">//取出队列的头Vn </span></span><br><span class="line">        Vn = Q.front(); </span><br><span class="line"></span><br><span class="line">        <span class="comment">//从队列中移除 </span></span><br><span class="line">        Q.pop(); </span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(Vw = Vn通过某规则能够到达的节点)&#123; </span><br><span class="line">            <span class="keyword">if</span>(Vw == Vd)&#123;<span class="comment">//找到终点了！ </span></span><br><span class="line">                <span class="comment">//把路径记录，这里没给出解法 </span></span><br><span class="line">                returntrue;<span class="comment">//返回 </span></span><br><span class="line">            &#125; </span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(isValid(Vw) &amp;&amp; !visit[Vw])&#123; </span><br><span class="line">                <span class="comment">//Vw是一个合法的节点并且为白色节点 </span></span><br><span class="line">                Q.push(Vw);</span><br></pre></td></tr></table></figure>
+<h2 id="核心代码">5.核心代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">BFS</span><span class="params">(Node&amp; Vs, Node&amp; Vd)</span></span>&#123; </span><br><span class="line">    <span class="built_in">queue</span>&lt;node&gt; Q; </span><br><span class="line">    Node Vn, Vw; </span><br><span class="line">    inti; </span><br><span class="line"></span><br><span class="line">    <span class="comment">//初始状态将起点放进队列Q </span></span><br><span class="line">    Q.push(Vs); </span><br><span class="line">    hash(Vw) = <span class="literal">true</span>;<span class="comment">//设置节点已经访问过了！ </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!Q.empty())&#123;<span class="comment">//队列不为空，继续搜索！ </span></span><br><span class="line">        <span class="comment">//取出队列的头Vn </span></span><br><span class="line">        Vn = Q.front(); </span><br><span class="line"></span><br><span class="line">        <span class="comment">//从队列中移除 </span></span><br><span class="line">        Q.pop(); </span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(Vw = Vn通过某规则能够到达的节点)&#123; </span><br><span class="line">            <span class="keyword">if</span>(Vw == Vd)&#123;<span class="comment">//找到终点了！ </span></span><br><span class="line">                <span class="comment">//把路径记录，这里没给出解法 </span></span><br><span class="line">                returntrue;<span class="comment">//返回 </span></span><br><span class="line">            &#125; </span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(isValid(Vw) &amp;&amp; !visit[Vw])&#123; </span><br><span class="line">                <span class="comment">//Vw是一个合法的节点并且为白色节点 </span></span><br><span class="line">                Q.push(Vw);</span><br></pre></td></tr></table></figure>
 
   
   
@@ -595,10 +679,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:19:02+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T18:07:25+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -676,13 +760,17 @@
       
         <a class='prev' href='/2020/04/09/prime-path-%EF%BC%88bfs%E6%89%93%E8%A1%A8%EF%BC%89/'>
           <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Prime Path （BFS+打表）</p>
-          <p class='content'>DescriptionThe ministers of the cabinet were quite upset by the message from the Chief of Securit...</p>
+          <p class='content'>Description
+The ministers of the cabinet were quite upset by the message from the Chief of Securi...</p>
         </a>
       
       
         <a class='next' href='/2020/04/09/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/'>
           <p class='title'>广度优先搜索和深度优先搜索<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>BFS和DFS算法解析【算法入门】1.前言和树的遍历类似，图的遍历也是从图中某点出发，然后按照某种方法对图中所有顶点进行访问，且仅访问一次。 但是图的遍历相对树而言要更为复杂。因为图中的任意顶点...</p>
+          <p class='content'>BFS和DFS算法解析
+【算法入门】
+1.前言
+和树的遍历类似，图的遍历也是从图中某点出发，然后按照某种方法对图中所有顶点进行访问，且仅访问一次。 但是图的遍历相对树而言要更为复杂。因为图中的任...</p>
         </a>
       
     </div>
@@ -725,7 +813,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">3.2.广度优先搜索流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E8%AF%86%E5%88%AB%E5%87%BA%E8%8A%82%E7%82%B9%E8%B7%9F%E8%BE%B9"><span class="toc-text">4.1.识别出节点跟边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">4.2.解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E4%BB%A3%E7%A0%81"><span class="toc-text">4.3.代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-text">5.核心代码</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF"><span class="toc-text">3.1.算法的基本思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">3.2.广度优先搜索流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%86%E5%88%AB%E5%87%BA%E8%8A%82%E7%82%B9%E8%B7%9F%E8%BE%B9"><span class="toc-text">4.1.识别出节点跟边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">4.2.解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-text">4.3.代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-text">5.核心代码</span></a></li></ol>
     </div>
   </section>
 
@@ -1003,7 +1091,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">331字</span>
+        <span class="post-count">336字</span>
       </span>
     </span>
 
@@ -536,12 +536,19 @@
 
 
   
-  <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>今天zyb参加一场面试,面试官听说zyb是ACMer之后立马抛出了一道算法题给zyb: 有一个序列,是1到n的一种排列,排列的顺序是字典序小的在前,那么第k个数字是什么? 例如n=15,k=7, 排列顺序为1, 10, 11, 12, 13, 14, 15, 2, 3, 4, 5, 6, 7, 8, 9;那么第7个数字就是15. 那么,如果你处在zyb的场景下,你能解决这个问题吗?</p>
-<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>T组样例(T&lt;=100) 两个整数n和k(1&lt;=n&lt;=1e6,1&lt;=k&lt;=n),n和k代表的含义如上文</p>
-<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>输出1-n之中字典序第k小的数字</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><p>1 15 7</p>
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><p>15</p>
-<h4 id="思路：完全十叉树"><a href="#思路：完全十叉树" class="headerlink" title="思路：完全十叉树"></a>思路：完全十叉树</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,b)  memset(a,b,sizeof(a))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn=<span class="number">10005</span>;</span><br><span class="line"><span class="comment">//const int  mod=1000000007;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cur=<span class="number">1</span>;</span><br><span class="line">    k=k<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(k&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> step=<span class="number">0</span>,first=cur,last=cur+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(first&lt;=n)&#123;</span><br><span class="line">            step+=min(n+<span class="number">1</span>,last)-first;</span><br><span class="line">            first*=<span class="number">10</span>;</span><br><span class="line">            last*=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(step&lt;=k)&#123;</span><br><span class="line">            cur++;</span><br><span class="line">            k-=step;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            cur*=<span class="number">10</span>;</span><br><span class="line">            k-=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n,k;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;k;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;cal(n,k)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  <h3 id="description">Description</h3>
+<p>今天zyb参加一场面试,面试官听说zyb是ACMer之后立马抛出了一道算法题给zyb: 有一个序列,是1到n的一种排列,排列的顺序是字典序小的在前,那么第k个数字是什么? 例如n=15,k=7, 排列顺序为1, 10, 11, 12, 13, 14, 15, 2, 3, 4, 5, 6, 7, 8, 9;那么第7个数字就是15. 那么,如果你处在zyb的场景下,你能解决这个问题吗?</p>
+<h3 id="input">Input</h3>
+<p>T组样例(T&lt;=100) 两个整数n和k(1&lt;=n&lt;=1e6,1&lt;=k&lt;=n),n和k代表的含义如上文</p>
+<h3 id="output">Output</h3>
+<p>输出1-n之中字典序第k小的数字</p>
+<h3 id="sample-input">Sample Input</h3>
+<p>1</p>
+<p>15 7</p>
+<h3 id="sample-output">Sample Output</h3>
+<p>15</p>
+<h4 id="思路完全十叉树">思路：完全十叉树</h4>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mem(a,b)  memset(a,b,sizeof(a))</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn=<span class="number">10005</span>;</span><br><span class="line"><span class="comment">//const int  mod=1000000007;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cur=<span class="number">1</span>;</span><br><span class="line">    k=k<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(k&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> step=<span class="number">0</span>,first=cur,last=cur+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(first&lt;=n)&#123;</span><br><span class="line">            step+=min(n+<span class="number">1</span>,last)-first;</span><br><span class="line">            first*=<span class="number">10</span>;</span><br><span class="line">            last*=<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(step&lt;=k)&#123;</span><br><span class="line">            cur++;</span><br><span class="line">            k-=step;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            cur*=<span class="number">10</span>;</span><br><span class="line">            k-=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cur;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n,k;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;k;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;cal(n,k)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
   
   
@@ -587,10 +594,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:14:47+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T20:32:34+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -666,15 +673,17 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/04/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E8%AE%AD-%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81-%E8%AF%91%E7%A0%81%E5%99%A8/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>数据结构实训——哈夫曼编码/译码器</p>
-          <p class='content'>哈夫曼(Huffman)编/译码器（限1人完成） 【问题描述】 利用哈夫曼编码进行通信可以大大提高信道利用率，缩短信息传输时间，降低传输成本。但是，这要求在发送端通过一个编码系统对待传数据预先编...</p>
+        <a class='prev' href='/2020/04/10/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%AE%80%E5%8D%95%E8%AE%B2%E8%A7%A3/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>二叉树的简单讲解</p>
+          <p class='content'>&lt; div id="article_content" class="article_content clearfix"&gt;
+二叉树是一种特殊的树，在二叉树中每个节点最多有两个子节点，一...</p>
         </a>
       
       
         <a class='next' href='/2020/04/09/%E9%9D%9E%E5%B8%B8%E5%8F%AF%E4%B9%90%EF%BC%88bfs%EF%BC%89/'>
           <p class='title'>非常可乐（BFS）<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Description大家一定觉的运动以后喝可乐是一件很惬意的事情，但是seeyou却不这么认为。因为每次当seeyou买了可乐以后，阿牛就要求和seeyou一起分享这一瓶可乐，而且一定要喝的和...</p>
+          <p class='content'>Description
+大家一定觉的运动以后喝可乐是一件很惬意的事情，但是seeyou却不这么认为。因为每次当seeyou买了可乐以后，阿牛就要求和seeyou一起分享这一瓶可乐，而且一定要喝的...</p>
         </a>
       
     </div>
@@ -717,7 +726,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sample-Output"><span class="toc-text">Sample Output</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A%E5%AE%8C%E5%85%A8%E5%8D%81%E5%8F%89%E6%A0%91"><span class="toc-text">思路：完全十叉树</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#description"><span class="toc-text">Description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#input"><span class="toc-text">Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#output"><span class="toc-text">Output</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample-input"><span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sample-output"><span class="toc-text">Sample Output</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%E5%AE%8C%E5%85%A8%E5%8D%81%E5%8F%89%E6%A0%91"><span class="toc-text">思路：完全十叉树</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -995,7 +1004,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',

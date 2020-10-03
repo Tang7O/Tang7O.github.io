@@ -536,11 +536,28 @@
 
 
   
-  <p><strong>1. 概述</strong> RMQ（Range Minimum/Maximum Query），即区间最值查询，是指这样一个问题：对于长度为n的数列A，回答若干询问RMQ（A,i,j）(i,j&lt;=n)，返回数列A中下标在i，j之间的最小/大值。这两个问题是在实际应用中经常遇到的问题，下面介绍一下解决这两种问题的比较高效的<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/datastructure" title="算法与数据结构知识库">算法</a>。当然，该问题也可以用线段树（也叫区间树）解决，算法复杂度为：O(N)~O(logN)，这里我们暂不介绍。<br><strong>2.RMQ算法</strong> 对于该问题，最容易想到的解决方案是遍历，复杂度是O(n)。但当数据量非常大且查询很频繁时，该算法无法在有效的时间内查询出正解。 本节介绍了一种比较高效的在线算法（ST算法）解决这个问题。所谓在线算法，是指用户每输入一个查询便马上处理一个查询。该算法一般用较长的时间做预处理，待信息充足以后便可以用较少的时间回答每个查询。ST（Sparse Table）算法是一个非常有名的在线处理RMQ问题的算法，它可以在O(nlogn)时间内进行预处理，然后在O(1)时间内回答每个查询。<br><strong>（一）首先是预处理，用动态规划（DP）解决。</strong> 设A[i]是要求区间最值的数列，F[i, j]表示从第i个数起连续2^j个数中的最大值。（DP的状态） 例如： A数列为：3 2 4 5 6 8 1 2 9 7 F[1，0]表示第1个数起，长度为2^0=1的最大值，其实就是3这个数。同理 F[1,1] = max(3,2) = 3, F[1，2]=max(3,2,4,5) = 5，F[1，3] = max(3,2,4,5,6,8,1,2) = 8; 并且我们可以容易的看出F[i,0]就等于A[i]。（DP的初始值） 这样，DP的状态、初值都已经有了，剩下的就是状态转移方程。 我们把F[i，j]平均分成两段（因为f[i，j]一定是偶数个数字），从 i 到i + 2 ^ (j - 1) - 1为一段，i + 2 ^ (j - 1)到i + 2 ^ j - 1为一段(长度都为2 ^ (j - 1))。用上例说明，当i=1，j=3时就是3,2,4,5 和 6,8,1,2这两段。F[i，j]就是这两段各自最大值中的最大值。于是我们得到了状态转移方程F[i, j]=max（F[i，j-1], F[i + 2^(j-1)，j-1]）。 代码如下：</p>
+  <p><strong>1. 概述</strong> RMQ（Range Minimum/Maximum Query），即区间最值查询，是指这样一个问题：</p>
+<p>对于长度为n的数列A，回答若干询问RMQ（A,i,j）(i,j&lt;=n)，返回数列A中下标在i，j之间的最小/大值。这两个问题是在实际应用中经常遇到的问题，下面介绍一下解决这两种问题的比较高效的<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/datastructure" title="算法与数据结构知识库">算法</a>。当然，该问题也可以用线段树（也叫区间树）解决，算法复杂度为：O(N)~O(logN)，这里我们暂不介绍。<br />
+<strong>2.RMQ算法</strong> 对于该问题，最容易想到的解决方案是遍历，复杂度是O(n)。但当数据量非常大且查询很频繁时，该算法无法在有效的时间内查询出正解。</p>
+<p>本节介绍了一种比较高效的在线算法（ST算法）解决这个问题。所谓在线算法，是指用户每输入一个查询便马上处理一个查询。该算法一般用较长的时间做预处理，待信息充足以后便可以用较少的时间回答每个查询。ST（Sparse Table）算法是一个非常有名的在线处理RMQ问题的算法，它可以在O(nlogn)时间内进行预处理，然后在O(1)时间内回答每个查询。<br />
+<strong>（一）首先是预处理，用动态规划（DP）解决。</strong></p>
+<p>设A[i]是要求区间最值的数列，F[i, j]表示从第i个数起连续2^j个数中的最大值。（DP的状态）</p>
+<p>例如：</p>
+<p>A数列为：3 2 4 5 6 8 1 2 9 7</p>
+<p>F[1，0]表示第1个数起，长度为2^0=1的最大值，其实就是3这个数。同理 F[1,1] = max(3,2) = 3, F[1，2]=max(3,2,4,5) = 5，F[1，3] = max(3,2,4,5,6,8,1,2) = 8;</p>
+<p>并且我们可以容易的看出F[i,0]就等于A[i]。（DP的初始值）</p>
+<p>这样，DP的状态、初值都已经有了，剩下的就是状态转移方程。</p>
+<p>我们把F[i，j]平均分成两段（因为f[i，j]一定是偶数个数字），从 i 到<span class="math inline">\(i + 2 ^{j - 1} - 1\)</span>为一段，<span class="math inline">\(i + 2 ^ {j - 1}\)</span>到<span class="math inline">\(i + 2 ^{ j} - 1\)</span>为一段(长度都为<span class="math inline">\(2 ^ {j - 1}\)</span>。用上例说明，当i=1，j=3时就是3,2,4,5 和 6,8,1,2这两段。F[i，j]就是这两段各自最大值中的最大值。于是我们得到了状态转移方程F[i, j]=max（F[i，j-1], F[<span class="math inline">\(i + 2^{j-1}\)</span>，j-1]）。</p>
+<p>代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">RMQ</span><span class="params">(<span class="keyword">int</span> num)</span> <span class="comment">//预处理-&gt;O(nlogn)  </span></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; <span class="number">20</span>; ++j)  </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; ++i)  </span><br><span class="line">            <span class="keyword">if</span>(i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span> &lt;= num)  </span><br><span class="line">            &#123;  </span><br><span class="line">                maxsum[i][j] = max(maxsum[i][j - <span class="number">1</span>], maxsum[i + (<span class="number">1</span> &lt;&lt; (j - <span class="number">1</span>))][j - <span class="number">1</span>]);  </span><br><span class="line">                minsum[i][j] = min(minsum[i][j - <span class="number">1</span>], minsum[i + (<span class="number">1</span> &lt;&lt; (j - <span class="number">1</span>))][j - <span class="number">1</span>]);  </span><br><span class="line">            &#125;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-
-
-<p>这里我们需要注意的是循环的顺序，我们发现外层是j，内层所i，这是为什么呢？可以是i在外，j在内吗？<br>答案是不可以。因为我们需要理解这个状态转移方程的意义。 状态转移方程的含义是：先更新所有长度为F[i,0]即1个元素，然后通过2个1个元素的最值，获得所有长度为F[i,1]即2个元素的最值，然后再通过2个2个元素的最值，获得所有长度为F[i,2]即4个元素的最值，以此类推更新所有长度的最值。 而如果是i在外，j在内的话，我们更新的顺序就是F[1,0],F[1,1],F[1,2],F[1,3],表示更新从1开始1个元素，2个元素，4个元素，8个元素（A[0],A[1],….A[7]）的最值，这里F[1,3] = max(max(A[0],A[1],A[2],A[3]),max(A[4],A[5],A[6],A[7]))的值，但是我们根本没有计算max(A[0],A[1],A[2],A[3])和max(A[4],A[5],A[6],A[7])，所以这样的方法肯定是错误的。<br>为了避免这样的错误，一定要好好理解这个状态转移方程所代表的含义。<strong>（二）然后是查询。</strong> 假如我们需要查询的区间为(i,j)，那么我们需要找到覆盖这个闭区间(左边界取i，右边界取j)的最小幂（可以重复，比如查询5，6，7，8，9，我们可以查询5678和6789）。 因为这个区间的长度为j - i + 1,所以我们可以取k=log2( j - i + 1)，则有：RMQ(A, i, j)=max{F[i , k], F[ j - 2 ^ k + 1, k]}。 举例说明，要求区间[2，8]的最大值，k = log2（8 - 2 + 1）= 2，即求max(F[2, 2]，F[8 - 2 ^ 2 + 1, 2]) = max(F[2, 2]，F[5, 2])；</p>
+<p>这里我们需要注意的是循环的顺序，我们发现外层是j，内层所i，这是为什么呢？可以是i在外，j在内吗？</p>
+<p>答案是不可以。因为我们需要理解这个状态转移方程的意义。</p>
+<p>状态转移方程的含义是：先更新所有长度为F[i,0]即1个元素，然后通过2个1个元素的最值，获得所有长度为F[i,1]即2个元素的最值，然后再通过2个2个元素的最值，获得所有长度为F[i,2]即4个元素的最值，以此类推更新所有长度的最值。</p>
+<p>而如果是i在外，j在内的话，我们更新的顺序就是F[1,0],F[1,1],F[1,2],F[1,3],表示更新从1开始1个元素,2个元素，4个元素，8个元素（A[0],A[1],....A[7]）的最值，这里<span class="math inline">\(F[1,3] = max(max(A[0],A[1],A[2],A[3]),max(A[4],A[5],A[6],A[7]))\)</span>的值，但是我们根本没有计算<span class="math inline">\(max(A[0],A[1],A[2],A[3])和max(A[4],A[5],A[6],A[7])\)</span>，所以这样的方法肯定是错误的。</p>
+<p>为了避免这样的错误，一定要好好理解这个状态转移方程所代表的含义。</p>
+<p><strong>（二）然后是查询。</strong> 假如我们需要查询的区间为(i,j)，那么我们需要找到覆盖这个闭区间(左边界取i，右边界取j)的最小幂（可以重复，比如查询5，6，7，8，9，我们可以查询5678和6789）。</p>
+<p>因为这个区间的长度为<span class="math inline">\(j - i + 1\)</span>,所以我们可以取<span class="math inline">\(k=log2( j - i + 1)\)</span>，则有：RMQ(A, i, j)=max{F[i , k], F[ <span class="math inline">\(j - 2 ^ k + 1\)</span>, k]}。</p>
+<p>举例说明，要求区间[2，8]的最大值，<span class="math inline">\(k = log2（8 - 2 + 1）= 2\)</span>，即求max(F[2, 2]，F[<span class="math inline">\(8 - 2 ^ 2 + 1\)</span>, 2]) = max(F[2, 2]，F[5, 2])；</p>
 
   
   
@@ -586,10 +603,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:16:22+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-27T21:35:12+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年9月27日</p>
   </a>
 </div>
 
@@ -674,7 +691,8 @@
       
         <a class='next' href='/2020/04/10/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%EF%BC%88prime%E7%AE%97%E6%B3%95%E3%80%81kruskal%E7%AE%97%E6%B3%95%EF%BC%89-%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%E7%AE%97%E6%B3%95%EF%BC%88floydbellmen-fo/'>
           <p class='title'>最小生成树（prime算法、kruskal算法） 最短路径算法（Floyd,bellmen-ford,dijkstra,Spfa)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1 最小生成树生成树的概念：联通图G的一个子图如果是一棵包含G的所有顶点的树，则该子图称为G的生成树 生成树是联通图的极小连通子图。所谓极小是指：若在树中任意增加一条边，则 将出现一个回路；若去...</p>
+          <p class='content'>1 最小生成树
+生成树的概念：联通图G的一个子图如果是一棵包含G的所有顶点的树，则该子图称为G的生成树 生成树是联通图的极小连通子图。所谓极小是指：若在树中任意增加一条边，则 将出现一个回路；若...</p>
         </a>
       
     </div>
@@ -695,6 +713,59 @@
 
 
 
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
 
 
@@ -981,7 +1052,7 @@ setInterval("createtime()",250);
       lang: 'zh-cn',
       visitor: 'true',
       highlight: 'true',
-      mathJax: 'false',
+      mathJax: 'true',
       enableQQ: 'true',
       master: 'cdd4c31fd981df4d223579ee17d22303',
       friends: '',
