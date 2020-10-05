@@ -28,6 +28,8 @@
 
   <!-- feed -->
   
+    <link rel="alternate" href="/atom.xml" title="Tang7O'S BLOG" type="application/atom+xml">
+  
 
   <!-- import meta -->
   
@@ -333,7 +335,7 @@
     
         <div class='cover-wrapper post search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg"></div>
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -513,7 +515,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">375字</span>
+        <span class="post-count">374字</span>
       </span>
     </span>
 
@@ -536,7 +538,33 @@
 
 
   
-  <p>给定三角形三个顶点的坐标，如何求三角形的外心的坐标呢？ 例如 ：给定a（x1,y1） b（x2,y2） c（x3,y3）求外接圆心坐标O（x，y） 首先，外接圆的圆心是三角形三条边的垂直平分线的交点，我们根据圆心到顶点的距离相等，可以列出以下方程： (x1-x)<em>(x1-x)-(y1-y)</em>(y1-y)=(x2-x)<em>(x2-x)+(y2-y)</em>(y2-y); (x2-x)<em>(x2-x)+(y2-y)</em>(y2-y)=(x3-x)<em>(x3-x)+(y3-y)</em>(y3-y); 2.化简得到： 2_(x2-x1)<em>x+2</em>(y2-y1)y=x22+y22-x12-y12; 2_(x3-x2)<em>x+2</em>(y3-y2)y=x32+y32-x22-y22; 令A1=2_(x2-x1)； B1=2_(y2-y1)； C1=x22+y22-x12-y12; A2=2_(x3-x2)； B2=2_(y3-y2)； C2=x32+y32-x22-y22; 即 A1_x+B1_y=C1; A2_x+B2_y=C2; 3.最后根据克拉默法则： x=((C1_B2)-(C2_B1)) / ((A1_B2)-(A2_B1))； y=((A1_C2)-(A2_C1)) / ((A1_B2)-(A2_B1))； 因此，x，y为最终结果； 对于空间中的三角形，只不过最后解方程组的时候是三元方程组 Ps：克拉默法则可以用向量积和数量积的方法证明，也可以用高等代数的知识证明</p>
+  <p>转载于:<a target="_blank" rel="noopener" href="https://blog.csdn.net/caoguo_app_android/article/details/11599021">原文链接</a></p>
+<ol type="1">
+<li><p>给定三角形三个顶点的坐标，如何求三角形的外心的坐标呢？</p>
+<p>例如 ：给定a（x1,y1） b（x2,y2） c（x3,y3）求外接圆心坐标O（x，y）</p>
+<ol type="1">
+<li><p>首先，外接圆的圆心是三角形三条边的垂直平分线的交点，我们根据圆心到顶点的距离相等，可以列出以下方程：</p>
+<p><span class="math inline">\((x1-x)*(x1-x)-(y1-y)*(y1-y)=(x2-x)*(x2-x)+(y2-y)*(y2-y)\)</span></p>
+<p><span class="math inline">\((x2-x)*(x2-x)+(y2-y)*(y2-y)=(x3-x)*(x3-x)+(y3-y)*(y3-y)\)</span></p></li>
+</ol>
+<p>2.化简得到：</p>
+<p>​ <span class="math inline">\(2*(x2-x1)*x+2*(y2-y1)y=x2^2+y2^2-x1^2-y1^2\)</span></p>
+<p>​ <span class="math inline">\(2*(x3-x2)*x+2*(y3-y2)y=x3^2+y3^2-x2^2-y2^2\)</span></p>
+<p>​ 令<span class="math inline">\(A1=2*(x2-x1)；\)</span></p></li>
+</ol>
+<p>$ B1=2*(y2-y1)$</p>
+<p><span class="math inline">\(C1=x2^2+y2^2-x1^2-y1^2\)</span></p>
+<p><span class="math inline">\(A2=2*(x3-x2)\)</span></p>
+<p><span class="math inline">\(B2=2*(y3-y2)\)</span></p>
+<p><span class="math inline">\(C2=x3^2+y3^2-x2^2-y2^2\)</span></p>
+<p>​ 即</p>
+<p><span class="math inline">\(A1*x+B1y=C1\)</span></p>
+<p>$ A2*x+B2y=C2$</p>
+<p>3.最后根据克拉默法则：</p>
+<p><span class="math inline">\(x=((C1*B2)-(C2*B1))/((A1*B2)-(A2*B1))\)</span></p>
+<p><span class="math inline">\(y=((A1*C2)-(A2*C1))/((A1*B2)-(A2*B1))\)</span></p>
+<p>因此，x，y为最终结果；</p>
+<p>对于空间中的三角形，只不过最后解方程组的时候是三元方程组</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> x1, x2, x3, y1, y2, y3;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;x1&gt;&gt;y1&gt;&gt;x2&gt;&gt;y2&gt;&gt;x3&gt;&gt;y3;</span><br><span class="line">    <span class="keyword">double</span> A1 = <span class="number">2</span> * (x2 - x1),</span><br><span class="line">       B1 = <span class="number">2</span> * (y2 - y1),</span><br><span class="line">       C1 = x2 * x2 - x1 * x1 - y1 * y1 + y2 *y2,</span><br><span class="line">       A2 = <span class="number">2</span> * (x3 - x2),</span><br><span class="line">       B2 = <span class="number">2</span> * (y3 - y2),</span><br><span class="line">       C2 = x3 * x3 - x2 * x2 - y2 * y2  + y3 * y3;</span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    x=((C1*B2)-(C2*B1))/((A1*B2)-(A2*B1));</span><br><span class="line">    y=((A1*C2)-(A2*C1))/((A1*B2)-(A2*B1));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.3lf %.3lf\n&quot;</span>,x,y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
   
@@ -583,10 +611,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:18:31+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-03T15:03:25+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年10月3日</p>
   </a>
 </div>
 
@@ -674,8 +702,9 @@
       
         <a class='next' href='/2020/04/10/distinct-subsequences-%E6%B1%82s%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84%E5%AD%90%E4%B8%B2%E4%B8%8Et%E7%9B%B8%E5%90%8C/'>
           <p class='title'>distinct-subsequences 求S有多少个不同的子串与T相同<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Given a string S and a string T, count the number of distinct subsequences ofT inS.
-A subsequence...</p>
+          <p class='content'>转载: 原文
+Given a string S and a string T, count the number of distinct subsequences ofT inS.
+A subs...</p>
         </a>
       
     </div>
@@ -696,6 +725,59 @@ A subsequence...</p>
 
 
 
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
 
 
 
