@@ -349,7 +349,7 @@
     
       <div class="m_search">
         <form name="searchform" class="form u-search-form">
-          <input type="text" class="input u-search-input" placeholder="A Wonderful Theme for Hexo" />
+          <input type="text" class="input u-search-input" placeholder="搜索一下?" />
           <i class="icon fas fa-search fa-fw"></i>
         </form>
       </div>
@@ -538,7 +538,7 @@
 
 
   
-  <h4 id="区间dp就是在区间上进行动态规划求解一段区间上的最优解主要是通过合并小区间的-最优解进而得出整个大区间上最优解的dp算法">区间dp就是在区间上进行动态规划，求解一段区间上的最优解。主要是通过合并小区间的 最优解进而得出整个大区间上最优解的dp算法。</h4>
+  <p>区间dp就是在区间上进行动态规划，求解一段区间上的最优解。主要是通过合并小区间的 最优解进而得出整个大区间上最优解的dp算法。</p>
 <h2 id="核心思路">核心思路：</h2>
 <p>既然要求解在一个区间上的最优解，那么把这个区间分割成一个个小区间，求解每个小区间的最优解，再合并小区间得到大区间即可。所以在代码实现上，我可以枚举区间长度len为每次分割成的小区间长度（由短到长不断合并），内层枚举该长度下可以的起点，自然终点也就明了了。然后在这个起点终点之间枚举分割点，求解这段小区间在某个分割点下的最优解。</p>
 <h2 id="核心代码">核心代码：</h2>
@@ -591,10 +591,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:30:51+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-10-10T09:42:01+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
+    <p>更新于：2020年10月10日</p>
   </a>
 </div>
 
@@ -722,7 +722,7 @@
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4dp%E5%B0%B1%E6%98%AF%E5%9C%A8%E5%8C%BA%E9%97%B4%E4%B8%8A%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82%E8%A7%A3%E4%B8%80%E6%AE%B5%E5%8C%BA%E9%97%B4%E4%B8%8A%E7%9A%84%E6%9C%80%E4%BC%98%E8%A7%A3%E4%B8%BB%E8%A6%81%E6%98%AF%E9%80%9A%E8%BF%87%E5%90%88%E5%B9%B6%E5%B0%8F%E5%8C%BA%E9%97%B4%E7%9A%84-%E6%9C%80%E4%BC%98%E8%A7%A3%E8%BF%9B%E8%80%8C%E5%BE%97%E5%87%BA%E6%95%B4%E4%B8%AA%E5%A4%A7%E5%8C%BA%E9%97%B4%E4%B8%8A%E6%9C%80%E4%BC%98%E8%A7%A3%E7%9A%84dp%E7%AE%97%E6%B3%95"><span class="toc-text">区间dp就是在区间上进行动态规划，求解一段区间上的最优解。主要是通过合并小区间的 最优解进而得出整个大区间上最优解的dp算法。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="toc-text">核心思路：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-text">核心代码：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="toc-text">核心思路：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-text">核心代码：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a></li></ol>
     </div>
   </section>
 
