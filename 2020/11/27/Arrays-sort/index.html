@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -19,9 +17,13 @@
 
   <!-- 页面元数据 -->
   
-  <title>标签：配置环境变量 - Tang7O&#39;S BLOG</title>
+  <title>Arrays.sort - Tang7O&#39;S BLOG</title>
+  
+    <meta name="keywords" content="Java">
   
 
+  
+    <meta name="description" content=" 在刷题的时候，遇到了一些关于 Arrays.sort() 的问题，记录一下。">
   
 
   <!-- feed -->
@@ -331,7 +333,7 @@
   
     
     
-        <div class='cover-wrapper  search' style="display: none;">
+        <div class='cover-wrapper post search' style="display: none;">
           
             <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg"></div>
           
@@ -413,8 +415,8 @@
  
  
 <div id="pjax-data" style="display: none"> 
-  <div id="pjax-ispage">false</div> 
-  <div id="pjax-pageTitle"></div> 
+  <div id="pjax-ispage">true</div> 
+  <div id="pjax-pageTitle">Arrays.sort</div> 
   <div id="pjax-enable-cover">true</div> 
   <div id="pjax-comment-path"></div> 
   <div id="pjax-comment-placeholder"></div> 
@@ -443,75 +445,264 @@
         
         
 
-
 <div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
   
+
+
+  
+  <div class="article-meta" id="top">
     
-      
-  <section class="post-list">
     
-      
+    
+      <h1 class="title">
+        Arrays.sort
+      </h1>
+      <div class='new-meta-box'>
         
           
+            
+<div class='new-meta-item author'>
+  <a class='author' href="" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
+    <p>Tang7O</p>
+  </a>
+</div>
+
+          
         
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2020/04/13/win10%E4%B8%8B-java%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/">
-        Win10下 Java环境变量配置
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p> </p>
-    
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Java/">Java</a>
+    </a>
   </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
+
+
+          
         
-        <time>2020-04-13</time>
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年11月27日</p>
+  </a>
+</div>
+
+          
         
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a><span class="sep"></span><a class="category-link" href="/categories/Java/%E6%90%AD%E9%85%8D%E7%8E%AF%E5%A2%83/">搭配环境</a>
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="Arrays.sort" data-path="/2020/11/27/Arrays-sort/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div>
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">364字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+
+
+          
         
       </div>
+    
+  </div>
+
+
+  
+  <h2 id="基本用法">基本用法</h2>
+<h3 id="arrays.sortint-a">Arrays.sort(int[] a)</h3>
+<p>对数组 a 中所有元素按从小到大的顺序排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = &#123;<span class="number">4</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">48</span>, <span class="number">3</span>, <span class="number">54</span>&#125;;</span><br><span class="line">        Arrays.sort(a);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> c : a) &#123;</span><br><span class="line">            System.out.print(c + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//输出: 1 1 3 3 4 6 8 48 54</span></span><br></pre></td></tr></table></figure>
+<h3 id="arrays.sortint-aint-fromindexint-toindex">Arrays.sort(int[] a,int fromIndex,int toIndex)</h3>
+<p>对数组 a 中的下标从 formIndex 到 toIndex - 1 的元素按从小到大的顺序排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = &#123;<span class="number">4</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">48</span>, <span class="number">3</span>, <span class="number">54</span>&#125;;</span><br><span class="line">    	<span class="comment">//对a[3] - a[6]排序</span></span><br><span class="line">        Arrays.sort(a,<span class="number">3</span>,<span class="number">7</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> c : a) &#123;</span><br><span class="line">            System.out.print(c + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">//输出：4 6 1 1 3 8 48 3 54 </span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义排序">自定义排序</h2>
+<p>Arrays.sort(int[] a,Comparator&lt;? Super T&gt; c) 用Comparator借口实现自定义排序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer[] a = &#123;<span class="number">4</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">48</span>, <span class="number">3</span>, <span class="number">54</span>&#125;;</span><br><span class="line">        Arrays.sort(a, <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//返回值&gt;0 交换</span></span><br><span class="line">                <span class="keyword">return</span> o2 - o1;</span><br><span class="line">                <span class="comment">// 不建议上面的这种写法，这样写容易超出 Integer.MAX_VALUE ，下面的写法更好</span></span><br><span class="line">                <span class="keyword">return</span> o2 &gt; o1 ? <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>和下面的写法等价</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Integer[] a = &#123;<span class="number">4</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">8</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">48</span>,<span class="number">3</span>,<span class="number">54</span>&#125;;</span><br><span class="line">        <span class="comment">//(Comparator&lt;Integer&gt;) 可省略</span></span><br><span class="line">        Arrays.sort(a, (Comparator&lt;Integer&gt;) (o1, o2) -&gt; o2 &gt; o1 ? <span class="number">1</span> : -<span class="number">1</span>;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="arrays.sort-和-c-中的sort-的区别">Arrays.sort() 和 C++ 中的sort() 的区别</h2>
+<p>Arrays.sort() 自定义排序时，<code>返回值 &gt;0</code> 交换二个元素的位置。C++ 中的 sort() 与之相反。</p>
+
+  
+  
+    
+    <div class='footer'>
       
-        <div>
-          <a class='readmore' href='/2020/04/13/win10%E4%B8%8B-java%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE/'>
-            阅读全文
-          </a>
+      
+      <!-- 打赏 -->
+       <!-- %- partial('donate') % -->
+      <iframe src="https://alioss.tang7o.cn/blog/simple/index.html" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe>
+        <div class='donate'>
+          <div class='imgs'> 
+            
+            
+          </div>
         </div>
+      
+      <!-- 博客说明/协议 -->
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://tang7o.cn/2020/11/27/Arrays-sort/>https://tang7o.cn/2020/11/27/Arrays-sort/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-27T10:50:43+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020年11月27日</p>
+  </a>
 </div>
 
-          </div>
         
       
-    
-  </section>
+        
+          
   
-  
-    
-  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java</p></a></div>
 
 
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2020/11/27/Arrays-sort/&title=Arrays.sort - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2020/11/27/Arrays-sort/&title=Arrays.sort - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2020/11/27/Arrays-sort/&title=Arrays.sort - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
   
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2020/10/16/Meisell-Lehmer-%E7%AD%9B%E9%80%89%E7%B4%A0%E6%95%B0/'>
+          <p class='title'>Meisell-Lehmer-筛选素数(模板)<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside class='l_side'>
   
@@ -519,68 +710,22 @@
     
     
 
-<section class="widget blogger shadow desktop mobile">
-  <div class='content'>
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
     
-      
-        <div class='avatar'>
-          <img no-lazy src='https://alioss.tang7o.cn/blog/logo_ce.png'/>
-        </div>
-      
+  <header>
     
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Tang7O'S BLOG</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="https://github.com/Tang7O"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://www.zhihu.com/people/tang7o"
-              class="social fab fa-zhihu flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fas fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=1747822506&amp;amp;site=qq&amp;amp;menu=yes"
-              class="social fab fa-qq flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#arrays.sortint-a"><span class="toc-text">Arrays.sort(int[] a)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#arrays.sortint-aint-fromindexint-toindex"><span class="toc-text">Arrays.sort(int[] a,int fromIndex,int toIndex)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F"><span class="toc-text">自定义排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arrays.sort-%E5%92%8C-c-%E4%B8%AD%E7%9A%84sort-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">Arrays.sort() 和 C++ 中的sort() 的区别</span></a></li></ol>
+    </div>
+  </section>
+
 
   
 
@@ -629,17 +774,7 @@
           <li><a class="flat-box"
             title="/categories/Java/" href="/categories/Java/"
             id="categoriesJava"
-            ><div class='name'>Java</div><div class='badge'>(3)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/Java/SpringBoot/" href="/categories/Java/SpringBoot/"
-            id="categoriesJavaSpringBoot"
-            ><div class='name'>SpringBoot</div><div class='badge'>(2)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/categories/Java/%E6%90%AD%E9%85%8D%E7%8E%AF%E5%A2%83/" href="/categories/Java/%E6%90%AD%E9%85%8D%E7%8E%AF%E5%A2%83/"
-            id="categoriesJavaE690ADE9858DE78EAFE5A283"
-            ><div class='name'>搭配环境</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>Java</div><div class='badge'>(4)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/MarkDown/" href="/categories/MarkDown/"
@@ -647,14 +782,14 @@
             ><div class='name'>MarkDown</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
-            title="/categories/%E5%85%B6%E4%BB%96/" href="/categories/%E5%85%B6%E4%BB%96/"
-            id="categoriesE585B6E4BB96"
-            ><div class='name'>其他</div><div class='badge'>(1)</div></a></li>
+            title="/categories/MySQL/" href="/categories/MySQL/"
+            id="categoriesMySQL"
+            ><div class='name'>MySQL</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
-            title="/categories/%E5%85%B6%E4%BB%96/%E9%94%99%E8%AF%AF/" href="/categories/%E5%85%B6%E4%BB%96/%E9%94%99%E8%AF%AF/"
-            id="categoriesE585B6E4BB96E99499E8AFAF"
-            ><div class='name'>错误</div><div class='badge'>(1)</div></a></li>
+            title="/categories/MySQL/bug/" href="/categories/MySQL/bug/"
+            id="categoriesMySQLbug"
+            ><div class='name'>bug</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
@@ -693,17 +828,16 @@
 
 
     <div class='content'>
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/JAVA/" style="font-size: 16px; color: #8b8b8b">JAVA</a> <a href="/tags/Java/" style="font-size: 14px; color: #999">Java</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/SpringBoot/" style="font-size: 16px; color: #8b8b8b">SpringBoot</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px; color: #7e7e7e">数据结构</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 20px; color: #707070">模板</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 18px; color: #7e7e7e">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" style="font-size: 14px; color: #999">配置环境变量</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Java/" style="font-size: 19px; color: #777">Java</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/SpringBoot/" style="font-size: 15.67px; color: #8e8e8e">SpringBoot</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 17.33px; color: #828282">数据结构</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 20.67px; color: #6c6c6c">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22.33px; color: #606060">题目</a>
     </div>
   </section>
 
 
   
 
-  
-
 
 </aside>
+
 
 
       </div>
