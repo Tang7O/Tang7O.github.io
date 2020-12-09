@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+
+  <!-- 页面元数据 -->
+  
+  <title>人工智能复习大纲 - Tang7O&#39;S BLOG</title>
+  
+
+  
+    <meta name="description" content=" ">
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Tang7O'S BLOG" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+
+  
+
+  
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f423.svg">
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  <!-- 脚本懒加载函数 -->
+  <script>
+  function loadScript(src, cb) {
+    var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+    var script = document.createElement('script');
+    script.setAttribute('type','text/javascript');
+    if (cb) script.onload = cb;
+    script.setAttribute('src', src);
+    HEAD.appendChild(script);
+  }
+  //https://github.com/filamentgroup/loadCSS
+  !function(c){"use strict";var e=function(e,t,n,r){var o,i=c.document,a=i.createElement("link");if(t)o=t;else{var d=(i.body||i.getElementsByTagName("head")[0]).childNodes;o=d[d.length-1]}var f=i.styleSheets;if(r)for(var l in r)r.hasOwnProperty(l)&&a.setAttribute(l,r[l]);a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(i.body)return t();setTimeout(function(){e(t)})}(function(){o.parentNode.insertBefore(a,t?o:o.nextSibling)});var s=function(e){for(var t=a.href,n=f.length;n--;)if(f[n].href===t)return e();setTimeout(function(){s(e)})};function u(){a.addEventListener&&a.removeEventListener("load",u),a.media=n||"all"}return a.addEventListener&&a.addEventListener("load",u),(a.onloadcssdefined=s)(u),a};"undefined"!=typeof exports?exports.loadCSS=e:c.loadCSS=e}("undefined"!=typeof global?global:this);
+  </script>
+  <script id="loadcss"></script>
+</head>
+
+<body>
+  <header class="l_header auto shadow blur " style='opacity: 0' >
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Tang7O
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div class="l_body">
+    <div class="l_cover">
+  
+    
+    
+        <div class='cover-wrapper post search' style="display: none;">
+          
+            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg"></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+      <img no-lazy class='logo' src='https://alioss.tang7o.cn/blog/logo.png'/>
+    
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="搜索一下?" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>主页</p>
+            </a>
+          
+            <a href="/categories"
+              
+              
+              id="categories">
+              <i class='fas fa-folder-open fa-fw'></i><p>分类</p>
+            </a>
+          
+            <a href="/tags"
+              
+              
+              id="tags">
+              <i class='fas fa-tags fa-fw'></i><p>标签</p>
+            </a>
+          
+            <a href="/archives"
+              
+              
+              id="archives">
+              <i class='fas fa-rss fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/friends"
+              
+              
+              id="friends">
+              <i class='fas fa-link fa-fw'></i><p>友链</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+  
+
+    <div class='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+          <!--此文件用来存放一些不方便取值的变量--> 
+<!--思路大概是将值藏到重加载的区域内--> 
+ 
+ 
+ 
+<div id="pjax-data" style="display: none"> 
+  <div id="pjax-ispage">true</div> 
+  <div id="pjax-pageTitle">人工智能复习大纲</div> 
+  <div id="pjax-enable-cover">true</div> 
+  <div id="pjax-comment-path"></div> 
+  <div id="pjax-comment-placeholder"></div> 
+</div> 
+ 
+ 
+<script> 
+  // 处理封面 此时 jquery 还没加载 
+  if ("none" == "none") { // 移除封面 
+    document.getElementsByClassName('cover-wrapper')[0].style.display = "none"; 
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show"); 
+  } else { 
+    if ("none" == "half") { // 半屏 
+      document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'half'); 
+      document.getElementsByClassName('scroll-down')[0].style.display = "none"; 
+    } else if ("none" == "full") { // 全屏 
+      document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'full'); 
+      document.getElementsByClassName('scroll-down')[0].style.display = ""; 
+    } 
+    document.getElementsByClassName('cover-wrapper')[0].style.display = ""; 
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show"); 
+  } 
+</script> 
+ 
+
+        
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        人工智能复习大纲
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
+    <p>Tang7O</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2020年12月9日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="人工智能复习大纲" data-path="/2020/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div>
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">5.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">20分</span>
+      </span>
+    </span>
+</div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <h2 id="第一章">第一章</h2>
+<h3 id="什么是人工智能">1. 什么是人工智能</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+所谓人工智能就是用人工的方法在机器（计算机）上实现的智能，也称为机器智能。
+</details>
+<h3 id="人工智能研究的基本内容有那些">2. 人工智能研究的基本内容有那些？</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+<ol type="1">
+<li>知识表示</li>
+<li>机器感知</li>
+<li>机器思维</li>
+<li>机器学习</li>
+<li>机器行为</li>
+</ol>
+</details>
+<h3 id="人工智能有那些主要的研究领域">3. 人工智能有那些主要的研究领域？</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+1 自动定理证明 、2 博弈、3 模式识别、 4 机器视觉、5 自然语言理解、<br> 6 智能信息检索、7 数据挖掘与知识发现、8 专家系统、9 自动程序设计、10 机器人 、<br> 11 组合优化问题、12 人工神经网络、 13 分布式人工智能与多智能体、14 智能控制、<br> 15 智能仿真、16 智能CAD、17 智能CAI 、18 智能管理与智能决策、19 智能多媒体系统、<br> 20 智能操作系统、21 智能计算机系统、22 智能通信、23 智能网络系统、24 人工生命
+</details>
+<h2 id="第二章">第二章</h2>
+<h3 id="什么是知识命题产生式">1. 什么是知识、命题、产生式？</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+知识：把有关信息关联在一起所形成的信息结构称为知识<br> 命题：命题是一个非真即假的陈述句<br> 产生式：产生式是由条件和结果组成的指令
+</details>
+<h3 id="掌握谓词公式的五个连接词">2. 掌握谓词公式的五个连接词</h3>
+<ol type="1">
+<li><span class="math inline">\(\neg\)</span> : 非 或 否定，表示否定位于它之后的命题</li>
+<li><span class="math inline">\(\vee\)</span> ：析取，表示被它连接的二个命题具有“或”关系</li>
+<li><span class="math inline">\(\wedge\)</span> : 合取，表示被它连接的二个命题具有“与”关系</li>
+<li><span class="math inline">\(\rightarrow\)</span> : 蕴涵 或 条件，<span class="math inline">\(P\rightarrow Q\)</span> 表示“P 蕴涵 Q”，即表示“如果 P，则 Q”。其中，P 称为条件的前件，Q 称为条件的后件。</li>
+<li><span class="math inline">\(\leftrightarrow\)</span> : 等价 或 双条件，<span class="math inline">\(P \leftrightarrow Q\)</span> 表示“P 当且仅当 Q”</li>
+</ol>
+<h3 id="掌握存在量词全程量词">3. 掌握存在量词、全程量词</h3>
+<ol type="1">
+<li>全程量词<span class="math inline">\(（\forall x）\)</span>: 表示“对于个体域中的所有（或任一个）个体 <span class="math inline">\(x\)</span> ”</li>
+<li>存在量词<span class="math inline">\(（\exists x）\)</span>: 表示“对于个体域中存在个体<span class="math inline">\(x\)</span>”</li>
+</ol>
+<h3 id="自然语句改写成相应的谓词公式">4. 自然语句改写成相应的谓词公式</h3>
+<p><strong>例 2.1</strong> 用一阶谓词公式表示“每个储蓄钱的人都得到利息”。</p>
+<p><strong>解</strong> 定义谓词：<span class="math inline">\(save(x)\)</span> 表示 <span class="math inline">\(x\)</span> 储蓄钱，<span class="math inline">\(interest(x)\)</span> 表示 <span class="math inline">\(x\)</span> 获得利息。</p>
+<p>则“每个储蓄钱的人都得到利息”可以表示为：$(x)(save(x)interest(x)) $</p>
+<p><strong>习题2.4</strong> 用谓词逻辑表达描述一下列推理：</p>
+<p>（1）如果张三比李四大，那么李四比张三小。</p>
+<p>（2）甲和乙结婚列，则甲为男，乙为女或者甲为女，乙为男</p>
+<p>（3）如果一个人是老实人，他就不会说谎；张三说了谎，所以张三不是老实人。</p>
+<details>
+<summary>
+点击查看答案
+</summary>
+<pre>
+（1）Older(x,y)：x 比 y 大。Older(Zhang, Li) → ¬Older(Li, Zhang)
+（2）Man(x): x 为男；¬Man(x): x 为女；Marry(x, y)：x 和 y 结婚。
+    Marry(甲，乙)→(Man(甲) ∧ ¬Man(乙)) ∨ (Man(乙) ∧ ¬Man(甲))
+（3）Honest(x)：x 是老实人；Lie(x)：x 说谎。
+    Honest(x) → ¬Lie(x);Lie(Zhang) → ¬Honest(Zhang)
+    </pre>
+</details>
+<h3 id="熟练运用产生式表达法">5. 熟练运用产生式表达法</h3>
+<h4 id="确定性规则知识的产生式表示">1. 确定性规则知识的产生式表示：</h4>
+<p><span class="math inline">\(IF\)</span> <span class="math inline">\(P\)</span> <span class="math inline">\(THEN\)</span> <span class="math inline">\(Ｑ\)</span> 或者 <span class="math inline">\(P\rightarrow Q\)</span></p>
+<p>例如： IF 动物会飞 AND 会下蛋 THEN 该动物是鸟</p>
+<h4 id="不确定性规则知识的产生式表示">2. 不确定性规则知识的产生式表示：</h4>
+<p><span class="math inline">\(IF\)</span> <span class="math inline">\(P\)</span> <span class="math inline">\(THEN\)</span> <span class="math inline">\(Ｑ\)</span>（置信度） 或者 <span class="math inline">\(P\rightarrow Q（置信度）\)</span></p>
+<h4 id="确定性事实知识的产生式表示">3. 确定性事实知识的产生式表示：</h4>
+<p>一般用三元组表示：<span class="math inline">\((对象，属性，值)\)</span> 或者 <span class="math inline">\((关系，对象1，对象2)\)</span></p>
+<p>例如：老李的年龄是 40 岁，表示为<span class="math inline">\(（Li，Age，40）\)</span> 。老李和老王是朋友，表示为 <span class="math inline">\(（Friend, Li, Wang）\)</span></p>
+<h4 id="不确定性事实知识的产生式表示">4. 不确定性事实知识的产生式表示：</h4>
+<p>一般用四元组表示：<span class="math inline">\((对象，属性，值，置信度)\)</span> 或者 <span class="math inline">\((关系，对象1，对象2，置信度)\)</span></p>
+<p>例如： 老李的年龄很可能是 40 岁，表示为<span class="math inline">\(（Li，Age，40，0.8）\)</span> 。老李和老王是朋友，表示为 <span class="math inline">\(（Friend, Li, Wang，0.2）\)</span></p>
+<p><strong>习题2.5</strong> 产生式表达异或（XOR）逻辑。</p>
+<details>
+<summary>
+点击查看答案
+</summary>
+<pre><code> 
+    IF   x1 = 0     AND    x2 = 0   THEN    y = 0
+    IF   x1 = 1     AND    x2 = 0   THEN    y = 1
+    IF   x1 = 0     AND    x2 = 1   THEN    y = 1
+    IF   x1 = 1     AND    x2 = 1   THEN    y = 0
+    </code></pre>
+</details>
+<h2 id="第三章">第三章</h2>
+<h3 id="什么是子句空子句">1. 什么是子句、空子句？</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+子句：任何文字的析取式称为子句，任何文字本身也是子句。<br> 空子句：不含有任何文字的子句。<br> 空子句是永假的
+</details>
+<h3 id="什么是确定性推理">2. 什么是确定性推理？</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+所谓确定性推理是指推理是所用的知识与证据都是确定的，推出的结论也是正确的，其真值或者为真或者为假，没有第三种情况出现。
+</details>
+<h3 id="掌握谓词公式化为子句集的方法">3. 掌握谓词公式化为子句集的方法。</h3>
+<h4 id="谓词公式化为子句集的一般步骤">谓词公式化为子句集的一般步骤：</h4>
+<p><strong>例3.3：</strong>将下列谓词公式化为子句集</p>
+<p>​ <span class="math inline">\((\forall x)\{[\neg P(x) \vee \neg Q(x)]\rightarrow (\exists y)[S(x,y)\wedge Q(x)]\}\wedge(\forall x)[P(x)\vee B(x)]\)</span></p>
+<ol type="1">
+<li><p>消去蕴涵符号</p>
+<p><span class="math inline">\((\forall x)\{\neg [\neg P(x) \vee \neg Q(x)]\vee (\exists y)[S(x,y)\wedge Q(x)]\}\wedge(\forall x)[P(x)\vee B(x)]\)</span></p></li>
+<li><p>把否定符号移到每个谓词的前面</p>
+<p><span class="math inline">\((\forall x)\{ [ P(x) \wedge Q(x)]\vee (\exists y)[S(x,y)\wedge Q(x)]\}\wedge(\forall x)[P(x)\vee B(x)]\)</span></p></li>
+<li><p>变量标准化</p>
+<p><span class="math inline">\((\forall x)\{ [ P(x) \wedge Q(x)]\vee (\exists y)[S(x,y)\wedge Q(x)]\}\wedge(\forall w)[P(w)\vee B(w)]\)</span></p></li>
+<li><p>消去存在量词 设 y 的 Skolem 函数为 <span class="math inline">\(f(x)\)</span>,则</p>
+<p><span class="math inline">\((\forall x)\{ [ P(x) \wedge Q(x)]\vee [S(x,f(x))\wedge Q(x)]\}\wedge(\forall w)[P(w)\vee B(w)]\)</span></p></li>
+<li><p>化为前束型</p>
+<p><span class="math inline">\((\forall x)(\forall w)\{\{ [ P(x) \wedge Q(x)]\vee [S(x,f(x))\wedge Q(x)]\}\wedge[P(w)\vee B(w)]\}\)</span></p></li>
+<li><p>化为 Skolem 标准形</p>
+<p><strong><span class="math inline">\((\forall x)(\forall w)\{ Q(x) \wedge [S(x,f(x))\vee P(x)]\wedge[P(w)\vee B(w)]\}\)</span></strong></p></li>
+<li><p>略去全程量词</p>
+<p><span class="math inline">\(\{ Q(x) \wedge [S(x,f(x))\vee P(x)]\wedge[P(w)\vee B(w)]\}\)</span></p></li>
+<li><p>消去合取词，把母式用子句集表示</p>
+<p><span class="math inline">\(\{ Q(x) , S(x,f(x))\vee P(x),P(w)\vee B(w)\}\)</span></p></li>
+<li><p>子句变量标准化，即使每个子句中的变量符号不同</p>
+<p><span class="math inline">\(\{ Q(x) , S(y,f(y))\vee P(y),P(w)\vee B(w)\}\)</span></p></li>
+</ol>
+<p><strong>例3.4</strong> P63</p>
+<p><strong>习题3.4（3）</strong> p74</p>
+<h3 id="熟练运用鲁滨逊归结原理进行归结反演以及求解问题">4. 熟练运用鲁滨逊归结原理进行归结反演以及求解问题</h3>
+<p><strong>例3.9</strong> p68</p>
+<p><strong>例3.10</strong> p69</p>
+<p><strong>例3.11</strong> p70</p>
+<p><strong>例3.12</strong> p71</p>
+<p><strong>习题3.7 3.10</strong> P75</p>
+<h2 id="第四章">第四章</h2>
+<h3 id="什么是不确定性推理可信度c-f模型">1. 什么是不确定性推理、可信度、C-F模型？</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+不确定性推理： 从不确定性的初始证据出发，通过运用不确定性知识，最终推出具有一定程度的不确定性但是却是合理或者近乎合理的结论的思维过程。<br> 可信度： 根据经验对一个事物或现象为真的信息程度称为可信度。<br> C-F模型： 基于可信度表示的不确定性推理的基本方法。
+</details>
+<h3 id="熟练运用组合证据不确定性的算法">2. 熟练运用组合证据不确定性的算法</h3>
+<p><strong>合取 取小</strong></p>
+<p><strong>析取 取大</strong></p>
+<h3 id="熟练运用结论不确定性的合成算法">3. 熟练运用结论不确定性的合成算法</h3>
+<p><strong>例4.1</strong> P82</p>
+<h3 id="掌握概率分配函数信任函数似然函数概率分配函数的正交和">4. 掌握概率分配函数、信任函数、似然函数、概率分配函数的正交和</h3>
+<p>P84-P6</p>
+<h3 id="了解模糊集合的定义表达方法">5. 了解模糊集合的定义、表达方法</h3>
+<p>P90-P91</p>
+<h3 id="什么是隶属函数">6. 什么是隶属函数</h3>
+<p>​ 隶属集合中所有的元素的隶属度全体构成模糊集合的隶属函数</p>
+<h3 id="模糊集合的运算">7. 模糊集合的运算</h3>
+<ol type="1">
+<li><p>模糊集合的包含关系</p>
+<p>​ 若<span class="math inline">\(\mu_A(x)\geq\mu_B(x)\)</span>，则<span class="math inline">\(A\ni B\)</span></p></li>
+<li><p>模糊集合的相等关系</p>
+<p>​ 若<span class="math inline">\(\mu_A(x)=\mu_B(x)\)</span>，则<span class="math inline">\(A=B\)</span></p></li>
+<li><p>模糊集合的交并补运算</p>
+<ol type="1">
+<li><p>交运算 <span class="math inline">\(A\cap B\)</span></p>
+<p><span class="math inline">\(\mu_{A\cap B}(x)=min\{\mu_A(x)\;,\;\mu_B(x)\}=\mu_A(x)\wedge\mu_B(x)\)</span></p></li>
+<li><p>并运算 <span class="math inline">\(A\cup B\)</span></p>
+<p><span class="math inline">\(\mu_{A\cup B}(x)=max\{\mu_A(x)\;,\;\mu_B(x)\}=\mu_A(x)\vee\mu_B(x)\)</span></p></li>
+<li><p>补运算 <span class="math inline">\(\overline A\)</span></p>
+<p><span class="math inline">\(\mu_\overline A(x)=1-\mu_A(x)\)</span></p></li>
+</ol></li>
+<li><p>模糊集合的代数运算</p>
+<ol type="1">
+<li><p>代数积：</p>
+<p>$ _{AB}(x)=_A(x)_B(x) $</p></li>
+<li><p>代数和</p>
+<p><span class="math inline">\(\mu_{A+B}(x)=\mu_A(x)+\mu_B(x)-\mu_{AB}(x)\)</span></p></li>
+<li><p>有界和</p>
+<p><span class="math inline">\(\mu_{A\oplus B}(x)=min\{1\;,\;\mu_A(x)+\mu_B(x)\}=1\wedge\lbrack\mu_A(x)+\mu_B(x)\rbrack\)</span></p></li>
+<li><p>有界积</p>
+<p><span class="math inline">\(\mu_{A\otimes B}(x)=max\{0\;,\;\mu_A(x)+\mu_B(x)-1\}=0\vee\lbrack\mu_A(x)+\mu_B(x)-1\rbrack\)</span></p></li>
+</ol></li>
+</ol>
+<h3 id="模糊关系的叉积表示">8. 模糊关系的叉积表示</h3>
+<p>P95</p>
+<h3 id="模糊关系的合成">9. 模糊关系的合成</h3>
+<p>P96</p>
+<h3 id="模糊决策的三种方法">10. 模糊决策的三种方法</h3>
+<p>P99</p>
+<ol type="1">
+<li><p>最大隶属度法</p>
+<p>在模糊向量中，取隶属度最大的量作为推理结果。</p></li>
+<li><p>加权平均判决法 <span class="math display">\[
+U\;=\;\frac{\displaystyle\sum_{i=1}^n\mu(u_i)u_i}{\displaystyle\sum_{i=1}^n\mu(u_i)}
+\]</span> <strong>例如：</strong> <span class="math display">\[
+U&#39; = 0.1/2+0.6/3 + 0.5/4 + 0.4/5 + 0.2/6
+\]</span></p>
+<p><span class="math display">\[
+U\;=\;\frac{0.1\times2+0.6\times3+0.5\times4+0.4\times5+0.2\times6}{0.1+0.6+0.5+0.4+0.2}
+\]</span></p></li>
+<li><p>中位数法</p>
+<p>中位数法就是把模糊集的中位数作为系统控制变量。</p>
+<p>当论域为有限离散点时，中位数<span class="math inline">\(u^*\)</span>可以用下列公式求取 <span class="math display">\[
+\sum_{u_1}^{u^\ast}\mu(u_i)\;=\;\sum_{u^\ast+1}^{u_n}\mu(u_i)\;
+\]</span> <strong>例如：</strong> <span class="math inline">\(U&#39;\;=\;0.1/-4+0.5/-3+0.1/-2+0.0/-1+0.1/0+0.2/1+0.4/2+0.5/3+0.1/4)\;\)</span></p>
+<p>当<span class="math inline">\(u^*=6\)</span> 时， <span class="math inline">\(\sum_{u_1}^{u_6}\mu(u_i)\;=\;\sum_{u_7}^{u_9}\mu(u_i)\;=1\)</span>，所以中位数为<span class="math inline">\(u^* = u_6 = 1\)</span>，则<span class="math inline">\(U=1\)</span>。</p></li>
+</ol>
+<h2 id="第五章">第五章</h2>
+<h3 id="搜索的基本问题与主要过程">1. 搜索的基本问题与主要过程</h3>
+<p><strong>搜索中需要解决的基本问题</strong>：</p>
+<details>
+<summary>
+点击查看答案
+</summary>
+<ol type="1">
+<li>是否一定能找到一个解。</li>
+<li>找到的解是否是最佳解。</li>
+<li>时间与空间复杂性如何。</li>
+<li>是否终止运行或是否会陷入一个死循环。</li>
+</ol>
+</details>
+<p><strong>搜索的主要过程</strong>：</p>
+<details>
+<summary>
+点击查看答案
+</summary>
+<ol type="1">
+<li>从初始或目的状态出发，并将它作为当前状态。</li>
+<li>扫描操作算子集，将适用当前状态的一些操作算子作用于当前状态而得到新的状态，并建立指向其父结点的指针 。</li>
+<li>检查所生成的新状态是否满足结束状态，如果满足，则得到问题的一个解，并可沿着有关指针从结束状态反向到达开始状态，给出一解答路径；否则，将新状态作为当前状态，返回第(2)步再进行搜索。</li>
+</ol>
+</details>
+<h3 id="什么是状态空间">2. 什么是状态空间</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+利用状态变量和操作符号，表示系统或问题的有关知识的符号体系，状态空间是一个四元组： (S , O , S (0) , G)<br> S ：状态集合。<br> O：操作算子的集合。<br> S ( ( (0))) ：包含问题的初始状态是 S 的非空子集。 <br> G ：若干具体状态或满足某些性质的路径信息描述。
+</details>
+<h3 id="什么是回溯决策">3. 什么是回溯决策</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+从初始状态出发，不停地、试探性地寻找路径，直到它到达目的或“不可解结点”，即“死胡同”为止。若它遇到不可解结点就回溯到路径中最近的父结点上，查看该结点是否还有其他的子结点未被扩展。若有，则沿这些子结点继续搜索；如果找到目标，就成功退出搜索，返回解题路径。
+</details>
+<h3 id="宽度优先搜索策略和深度优先搜索策略">4. 宽度优先搜索策略和深度优先搜索策略</h3>
+<p><strong>宽度优先搜索策略</strong>是按照下图所示的次序来搜索状态的，由<span class="math inline">\(S\)</span><sub>0</sub>生成状态1，2，然后扩展状态1，生成状态3，4，5，接着扩展状态2，生成状态6，7，8，该层扩展完后，再进入下一层，对状态3进行扩展，如此一层层地扩展下去，直到搜索到目的状态（如果目的状态存在）。</p>
+<figure>
+<img src="https://oss.gleaming.cn/Blog/AIreview/BFS.jpg" class="lazyload" data-srcset="https://oss.gleaming.cn/Blog/AIreview/BFS.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="宽度优先搜索" /><figcaption aria-hidden="true">宽度优先搜索</figcaption>
+</figure>
+<p>在实际的宽度优先搜索时，为了保存空间搜索的轨迹，用到了两个表：open表和closed表。open表与回溯算法中的NPS表相似，包含已经生成出来但其子状态未被搜索的状态。open表中状态的排列次序就是搜索的次序。closed表记录了已被生成扩展过的状态，它相当于回溯算法中PS表和NSS表的合并。</p>
+<p><strong>深度优先搜索策略</strong>是按下图所示的次序来搜索状态的。搜索从<span class="math inline">\(S\)</span><sub>0</sub>出发，沿一个方向一直扩展下去，如状态1，2，3，直到达到一定的深度（这里假定为3层）。如果未找到目的状态或无法再扩展时便回溯到另一条路径（状态4）继续搜索；若还未找到目的状态或无法再扩展时，再回溯到另一条路径（状态5，6）搜索......</p>
+<figure>
+<img src="https://oss.gleaming.cn/Blog/AIreview/DFS.jpg" class="lazyload" data-srcset="https://oss.gleaming.cn/Blog/AIreview/DFS.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="深度优先搜索" /><figcaption aria-hidden="true">深度优先搜索</figcaption>
+</figure>
+<p>在深度优先搜索中，当搜索到某一个状态时，它所有的子状态以及子状态的后裔状态都必须先于该状态的兄弟状态被搜索。 为了保证找到解，应选择合适的深度限制值，或采取不断加大深度限制值的办法，反复搜索，直到找到解。</p>
+<h3 id="启发信息和估价函数">5. 启发信息和估价函数</h3>
+<p><strong>启发信息</strong>：</p>
+<details>
+<summary>
+点击查看答案
+</summary>
+在具体求解中，能够利用与该问题有关的信息来简化搜索过程，称此类信息为启发信息。
+</details>
+<p><strong>启发信息的分类</strong>：</p>
+<details>
+<summary>
+点击查看答案
+</summary>
+<ol type="1">
+<li>陈述性启发信息</li>
+<li>过程性启发信息</li>
+<li>控制性启发信息</li>
+</ol>
+</details>
+<p><strong>估价函数</strong>：</p>
+<details>
+<summary>
+点击查看答案
+</summary>
+估价函数的任务就是估计待搜索结点的“有希望”程度，并依次给它们排定次序（在open表中）。<br> 估价函数 f(n) ：从初始结点经过 结点到达目的 结点的路径的最小代价估计值，其一般形式是f(n)=g(n)+h(n)<br> 一般地，在 f(n) 中，g(n) 的比重越大，越倾向于宽度优先搜索方式，而h(n)的比重越大，表示启发性能越强。
+</details>
+<h3 id="a搜索算法和a搜索算法并能解决八数码问题">6. A搜索算法和A*搜索算法，并能解决八数码问题</h3>
+<p><strong>A算法</strong>是基于估价函数的一种加权启发式图搜索算法，具体步骤如下：</p>
+<ol type="1">
+<li><p>把附有<span class="math inline">\(f(S_0)\)</span>的初始结点<span class="math inline">\(S_0\)</span>放入open表；</p></li>
+<li><p>若open表为空，则搜索失败，退出；</p></li>
+<li><p>移出open表中第一个结点N放入closed表中，并顺序编号n；</p></li>
+<li><p>若目标结点把y附有<span class="math inline">\(f(\)</span>S<sub>0</sub><span class="math inline">\()\)</span>的初始<span class="math inline">\(S\)</span><sub>g</sub><span class="math inline">\(=N\)</span>，则搜索成功，结束；</p></li>
+<li><p>若N不可扩展，则转步骤2；</p></li>
+<li><p>扩展N，生成一组附有<span class="math inline">\(f(x)\)</span>的子结点，对这组子结点做如下处理：</p>
+<p>​ a.考察是否有已在open表或closed表中存在的结点。若有则再考察其中有无N的先辈结点，若有则删除之，对于其余结点也删除之，但由于它们又被第二次生成，因此需要考虑是否修改已经存在于open表中的这些结点及其后裔的返回指针和<span class="math inline">\(f(x)\)</span>的值。修改原则是：选<span class="math inline">\(f(x)\)</span>值小的路径走。</p>
+<p>​ b.为其余子结点配上指向N的返回指针后放入open表中，并对open表按<span class="math inline">\(f(x)\)</span>值以升序排序，转步骤2。</p></li>
+</ol>
+<p>**A*算法**：定义<span class="math inline">\(h^{*}(n)\)</span>为状态n到目的状态的最优路径的代价，则当A搜索算法的启发函数<span class="math inline">\(h(n)\)</span>小于等于<span class="math inline">\(h^{*}(n)\)</span>，即满足 <span class="math display">\[
+h(n)\leq h^{*}(n)，对所有结点n
+\]</span> 时，被称为A*搜索算法。</p>
+<p><strong>八数码问题: P124</strong></p>
+<h2 id="第六章">第六章</h2>
+<h3 id="什么是进化算法">1. 什么是进化算法</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+进化算法是基于自然选择和自然遗传等生物进化机制的一种搜索算法 。
+</details>
+<h3 id="什么是基本遗传算法理解编码初始群体的设定适应度函数选择交叉变异">2. 什么是基本遗传算法？理解编码、初始群体的设定、适应度函数、选择、交叉、变异</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+基本遗传算法是模拟达尔文生物进化论的自然选择和遗传学机理的生物进化过程的计算模型，是一种通过模拟自然进化过程搜索最优解的方法。
+</details>
+<p>编码等见书135页。</p>
+<h3 id="遗传算法的一般步骤遗传算法的基本流程图">3. 遗传算法的一般步骤、遗传算法的基本流程图</h3>
+<h4 id="一般步骤"><strong>一般步骤：</strong></h4>
+<ol type="1">
+<li>使用随机方法或者其他方法，产生一个有<span class="math inline">\(N\)</span>个染色体的初始群体<span class="math inline">\(pop(1)\)</span>,<span class="math inline">\(t:=1\)</span>;</li>
+<li>对群体中的每一个染色体<span class="math inline">\(pop_i(t)\)</span>,计算其适应值<span class="math inline">\(f_i=fitness(pop_i(t))\)</span></li>
+<li>若满足停止条件，则算法停止；否则，以概率<span class="math inline">\(p_i=f_i/\sum_{j=1}^Nf_j\)</span>从<span class="math inline">\(pop(t)\)</span>中随机选择一些染色体构成一个新种群<span class="math inline">\(newpop(t+1)=\{pop_j(t)\vert j=1,2,\cdots,N\}\)</span></li>
+<li>以概率<span class="math inline">\(p_c\)</span>进行交叉产生一些新的染色体，得到一个新的群体<span class="math inline">\(crosspop(t+1)\)</span>。</li>
+<li>以一个较小的概率<span class="math inline">\(p_m\)</span>使染色体的一个基因发生变异，形成<span class="math inline">\(mutpop(t+1)\)</span>;t:=t+1,成为一个新的群体<span class="math inline">\(pop(t+1)\)</span>;返回Step 2。</li>
+</ol>
+<h4 id="流程图"><strong>流程图：</strong></h4>
+<p><img src="https://oss.gleaming.cn/Blog/AIreview/genetic-algorithm.png" class="lazyload" data-srcset="https://oss.gleaming.cn/Blog/AIreview/genetic-algorithm.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<h3 id="什么是群智能算法">4. 什么是群智能算法</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+群智能算法：受动物群体智能启发的算法。
+</details>
+<h3 id="粒子群智能优化算法的基本原理">5. 粒子群智能优化算法的基本原理</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+PSO初始化为一群随机粒子，然后通过迭代找到最优解。在每一次迭代中，粒子通过跟踪两个“极值”来更新自己。第一个就是粒子本身所找到的最优解，这个解称为个体极值。另个一是整个种群目前找到的最优解，这个解称为全局极值。
+</details>
+<h3 id="粒子群算法流程">6. 粒子群算法流程</h3>
+<ol type="1">
+<li><p><font color = red>初始化每个粒子。</font>即在允许范围内随机设置每个粒子的初始位置和速度。</p></li>
+<li><p><font color = red>评价每个粒子的适应度。</font>计算每个粒子的目标函数</p></li>
+<li><p><font color = red>设置每个粒子的<span class="math inline">\(p^i\)</span>。</font>对每个粒子，将其适应度与其经历过的最好的位置<span class="math inline">\(p^i\)</span>进行比较，如果优于<span class="math inline">\(p^i\)</span>，则将其作为该粒子的最好位置<span class="math inline">\(p^i\)</span>。</p></li>
+<li><p><font color = red>设置全局最优值<span class="math inline">\(p^g\)</span>。</font>对每个粒子，将其适应度与群体经历过的最好位置<span class="math inline">\(p^g\)</span>进行比较，如果优于<span class="math inline">\(p^g\)</span>，则将其最为当前群体的最好位置<span class="math inline">\(p^g\)</span>。</p></li>
+<li><p><font color = red>更新粒子的速度和位置。</font>根据式(7.1)更新粒子的速度和位置。</p></li>
+<li><p><font color = red>检查终止条件。</font>如果未达到设定条件(预设误差或者迭代的次数)，则返回第二步。</p></li>
+</ol>
+<h2 id="第七章">第七章</h2>
+<h3 id="什么是专家系统专家系统的特点">1. 什么是专家系统？专家系统的特点</h3>
+<p><strong>定义：</strong></p>
+<details>
+<summary>
+点击查看答案
+</summary>
+专家系统一种智能的计算机程序，他运用知识和推理来解决只有专家才能解决的复杂问题。
+</details>
+<p><strong>特点：</strong></p>
+<details>
+<summary>
+点击查看答案
+</summary>
+<ol type="1">
+<li>具有专家水平的专业知识</li>
+<li>能进行有效的推理</li>
+<li>具有启发性</li>
+<li>具有灵活性</li>
+<li>具有透明性</li>
+<li>具有交互性</li>
+</ol>
+</details>
+<h3 id="专家系统的工作原理">2. 专家系统的工作原理</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+专家系统的核心是知识库和推理机，其工作过程是根据知识库中的知识和用户提供的事实进行推理，不断地由已知的事实推出未知的结论即中间结果，并将中间结果放到数据库中，作为已知的新事实进行推理，从而把求解的问题由未知状态转化为已知状态。在专家系统的运行过程中，会不断地通过人机接口与用户进行交互，向用户提问，并向用户作出解释。
+</details>
+<h3 id="专家系统的一般结构">3. 专家系统的一般结构</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+完整的专家系统一般应该包括 人机接口、推理机、知识库、数据库、知识获取机构、解释机构 六部分。
+</details>
+<h3 id="什么是机器学习了解机器学习的分类">4. 什么是机器学习？了解机器学习的分类</h3>
+<p>​ <strong>定义：</strong></p>
+<details>
+<summary>
+点击查看答案
+</summary>
+机器学习使计算机能模拟人的学习行为，自动的通过学习来获取知识和技能，不断改善性能，实现自我完善。
+</details>
+<p>​ <strong>分类：</strong></p>
+<details>
+<summary>
+点击查看答案
+</summary>
+<ol type="1">
+<li>按学习方法分类</li>
+<li>按学习能力分类（监督学习、强化学习、非监督学习）</li>
+<li>按推理方式分类</li>
+<li>按综合属性分类</li>
+</ol>
+</details>
+<h2 id="第八章">第八章</h2>
+<h3 id="什么是人工神经网络">1. 什么是人工神经网络？</h3>
+<details>
+<summary>
+点击查看答案
+</summary>
+一个用大量简单处理单元经广泛连接而组成的人工网络，是对人脑或者生物神经网络若干基本特性的抽象和模拟。
+</details>
+<h3 id="了解神经网络的结构和工作方式">2. 了解神经网络的结构和工作方式</h3>
+<p><strong>结构：</strong></p>
+<ul>
+<li><p>前馈型（ 前向型）</p>
+<p><img src="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%89%8D%E5%90%91%E5%9E%8B.png" class="lazyload" data-srcset="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%89%8D%E5%90%91%E5%9E%8B.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p></li>
+<li><p>反馈型</p>
+<p><img src="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%8F%8D%E9%A6%88%E5%9E%8B.png" class="lazyload" data-srcset="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%8F%8D%E9%A6%88%E5%9E%8B.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p></li>
+</ul>
+<p><strong>工作方式：</strong></p>
+<details>
+<summary>
+点击查看答案
+</summary>
+同步（并行）方式：任一时刻神经网络中所有神经元同时调整状态。<br> 异步（串行）方式：任一时刻只有一个神经元调整状态，而其它神经元的状态保持不变。
+</details>
+<h3 id="掌握bp神经网络结构以及bp学习算法">3. 掌握BP神经网络结构以及BP学习算法</h3>
+<p><strong>结构：</strong></p>
+<p>多层前馈型</p>
+<p><img src="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/BP%E7%BB%93%E6%9E%84.png" class="lazyload" data-srcset="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/BP%E7%BB%93%E6%9E%84.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><strong>BP学习算法：</strong> P214</p>
+<p>BP 学习算法是通过反学习过程使误差最小，因此选择目标函数为 <span class="math inline">\(min\;J=\frac12\sum_{j=1}^{p_m}{({y^m}_j-y_{sj})}^2\)</span> 即选择神经网络权值使输出期望出<span class="math inline">\(y_{sj}\)</span> 与神经网络实际输出<span class="math inline">\(y^{m}_j\)</span> 之差的平方和最小。</p>
+<h3 id="了解bp算法程序流程图">4. 了解BP算法程序流程图</h3>
+<p><img src="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/BP%20%E6%B5%81%E7%A8%8B%E5%9B%BE.png" class="lazyload" data-srcset="https://alioss.tang7o.cn/blog/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/BP%20%E6%B5%81%E7%A8%8B%E5%9B%BE.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<h3 id="掌握离散型hopfield神经网络">5. 掌握离散型Hopfield神经网络</h3>
+<p><strong>P221</strong></p>
+<h3 id="会利用hopfield神经网络设计分类器">6. 会利用Hopfield神经网络设计分类器</h3>
+<p><strong>P238 例8.2</strong></p>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      <!-- 打赏 -->
+       <!-- %- partial('donate') % -->
+      <iframe src="https://alioss.tang7o.cn/blog/simple/index.html" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe>
+        <div class='donate'>
+          <div class='imgs'> 
+            
+            
+          </div>
+        </div>
+      
+      <!-- 博客说明/协议 -->
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p>
+
+              
+            
+              
+                <p>本文永久链接是：<a href=https://tang7o.cn/2020/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/>https://tang7o.cn/2020/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/</a></p>
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-09T17:18:16+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2020年12月9日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2020/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/&title=人工智能复习大纲 - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2020/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/&title=人工智能复习大纲 - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2020/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/&title=人工智能复习大纲 - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/2020/11/27/Arrays-sort/'>
+          <p class='title'>Arrays.sort()<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>基本用法
+Arrays.sort(int[] a)
+对数组 a 中所有元素按从小到大的顺序排序。
+12345678public static void main(String[] args) &...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="toc-text">1. 什么是人工智能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A0%94%E7%A9%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%86%85%E5%AE%B9%E6%9C%89%E9%82%A3%E4%BA%9B"><span class="toc-text">2. 人工智能研究的基本内容有那些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%89%E9%82%A3%E4%BA%9B%E4%B8%BB%E8%A6%81%E7%9A%84%E7%A0%94%E7%A9%B6%E9%A2%86%E5%9F%9F"><span class="toc-text">3. 人工智能有那些主要的研究领域？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-text">第二章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%9F%A5%E8%AF%86%E5%91%BD%E9%A2%98%E4%BA%A7%E7%94%9F%E5%BC%8F"><span class="toc-text">1. 什么是知识、命题、产生式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%E7%9A%84%E4%BA%94%E4%B8%AA%E8%BF%9E%E6%8E%A5%E8%AF%8D"><span class="toc-text">2. 掌握谓词公式的五个连接词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1%E5%AD%98%E5%9C%A8%E9%87%8F%E8%AF%8D%E5%85%A8%E7%A8%8B%E9%87%8F%E8%AF%8D"><span class="toc-text">3. 掌握存在量词、全程量词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E7%84%B6%E8%AF%AD%E5%8F%A5%E6%94%B9%E5%86%99%E6%88%90%E7%9B%B8%E5%BA%94%E7%9A%84%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F"><span class="toc-text">4. 自然语句改写成相应的谓词公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E8%BE%BE%E6%B3%95"><span class="toc-text">5. 熟练运用产生式表达法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%80%A7%E8%A7%84%E5%88%99%E7%9F%A5%E8%AF%86%E7%9A%84%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">1. 确定性规则知识的产生式表示：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E8%A7%84%E5%88%99%E7%9F%A5%E8%AF%86%E7%9A%84%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">2. 不确定性规则知识的产生式表示：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%80%A7%E4%BA%8B%E5%AE%9E%E7%9F%A5%E8%AF%86%E7%9A%84%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">3. 确定性事实知识的产生式表示：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E4%BA%8B%E5%AE%9E%E7%9F%A5%E8%AF%86%E7%9A%84%E4%BA%A7%E7%94%9F%E5%BC%8F%E8%A1%A8%E7%A4%BA"><span class="toc-text">4. 不确定性事实知识的产生式表示：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-text">第三章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%90%E5%8F%A5%E7%A9%BA%E5%AD%90%E5%8F%A5"><span class="toc-text">1. 什么是子句、空子句？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86"><span class="toc-text">2. 什么是确定性推理？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%E5%8C%96%E4%B8%BA%E5%AD%90%E5%8F%A5%E9%9B%86%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-text">3. 掌握谓词公式化为子句集的方法。</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%93%E8%AF%8D%E5%85%AC%E5%BC%8F%E5%8C%96%E4%B8%BA%E5%AD%90%E5%8F%A5%E9%9B%86%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4"><span class="toc-text">谓词公式化为子句集的一般步骤：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8%E9%B2%81%E6%BB%A8%E9%80%8A%E5%BD%92%E7%BB%93%E5%8E%9F%E7%90%86%E8%BF%9B%E8%A1%8C%E5%BD%92%E7%BB%93%E5%8F%8D%E6%BC%94%E4%BB%A5%E5%8F%8A%E6%B1%82%E8%A7%A3%E9%97%AE%E9%A2%98"><span class="toc-text">4. 熟练运用鲁滨逊归结原理进行归结反演以及求解问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-text">第四章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E6%8E%A8%E7%90%86%E5%8F%AF%E4%BF%A1%E5%BA%A6c-f%E6%A8%A1%E5%9E%8B"><span class="toc-text">1. 什么是不确定性推理、可信度、C-F模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8%E7%BB%84%E5%90%88%E8%AF%81%E6%8D%AE%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-text">2. 熟练运用组合证据不确定性的算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%9F%E7%BB%83%E8%BF%90%E7%94%A8%E7%BB%93%E8%AE%BA%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%9A%84%E5%90%88%E6%88%90%E7%AE%97%E6%B3%95"><span class="toc-text">3. 熟练运用结论不确定性的合成算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1%E6%A6%82%E7%8E%87%E5%88%86%E9%85%8D%E5%87%BD%E6%95%B0%E4%BF%A1%E4%BB%BB%E5%87%BD%E6%95%B0%E4%BC%BC%E7%84%B6%E5%87%BD%E6%95%B0%E6%A6%82%E7%8E%87%E5%88%86%E9%85%8D%E5%87%BD%E6%95%B0%E7%9A%84%E6%AD%A3%E4%BA%A4%E5%92%8C"><span class="toc-text">4. 掌握概率分配函数、信任函数、似然函数、概率分配函数的正交和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3%E6%A8%A1%E7%B3%8A%E9%9B%86%E5%90%88%E7%9A%84%E5%AE%9A%E4%B9%89%E8%A1%A8%E8%BE%BE%E6%96%B9%E6%B3%95"><span class="toc-text">5. 了解模糊集合的定义、表达方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9A%B6%E5%B1%9E%E5%87%BD%E6%95%B0"><span class="toc-text">6. 什么是隶属函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E9%9B%86%E5%90%88%E7%9A%84%E8%BF%90%E7%AE%97"><span class="toc-text">7. 模糊集合的运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E5%85%B3%E7%B3%BB%E7%9A%84%E5%8F%89%E7%A7%AF%E8%A1%A8%E7%A4%BA"><span class="toc-text">8. 模糊关系的叉积表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E5%85%B3%E7%B3%BB%E7%9A%84%E5%90%88%E6%88%90"><span class="toc-text">9. 模糊关系的合成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E5%86%B3%E7%AD%96%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-text">10. 模糊决策的三种方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0"><span class="toc-text">第五章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98%E4%B8%8E%E4%B8%BB%E8%A6%81%E8%BF%87%E7%A8%8B"><span class="toc-text">1. 搜索的基本问题与主要过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4"><span class="toc-text">2. 什么是状态空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%9E%E6%BA%AF%E5%86%B3%E7%AD%96"><span class="toc-text">3. 什么是回溯决策</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5%E5%92%8C%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5"><span class="toc-text">4. 宽度优先搜索策略和深度优先搜索策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8F%91%E4%BF%A1%E6%81%AF%E5%92%8C%E4%BC%B0%E4%BB%B7%E5%87%BD%E6%95%B0"><span class="toc-text">5. 启发信息和估价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%92%8Ca%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%B9%B6%E8%83%BD%E8%A7%A3%E5%86%B3%E5%85%AB%E6%95%B0%E7%A0%81%E9%97%AE%E9%A2%98"><span class="toc-text">6. A搜索算法和A*搜索算法，并能解决八数码问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0"><span class="toc-text">第六章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E5%8C%96%E7%AE%97%E6%B3%95"><span class="toc-text">1. 什么是进化算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%BA%E6%9C%AC%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E7%90%86%E8%A7%A3%E7%BC%96%E7%A0%81%E5%88%9D%E5%A7%8B%E7%BE%A4%E4%BD%93%E7%9A%84%E8%AE%BE%E5%AE%9A%E9%80%82%E5%BA%94%E5%BA%A6%E5%87%BD%E6%95%B0%E9%80%89%E6%8B%A9%E4%BA%A4%E5%8F%89%E5%8F%98%E5%BC%82"><span class="toc-text">2. 什么是基本遗传算法？理解编码、初始群体的设定、适应度函数、选择、交叉、变异</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">3. 遗传算法的一般步骤、遗传算法的基本流程图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E6%AD%A5%E9%AA%A4"><span class="toc-text">一般步骤：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">流程图：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BE%A4%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95"><span class="toc-text">4. 什么是群智能算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%92%E5%AD%90%E7%BE%A4%E6%99%BA%E8%83%BD%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-text">5. 粒子群智能优化算法的基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="toc-text">6. 粒子群算法流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0"><span class="toc-text">第七章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%93%E5%AE%B6%E7%B3%BB%E7%BB%9F%E4%B8%93%E5%AE%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">1. 什么是专家系统？专家系统的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E5%AE%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">2. 专家系统的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E5%AE%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%80%E8%88%AC%E7%BB%93%E6%9E%84"><span class="toc-text">3. 专家系统的一般结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BA%86%E8%A7%A3%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">4. 什么是机器学习？了解机器学习的分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0"><span class="toc-text">第八章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">1. 什么是人工神经网络？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">2. 了解神经网络的结构和工作方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1bp%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E4%BB%A5%E5%8F%8Abp%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95"><span class="toc-text">3. 掌握BP神经网络结构以及BP学习算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3bp%E7%AE%97%E6%B3%95%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">4. 了解BP算法程序流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%8C%E6%8F%A1%E7%A6%BB%E6%95%A3%E5%9E%8Bhopfield%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">5. 掌握离散型Hopfield神经网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E5%88%A9%E7%94%A8hopfield%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-text">6. 会利用Hopfield神经网络设计分类器</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/ACM/" href="/categories/ACM/"
+            id="categoriesACM"
+            ><div class='name'>ACM</div><div class='badge'>(41)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E6%A8%A1%E6%9D%BF/" href="/categories/ACM/%E6%A8%A1%E6%9D%BF/"
+            id="categoriesACME6A8A1E69DBF"
+            ><div class='name'>模板</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E7%AE%97%E6%B3%95/" href="/categories/ACM/%E7%AE%97%E6%B3%95/"
+            id="categoriesACME7AE97E6B395"
+            ><div class='name'>算法</div><div class='badge'>(25)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E9%A2%98%E7%9B%AE/" href="/categories/ACM/%E9%A2%98%E7%9B%AE/"
+            id="categoriesACME9A298E79BAE"
+            ><div class='name'>题目</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/C/" href="/categories/C/"
+            id="categoriesC"
+            ><div class='name'>C++</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Java/" href="/categories/Java/"
+            id="categoriesJava"
+            ><div class='name'>Java</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MarkDown/" href="/categories/MarkDown/"
+            id="categoriesMarkDown"
+            ><div class='name'>MarkDown</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MySQL/" href="/categories/MySQL/"
+            id="categoriesMySQL"
+            ><div class='name'>MySQL</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/MySQL/bug/" href="/categories/MySQL/bug/"
+            id="categoriesMySQLbug"
+            ><div class='name'>bug</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8F"
+            ><div class='name'>实训程序</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE6938DE4BD9CE7B3BBE7BB9F"
+            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE695B0E68DAEE7BB93E69E84"
+            ><div class='name'>数据结构</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Java/" style="font-size: 19px; color: #777">Java</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/SpringBoot/" style="font-size: 15.67px; color: #8e8e8e">SpringBoot</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 17.33px; color: #828282">数据结构</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 20.67px; color: #6c6c6c">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22.33px; color: #606060">题目</a>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+      </div>
+      
+
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br> 
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+        
+      
+    
+      
+        
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("04/01/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已等待你 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+      
+    
+      
+        本站使用
+        
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+     <a href="http://miit.gov.cn/" target="_blank">鲁ICP备-20012065号</a>
+  </footer>
+
+
+
+      <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+
+
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = $.trim($('#pjax-comment-placeholder').text()) || "快来评论吧~";
+
+    let path = $.trim($('#pjax-comment-path').text());
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "iqjLU9h6QUp2TXkj94MhjXlw-MdYXbMMI",
+      appKey: "KC9VpnArTK7AgY0z6CMEttF7",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'true',
+      enableQQ: 'true',
+      master: 'cdd4c31fd981df4d223579ee17d22303',
+      friends: '',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://tang7o.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://tang7o.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://tang7o.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+<!-- more -->
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      $('.s-top').unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+        
+        
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
+        
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!--浏览器搞笑标题
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+-->
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script> 
+
+<!--动态线条背景
+<script type="text/javascript"
+color="20,220,220" opacity='0.6' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+-->
+
+
+<!--单击显示文字
+	<script type="text/javascript" src="/js/click_show_text.js"></script> -->
+	
+	
+<!-- 数字雨 
+<canvas id="canvas" width="1440" height="900" ></canvas>
+<script type="text/javascript" src="/js/DigitalRain.js"></script>  -->
+
