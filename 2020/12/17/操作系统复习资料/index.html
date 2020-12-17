@@ -421,14 +421,14 @@
  
 <script> 
   // 处理封面 此时 jquery 还没加载 
-  if ("none" == "none") { // 移除封面 
+  if ("half" == "none") { // 移除封面 
     document.getElementsByClassName('cover-wrapper')[0].style.display = "none"; 
     document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show"); 
   } else { 
-    if ("none" == "half") { // 半屏 
+    if ("half" == "half") { // 半屏 
       document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'half'); 
       document.getElementsByClassName('scroll-down')[0].style.display = "none"; 
-    } else if ("none" == "full") { // 全屏 
+    } else if ("half" == "full") { // 全屏 
       document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'full'); 
       document.getElementsByClassName('scroll-down')[0].style.display = ""; 
     } 
@@ -459,7 +459,7 @@
           
             
 <div class='new-meta-item author'>
-  <a class='author' href="" rel="nofollow">
+  <a class='author' href="tang7o.cn" rel="nofollow">
     <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
     <p>Tang7O</p>
   </a>
@@ -536,14 +536,18 @@
 <li><p>并发执行特征：失去了封闭性和可再现性。</p></li>
 <li><p>共享性：是指计算机系统中的各种硬、软件资源都可以为多个用户同时使用。</p></li>
 <li><p>虚拟性：一方面指把物理上的一个实体变成逻辑上的多个对应物，另一方面指虚拟出来的对应物只不过是用户主观上的一种错觉。</p></li>
+<li><p>管态：操作系统的管理程序在执行 CPU 所处的状态，又称为系统态。</p></li>
+<li><p>目态：用户程序在执行 CPU 所处的状态，又称为用户态。</p></li>
 <li><p>进程特性：动态性、并发性、独立性、异步性、结构特性。</p></li>
-<li><p>进程与程序的区别：</p>
+<li><p>进程与程序的区别：</p></li>
+</ol>
 <ul>
 <li>从定义上看，进程是程序处理数据的过程，而程序是一组指令的有序集合；</li>
 <li>进程具有动态性、并发性、独立性和异步性等，而程序不具有这些特性；</li>
-<li>从进程结构特性来看，他包含程序（以及数据和PCB）；</li>
+<li>从进程结构特性来看，他包含程序（以及数据和 PCB ）；</li>
 <li>进程和程序并非一一对应；</li>
-</ul></li>
+</ul>
+<ol start="11" type="1">
 <li><p>进程的三种状态：就绪，执行，阻塞。</p></li>
 <li><p>临界区：进程中访问临界资源的那段程序代码成为临界区或临界段。</p></li>
 <li><p>临界区的使用原则：空则让进，忙则等待，等则有限，等则让权。</p></li>
@@ -1220,7 +1224,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-17T19:43:03+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-12-17T20:32:03+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2020年12月17日</p>
