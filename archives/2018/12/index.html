@@ -5,6 +5,8 @@
   <!-- SEO相关 -->
   
     
+      <meta name="robots" content="noindex,follow">
+    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -17,13 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>操作系统实训——进程运行模拟 - Tang7O&#39;S BLOG</title>
-  
-    <meta name="keywords" content="操作系统">
+  <title>归档：2018/12 - Tang7O&#39;S BLOG</title>
   
 
-  
-    <meta name="description" content=" ">
   
 
   <!-- feed -->
@@ -331,7 +329,7 @@
   
     
     
-        <div class='cover-wrapper post search' style="display: none;">
+        <div class='cover-wrapper  search' style="display: none;">
           
             <div class='cover-backstretch'></div>
           
@@ -413,8 +411,8 @@
  
  
 <div id="pjax-data" style="display: none"> 
-  <div id="pjax-ispage">true</div> 
-  <div id="pjax-pageTitle">操作系统实训——进程运行模拟</div> 
+  <div id="pjax-ispage">false</div> 
+  <div id="pjax-pageTitle"></div> 
   <div id="pjax-enable-cover">true</div> 
   <div id="pjax-comment-path"></div> 
   <div id="pjax-comment-placeholder"></div> 
@@ -444,264 +442,111 @@
         
 
 <div class='l_main'>
-  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
-  
-
-
-  
-  <div class="article-meta" id="top">
+	
+		
+  <section class="post-list">
     
-    
-    
-      <h1 class="title">
-        操作系统实训——进程运行模拟
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author'>
-  <a class='author' href="tang7o.cn" rel="nofollow">
-    <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
-    <p>Tang7O</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/">实训程序</a><span class="sep"></span><a class="category-link" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年9月23日</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  <div class="new-meta-item browse leancloud">
-    <a class='notlink'>
       
-      <div id="lc-pv" data-title="操作系统实训——进程运行模拟" data-path="/2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/">
-        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
-        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
-        次浏览
-      </div>
-    </a>
-  </div>
-
-
+        
           
         
           
-            <div>
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
-</div>
-
-
-          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2018/12/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/">
+        操作系统复习资料
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      <p> </p>
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2018-12-17</time>
         
       </div>
-    
-  </div>
-
-
-  
-  <p>输入 n 个进程(id 运行时间 优先级),根据优先级简单的模拟进程的运行(等待 运行 堵塞).</p>
-<p><del>由于感觉用链表比较麻烦,于是开了个数组简单的模拟了一下</del></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Pcb</span> //进程结构体</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> pid; <span class="comment">//id</span></span><br><span class="line">    <span class="keyword">int</span> runTime; <span class="comment">//运行时间</span></span><br><span class="line">    <span class="keyword">int</span> run; <span class="comment">// 已经运行了多久</span></span><br><span class="line">    <span class="keyword">int</span> ji; <span class="comment">//优先级  数值越小优先级越高</span></span><br><span class="line">    Pcb()&#123; <span class="comment">//初始化</span></span><br><span class="line">        run = <span class="number">1</span>;</span><br><span class="line">        ji = <span class="number">99</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> maxNumRun=<span class="number">0</span>;  <span class="comment">//最多可以同时运行几个进程</span></span><br><span class="line"><span class="keyword">int</span> cntRun=<span class="number">0</span>; <span class="comment">//正在运行的进程数目</span></span><br><span class="line"><span class="keyword">int</span> cntWait=<span class="number">0</span>; <span class="comment">//正在等待的进程数目</span></span><br><span class="line">Pcb pcbRun[<span class="number">100</span>]; <span class="comment">//用来存储正在运行的进程</span></span><br><span class="line">Pcb pcbWait[<span class="number">100</span>]; <span class="comment">//用来存储正在等待的进程</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Pcb a,Pcb b)</span> <span class="comment">//将进程按照优先级从小到大的顺序排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.ji&lt;b.ji;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/******** 输入 *********/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Pcb t;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入进程id(pid) 运行时间 优先级: &quot;</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t.pid;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t.runTime;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t.ji;</span><br><span class="line">    <span class="keyword">if</span>(cntRun&gt;=maxNumRun)</span><br><span class="line">    &#123;</span><br><span class="line">        pcbWait[cntWait++]=t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        pcbRun[cntRun++]=t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/******** 输出 *********/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;============================&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;正在运行的进程有:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cntRun; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;pid 为 %d 的进程,已经运行了 %d ,总运行时间为 %d \n&quot;</span>,pcbRun[i].pid,pcbRun[i].run,pcbRun[i].runTime);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="string">&quot;正在等待的进程有:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cntWait; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;pid 为 %d 的进程\n&quot;</span>,pcbWait[i].pid);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;============================&quot;</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*********模拟进程运行*********/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sort(pcbWait,pcbWait+cntWait,cmp);</span><br><span class="line">    Pcb t;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;cntRun; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        pcbRun[i].run++;</span><br><span class="line">        <span class="comment">//pcbRun[i].ji++;</span></span><br><span class="line">        <span class="keyword">if</span>(pcbRun[i].runTime&lt;pcbRun[i].run)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;pid 为 &quot;</span>&lt;&lt;pcbRun[i].pid&lt;&lt;<span class="string">&quot; 的进程运行结束&quot;</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;cntRun<span class="number">-1</span>; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                pcbRun[j]=pcbRun[j+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            cntRun--;</span><br><span class="line">            <span class="keyword">if</span>(cntWait&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;  pid 为&quot;</span>&lt;&lt;pcbWait[<span class="number">0</span>].pid&lt;&lt;<span class="string">&quot; 的进程开始运行&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">                pcbRun[cntRun++]=pcbWait[<span class="number">0</span>];</span><br><span class="line">                cntWait--;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;cntWait;j++)</span><br><span class="line">                    pcbWait[j]=pcbWait[j+<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(cntWait)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cntRun;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(pcbWait[<span class="number">0</span>].ji&lt;pcbRun[i].ji)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;pid 为 %d 的进程开始运行,pid 为 %d 的进程进入阻塞状\n&quot;</span>,pcbWait[<span class="number">0</span>].pid,pcbRun[i].pid);</span><br><span class="line"></span><br><span class="line">                pcbRun[i].ji=pcbWait[<span class="number">0</span>].ji;</span><br><span class="line">                t=pcbRun[i];</span><br><span class="line">                pcbRun[i]=pcbWait[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">                cntWait--;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;cntWait;i++)</span><br><span class="line">                    pcbWait[i]=pcbWait[i+<span class="number">1</span>];</span><br><span class="line">                pcbWait[cntWait++]=t;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/****** 杀死进程**********</span></span><br><span class="line"><span class="comment">void kill()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int pid;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;请输入你要杀死的进程pid:&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;pid;</span></span><br><span class="line"><span class="comment">    for(int i=0; i&lt;cntRun; i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        if(pcbRun[i].pid==pid)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            for(int j=i; j&lt;cntRun-1; j++)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                pcbRun[j]=pcbRun[j+1];</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            cntRun--;</span></span><br><span class="line"><span class="comment">            cout&lt;&lt;&quot;pid为 &quot;&lt;&lt;pid&lt;&lt;&quot; 的进程已被杀死,现在还在运行的进程有:&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">            for(int i=0; i&lt;cntRun; i++)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                printf(&quot;pid 为 %d 的进程\n&quot;,pcbRun[i].pid);</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            return;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;未找到pid为 &quot;&lt;&lt;pid&lt;&lt;&quot; 的进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"><span class="comment">/****菜单***</span></span><br><span class="line"><span class="comment">void menu()&#123;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;=======================&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;1.输入进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;2.输出进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;3.杀死进程&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;4.退出&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;&quot;请输入你的操作:&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//int choice;</span></span><br><span class="line">    <span class="keyword">char</span> ok=<span class="string">&#x27;y&#x27;</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入可以同时运行的进程数目:&quot;</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;maxNumRun;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请依次输入进程：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">while</span>(ok!=<span class="string">&#x27;n&#x27;</span>&amp;&amp;ok!=<span class="string">&#x27;N&#x27;</span>)&#123;</span><br><span class="line">        input();</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;是否继续输入 y or n: &quot;</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;ok;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">      <span class="comment">//  cout&lt;&lt;cntRun&lt;&lt;&quot; &quot;&lt;&lt;cntWait&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">if</span>(cntRun==<span class="number">0</span>&amp;&amp;cntWait==<span class="number">0</span>) <span class="comment">//进程全部运行结束 结束循环</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        print();</span><br><span class="line">       <span class="comment">/* menu();</span></span><br><span class="line"><span class="comment">        cin&gt;&gt;choice;</span></span><br><span class="line"><span class="comment">        switch(choice)&#123;</span></span><br><span class="line"><span class="comment">            case 1: input();break;</span></span><br><span class="line"><span class="comment">            case 2: print(); break;</span></span><br><span class="line"><span class="comment">            case 3: kill();break;</span></span><br><span class="line"><span class="comment">            default: return 0;</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        run();</span><br><span class="line">        system(<span class="string">&quot;pause&quot;</span>); <span class="comment">//按任意键继续</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-  
-  
-    
-    <div class='footer'>
       
+        <div>
+          <a class='readmore' href='/2018/12/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99/'>
+            阅读全文
+          </a>
+        </div>
       
-      <!-- 打赏 -->
-       <!-- %- partial('donate') % -->
-      <iframe src="https://alioss.tang7o.cn/blog/simple/index.html" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe>
-        <div class='donate'>
-          <div class='imgs'> 
-            
-            
+    </div>
+  
+
+</div>
+
           </div>
-        </div>
+        
       
-      <!-- 博客说明/协议 -->
-      
-        <div class='copyright'>
-          <blockquote>
-            
-              
-                <p>本文作者： Tang7O</p>
-
-              
-            
-              
-                <p>本文链接：<a href=https://tang7o.cn/2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/>https://tang7o.cn/2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/</a></p>
-              
-            
-              
-                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议。转载请注明出处！</p>
-
-              
-            
-          </blockquote>
-        </div>
-      
-      
-    </div>
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
   
   
     
-
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-09-26T20:19:56+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年9月26日</p>
-  </a>
-</div>
-
-        
-      
-        
-          
+    <h2 class="article-title" >
+      <a href="/2018/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/">
+        人工智能复习资料
+      </a>
+    </h2>
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>操作系统</p></a></div>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
+  <div class='md'>
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/&title=操作系统实训——进程运行模拟 - Tang7O'S BLOG&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/&title=操作系统实训——进程运行模拟 - Tang7O'S BLOG&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2020/09/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%AE%AD%E2%80%94%E2%80%94%E6%A8%A1%E6%8B%9F%E8%BF%9B%E7%A8%8B%E8%BF%90%E8%A1%8C/&title=操作系统实训——进程运行模拟 - Tang7O'S BLOG&summary="
-          
-          >
-          
-            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
-          
-        </a>
-      
-    
-      
-    
-      
+      <p> </p>
     
   </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2018-12-09</time>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2018/12/09/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%A4%8D%E4%B9%A0%E5%A4%A7%E7%BA%B2/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
 </div>
 
-
-
+          </div>
         
       
-    </div>
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/2020/10/16/Meisell-Lehmer-%E7%AD%9B%E9%80%89%E7%B4%A0%E6%95%B0/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Meisell-Lehmer-筛选素数(模板)</p>
-          <p class='content'>1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253...</p>
-        </a>
-      
-      
-        <a class='next' href='/2020/09/19/Slf4j/'>
-          <p class='title'>@Slf4j<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>@Slf4j 可以代替
-private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
-需要在pom中引用后才可...</p>
-        </a>
-      
-    </div>
-  
-</article>
-
-
-  
-
-  <article class="post white-box reveal shadow" id="comments">
-    <p ct><i class='fas fa-comments'></i> 评论</p>
     
-    <div id="valine_container" class="valine_thread">
-  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
-</div>
-
-  </article>
-
-
+  </section>
+  
+  
+    
+  
 
 
-
-
+	
 </div>
 <aside class='l_side'>
   
@@ -709,14 +554,181 @@ private final Logger logger = LoggerFactory.getLogger(LoggerTest.class);
     
     
 
+<section class="widget blogger shadow desktop mobile">
+  <div class='content'>
+    
+      
+        <div class='avatar'>
+          <img no-lazy src='https://alioss.tang7o.cn/blog/logo_ce.png'/>
+        </div>
+      
+    
+    
+      <div class='text'>
+        
+        
+        
+          <p><span id="jinrishici-sentence">Tang7O'S BLOG</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="https://github.com/Tang7O"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="https://www.zhihu.com/people/tang7o"
+              class="social fab fa-zhihu flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="mailto:me@xxx.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+          
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;amp;uin=1747822506&amp;amp;site=qq&amp;amp;menu=yes"
+              class="social fab fa-qq flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+              
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
 
 
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/ACM/" href="/categories/ACM/"
+            id="categoriesACM"
+            ><div class='name'>ACM</div><div class='badge'>(41)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E6%A8%A1%E6%9D%BF/" href="/categories/ACM/%E6%A8%A1%E6%9D%BF/"
+            id="categoriesACME6A8A1E69DBF"
+            ><div class='name'>模板</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E7%AE%97%E6%B3%95/" href="/categories/ACM/%E7%AE%97%E6%B3%95/"
+            id="categoriesACME7AE97E6B395"
+            ><div class='name'>算法</div><div class='badge'>(25)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E9%A2%98%E7%9B%AE/" href="/categories/ACM/%E9%A2%98%E7%9B%AE/"
+            id="categoriesACME9A298E79BAE"
+            ><div class='name'>题目</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/C/" href="/categories/C/"
+            id="categoriesC"
+            ><div class='name'>C++</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Java/" href="/categories/Java/"
+            id="categoriesJava"
+            ><div class='name'>Java</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MarkDown/" href="/categories/MarkDown/"
+            id="categoriesMarkDown"
+            ><div class='name'>MarkDown</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MySQL/" href="/categories/MySQL/"
+            id="categoriesMySQL"
+            ><div class='name'>MySQL</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/MySQL/bug/" href="/categories/MySQL/bug/"
+            id="categoriesMySQLbug"
+            ><div class='name'>bug</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8F"
+            ><div class='name'>实训程序</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE6938DE4BD9CE7B3BBE7BB9F"
+            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE695B0E68DAEE7BB93E69E84"
+            ><div class='name'>数据结构</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Java/" style="font-size: 20px; color: #707070">Java</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/SpringBoot/" style="font-size: 16px; color: #8b8b8b">SpringBoot</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px; color: #7e7e7e">数据结构</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 20px; color: #707070">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 18px; color: #7e7e7e">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
+    </div>
+  </section>
+
+
+  
 
   
 
 
 </aside>
-
 
 
       </div>
