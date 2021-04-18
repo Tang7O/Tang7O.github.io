@@ -682,14 +682,11 @@ modCount 继承于父类 AbstractList, 源码如下:
         </a>
       
       
-        <a class='next' href='/2021/04/18/Java%E9%9B%86%E5%90%88ArrayList/'>
-          <p class='title'>Java集合ArrayList<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>1 综述
-1.1 说明
-作者小白一枚, 水平有限, 如有错误还望各位指正.
-本文章中源码来自: JDK8.
-1.2 简介
-ArrayList 是容量可变的非线程安全列表, 使用数组实现. 适用于...</p>
+        <a class='next' href='/2021/03/06/Java%E4%B8%AD%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0/'>
+          <p class='title'>Java中的栈<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>刷力扣时发现很少有人用Stack建栈,大部分都用双端队列接口Deque,出于对知识的渴望（就是菜）查阅了相关资料记录一下。
+Stack类
+Java 中的 Stack 类从 Vector 类继承，...</p>
         </a>
       
     </div>
