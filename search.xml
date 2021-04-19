@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>ArrayList的sort函数</title>
+      <link href="2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/"/>
+      <url>2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<p>源码：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> expectedModCount = modCount;</span><br><span class="line">        Arrays.sort((E[]) elementData, <span class="number">0</span>, size, c);</span><br><span class="line">        <span class="keyword">if</span> (modCount != expectedModCount) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">        modCount++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>保留了当前的 <a href="https://tang7o.cn/2021/04/18/ArrayList%E4%B8%ADmodCount%E7%9A%84%E4%BD%9C%E7%94%A8/">modCount</a> , 调用 Arrays.sort 进行排序, 判断排序后 modCount 是否发生变化</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java集合ArrayList</title>
       <link href="2021/04/18/Java%E9%9B%86%E5%90%88ArrayList/"/>
       <url>2021/04/18/Java%E9%9B%86%E5%90%88ArrayList/</url>

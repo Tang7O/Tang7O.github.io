@@ -17,9 +17,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user &#39;alicelmx&#39;@&#39;localhost&#39; 问题 - Tang7O&#39;S BLOG</title>
-  
-    <meta name="keywords" content="数据库">
+  <title>ArrayList的sort函数 - Tang7O&#39;S BLOG</title>
   
 
   
@@ -414,7 +412,7 @@
  
 <div id="pjax-data" style="display: none"> 
   <div id="pjax-ispage">true</div> 
-  <div id="pjax-pageTitle">重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user &#39;alicelmx&#39;@&#39;localhost&#39; 问题</div> 
+  <div id="pjax-pageTitle">ArrayList的sort函数</div> 
   <div id="pjax-enable-cover">true</div> 
   <div id="pjax-comment-path"></div> 
   <div id="pjax-comment-placeholder"></div> 
@@ -423,14 +421,14 @@
  
 <script> 
   // 处理封面 此时 jquery 还没加载 
-  if ("half" == "none") { // 移除封面 
+  if ("none" == "none") { // 移除封面 
     document.getElementsByClassName('cover-wrapper')[0].style.display = "none"; 
     document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show"); 
   } else { 
-    if ("half" == "half") { // 半屏 
+    if ("none" == "half") { // 半屏 
       document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'half'); 
       document.getElementsByClassName('scroll-down')[0].style.display = "none"; 
-    } else if ("half" == "full") { // 全屏 
+    } else if ("none" == "full") { // 全屏 
       document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'full'); 
       document.getElementsByClassName('scroll-down')[0].style.display = ""; 
     } 
@@ -454,7 +452,7 @@
     
     
       <h1 class="title">
-        重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user 'alicelmx'@'localhost' 问题
+        ArrayList的sort函数
       </h1>
       <div class='new-meta-box'>
         
@@ -471,13 +469,6 @@
         
           
             
-  <div class='new-meta-item category'>
-    <a class='notlink'>
-      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <a class="category-link" href="/categories/MySQL/">MySQL</a><span class="sep"></span><a class="category-link" href="/categories/MySQL/bug/">bug</a>
-    </a>
-  </div>
-
 
           
         
@@ -485,7 +476,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2020年5月20日</p>
+    <p>发布于：2021年4月19日</p>
   </a>
 </div>
 
@@ -496,7 +487,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user 'alicelmx'@'localhost' 问题" data-path="/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/">
+      <div id="lc-pv" data-title="ArrayList的sort函数" data-path="/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -513,7 +504,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">113字</span>
+        <span class="post-count">66字</span>
       </span>
     </span>
 
@@ -536,10 +527,9 @@
 
 
   
-  <h3 id="错误信息如下">错误信息如下：</h3>
-<p>#mysql -u Tang7O -p Enter password: ERROR 1045 (28000): Access denied for user 'Tang7O'@'localhost' (using password: YES)</p>
-<h3 id="解决方案">解决方案</h3>
-<p>#/etc/init.d/mysql stop //停止MySQL #mysqld_safe --user=mysql --skip-grant-tables --skip-networking &amp; #mysql -u root mysql mysql&gt; UPDATE user SET Password=PASSWORD('newpassword') where USER='root' and host='root' or host='localhost'; //把空的用户密码都修改成非空的密码就行了。 mysql&gt; FLUSH PRIVILEGES; //立即生效 mysql&gt; quit //退出 #/etc/init.d/mysqld restart //启动MySQL #mysql -uroot -p //登录 Enter password: <输入新设的密码newpassword></p>
+  <p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> expectedModCount = modCount;</span><br><span class="line">        Arrays.sort((E[]) elementData, <span class="number">0</span>, size, c);</span><br><span class="line">        <span class="keyword">if</span> (modCount != expectedModCount) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">        modCount++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>保留了当前的 <a href="https://tang7o.cn/2021/04/18/ArrayList%E4%B8%ADmodCount%E7%9A%84%E4%BD%9C%E7%94%A8/">modCount</a> , 调用 Arrays.sort 进行排序, 判断排序后 modCount 是否发生变化</p>
 
   
   
@@ -568,7 +558,7 @@
               
             
               
-                <p>本文链接：<a href=https://tang7o.cn/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/>https://tang7o.cn/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/</a></p>
+                <p>本文链接：<a href=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/>https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/</a></p>
               
             
               
@@ -590,10 +580,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-11-27T10:11:07+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T08:27:37+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2020年11月27日</p>
+    <p>更新于：2021年4月19日</p>
   </a>
 </div>
 
@@ -601,9 +591,6 @@
       
         
           
-  
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>数据库</p></a></div>
-
 
         
       
@@ -615,7 +602,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/&title=重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user 'alicelmx'@'localhost' 问题 - Tang7O'S BLOG&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList的sort函数 - Tang7O'S BLOG&summary="
           
           >
           
@@ -627,7 +614,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/&title=重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user 'alicelmx'@'localhost' 问题 - Tang7O'S BLOG&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList的sort函数 - Tang7O'S BLOG&summary="
           
           >
           
@@ -639,7 +626,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2020/05/20/%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81%E8%A7%A3%E5%86%B3mysql%E6%95%B0%E6%8D%AE%E5%BA%93-error-1045-28000-access-denied-for-user-alicelmxlocalhost-%E9%97%AE%E9%A2%98/&title=重置密码解决MySQL数据库  ERROR 1045 (28000): Access denied for user 'alicelmx'@'localhost' 问题 - Tang7O'S BLOG&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList的sort函数 - Tang7O'S BLOG&summary="
           
           >
           
@@ -669,16 +656,15 @@
   
     <div class="prev-next">
       
-        <a class='prev' href='/2020/09/14/hello-world/'>
-          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Hello World</p>
-          <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
-        </a>
       
-      
-        <a class='next' href='/2020/05/16/%E6%B1%82%E9%97%AE1%E5%88%B0n%E7%9A%84%E5%9B%A0%E6%95%B0%E4%B8%AA%E6%95%B0%E7%9A%84%E5%92%8C/'>
-          <p class='title'>求问1到n的因数个数的和<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>题目连接
-123456789101112int main()&#123;    ll n;    cin &gt;&gt; n;    ll ans = 0;    for (ll l = 1,...</p>
+        <a class='next' href='/2021/04/18/Java%E9%9B%86%E5%90%88ArrayList/'>
+          <p class='title'>Java集合ArrayList<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1 综述
+1.1 说明
+作者小白一枚, 水平有限, 如有错误还望各位指正.
+本文章中源码来自: JDK8.
+1.2 简介
+ArrayList 是容量可变的非线程安全列表, 使用数组实现. 适用于...</p>
         </a>
       
     </div>
@@ -711,17 +697,109 @@
 
 
 
-  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
     
   <header>
     
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+      <a href='/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
     
   </header>
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E5%A6%82%E4%B8%8B"><span class="toc-text">错误信息如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/ACM/" href="/categories/ACM/"
+            id="categoriesACM"
+            ><div class='name'>ACM</div><div class='badge'>(41)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E6%A8%A1%E6%9D%BF/" href="/categories/ACM/%E6%A8%A1%E6%9D%BF/"
+            id="categoriesACME6A8A1E69DBF"
+            ><div class='name'>模板</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E7%AE%97%E6%B3%95/" href="/categories/ACM/%E7%AE%97%E6%B3%95/"
+            id="categoriesACME7AE97E6B395"
+            ><div class='name'>算法</div><div class='badge'>(25)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/ACM/%E9%A2%98%E7%9B%AE/" href="/categories/ACM/%E9%A2%98%E7%9B%AE/"
+            id="categoriesACME9A298E79BAE"
+            ><div class='name'>题目</div><div class='badge'>(10)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/C/" href="/categories/C/"
+            id="categoriesC"
+            ><div class='name'>C++</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/Java/" href="/categories/Java/"
+            id="categoriesJava"
+            ><div class='name'>Java</div><div class='badge'>(8)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MarkDown/" href="/categories/MarkDown/"
+            id="categoriesMarkDown"
+            ><div class='name'>MarkDown</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/MySQL/" href="/categories/MySQL/"
+            id="categoriesMySQL"
+            ><div class='name'>MySQL</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/MySQL/bug/" href="/categories/MySQL/bug/"
+            id="categoriesMySQLbug"
+            ><div class='name'>bug</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8F"
+            ><div class='name'>实训程序</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE6938DE4BD9CE7B3BBE7BB9F"
+            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" href="/categories/%E5%AE%9E%E8%AE%AD%E7%A8%8B%E5%BA%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"
+            id="categoriesE5AE9EE8AEADE7A88BE5BA8FE695B0E68DAEE7BB93E69E84"
+            ><div class='name'>数据结构</div><div class='badge'>(3)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop mobile">
+    
+  <header>
+    
+      <a href='/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Java/" style="font-size: 20.67px; color: #6c6c6c">Java</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/SpringBoot/" style="font-size: 15.67px; color: #8e8e8e">SpringBoot</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px; color: #999">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 17.33px; color: #828282">数据结构</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 19px; color: #777">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 17.33px; color: #828282">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22.33px; color: #606060">题目</a>
     </div>
   </section>
 
