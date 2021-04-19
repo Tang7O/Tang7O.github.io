@@ -17,7 +17,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>ArrayList的sort函数 - Tang7O&#39;S BLOG</title>
+  <title>ArrayList.sort()函数底层实现 - Tang7O&#39;S BLOG</title>
   
 
   
@@ -412,7 +412,7 @@
  
 <div id="pjax-data" style="display: none"> 
   <div id="pjax-ispage">true</div> 
-  <div id="pjax-pageTitle">ArrayList的sort函数</div> 
+  <div id="pjax-pageTitle">ArrayList.sort()函数底层实现</div> 
   <div id="pjax-enable-cover">true</div> 
   <div id="pjax-comment-path"></div> 
   <div id="pjax-comment-placeholder"></div> 
@@ -452,7 +452,7 @@
     
     
       <h1 class="title">
-        ArrayList的sort函数
+        ArrayList.sort()函数底层实现
       </h1>
       <div class='new-meta-box'>
         
@@ -487,7 +487,7 @@
   <div class="new-meta-item browse leancloud">
     <a class='notlink'>
       
-      <div id="lc-pv" data-title="ArrayList的sort函数" data-path="/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/">
+      <div id="lc-pv" data-title="ArrayList.sort()函数底层实现" data-path="/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/">
         <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
         <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
         次浏览
@@ -504,7 +504,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">66字</span>
+        <span class="post-count">677字</span>
       </span>
     </span>
 
@@ -513,7 +513,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -529,7 +529,13 @@
   
   <p>源码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparator&lt;? <span class="keyword">super</span> E&gt; c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> expectedModCount = modCount;</span><br><span class="line">        Arrays.sort((E[]) elementData, <span class="number">0</span>, size, c);</span><br><span class="line">        <span class="keyword">if</span> (modCount != expectedModCount) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">        &#125;</span><br><span class="line">        modCount++;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>保留了当前的 <a href="https://tang7o.cn/2021/04/18/ArrayList%E4%B8%ADmodCount%E7%9A%84%E4%BD%9C%E7%94%A8/">modCount</a> , 调用 Arrays.sort 进行排序, 判断排序后 modCount 是否发生变化</p>
+<p>可以看到 ArrayList 的 sort 函数直接调用 Arrays.sort 进行排序.</p>
+<p>我们来看下 Arrays.sort 的源码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(T[] a, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex,</span></span></span><br><span class="line"><span class="function"><span class="params">                                Comparator&lt;? <span class="keyword">super</span> T&gt; c)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// 如果没有给出排序规则, 按照默认的规则排序</span></span><br><span class="line">        <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">            sort(a, fromIndex, toIndex);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 索引检查</span></span><br><span class="line">            rangeCheck(a.length, fromIndex, toIndex);</span><br><span class="line">            <span class="comment">// 这个布尔型的变量是为了和旧的JDK兼容, 默认是 false. 这是老的排序算法, 使用归并排序实现.</span></span><br><span class="line">            <span class="keyword">if</span> (LegacyMergeSort.userRequested)</span><br><span class="line">                legacyMergeSort(a, fromIndex, toIndex, c);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="comment">// 现在使用的排序算法</span></span><br><span class="line">                <span class="comment">// 稳定的排序算法, 相等的元素不会因为排序而重新排序</span></span><br><span class="line">                <span class="comment">// 自适应的排序算法, 输入的数据局部有序时, 需要的比较次数远远少于(nlog(n))</span></span><br><span class="line">                <span class="comment">// 其实是一个变种的归并排序</span></span><br><span class="line">                <span class="comment">// JDK 1.7 开始被引入</span></span><br><span class="line">                TimSort.sort(a, fromIndex, toIndex, c, <span class="keyword">null</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>接下来我们来看一下默认的排序算法.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Object[] a, <span class="keyword">int</span> fromIndex, <span class="keyword">int</span> toIndex)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// 索引检查</span></span><br><span class="line">        rangeCheck(a.length, fromIndex, toIndex);</span><br><span class="line">    	<span class="comment">// 旧版本的排序算法, 底层使用归并排序</span></span><br><span class="line">    	<span class="comment">// 默认为 false</span></span><br><span class="line">        <span class="keyword">if</span> (LegacyMergeSort.userRequested)</span><br><span class="line">            legacyMergeSort(a, fromIndex, toIndex);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="comment">// 真正的排序算法</span></span><br><span class="line">            ComparableTimSort.sort(a, fromIndex, toIndex, <span class="keyword">null</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>此方法只是检查了一下索引, 然后调用了ComparableTimSort 的排序方法.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Object[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi, Object[] work, <span class="keyword">int</span> workBase, <span class="keyword">int</span> workLen)</span> </span>&#123;</span><br><span class="line">      <span class="comment">// 断言, 使用时这句语句可以忽略</span></span><br><span class="line">      <span class="comment">// 大致意思就是要保证 assert 后面的条件成立, 多用于调试.</span></span><br><span class="line">      <span class="keyword">assert</span> a != <span class="keyword">null</span> &amp;&amp; lo &gt;= <span class="number">0</span> &amp;&amp; lo &lt;= hi &amp;&amp; hi &lt;= a.length;</span><br><span class="line"><span class="comment">// 排序的元素的个数</span></span><br><span class="line">      <span class="keyword">int</span> nRemaining  = hi - lo;</span><br><span class="line">      <span class="comment">// 0 个 或者 1 个直接返回.</span></span><br><span class="line">      <span class="keyword">if</span> (nRemaining &lt; <span class="number">2</span>)</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 如果数组很小(&lt; 32)就执行不合并的&quot;小排序&quot;.</span></span><br><span class="line">      <span class="keyword">if</span> (nRemaining &lt; MIN_MERGE) &#123;</span><br><span class="line">          <span class="comment">// initRunLen 表示 lo 到 lo + initRunLen 是排好序的</span></span><br><span class="line">          <span class="keyword">int</span> initRunLen = countRunAndMakeAscending(a, lo, hi);</span><br><span class="line">          <span class="comment">// 二叉排序算法</span></span><br><span class="line">          <span class="comment">// 一种使用二分查找的插入排序</span></span><br><span class="line">          binarySort(a, lo, hi, lo + initRunLen);</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/**</span></span><br><span class="line"><span class="comment">       * 正式进入 TimSort 的逻辑, 首先新建一个 ComparableTimSort</span></span><br><span class="line"><span class="comment">       */</span></span><br><span class="line">      ComparableTimSort ts = <span class="keyword">new</span> ComparableTimSort(a, work, workBase, workLen);</span><br><span class="line">      <span class="keyword">int</span> minRun = minRunLength(nRemaining);</span><br><span class="line">      <span class="keyword">do</span> &#123;</span><br><span class="line">          <span class="comment">// 寻找下一个有序序列</span></span><br><span class="line">          <span class="keyword">int</span> runLen = countRunAndMakeAscending(a, lo, hi);</span><br><span class="line"></span><br><span class="line">          <span class="comment">// 如果这个序列长度小于阀值minRun, 会将后续minRun个元素一起做二分排序</span></span><br><span class="line">          <span class="keyword">if</span> (runLen &lt; minRun) &#123;</span><br><span class="line">              <span class="keyword">int</span> force = nRemaining &lt;= minRun ? nRemaining : minRun;</span><br><span class="line">              binarySort(a, lo, lo + force, lo + runLen);</span><br><span class="line">              runLen = force;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Push run onto pending-run stack, and maybe merge</span></span><br><span class="line">          ts.pushRun(lo, runLen);</span><br><span class="line">          ts.mergeCollapse();</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Advance to find next run</span></span><br><span class="line">          lo += runLen;</span><br><span class="line">          nRemaining -= runLen;</span><br><span class="line">      &#125; <span class="keyword">while</span> (nRemaining != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Merge all remaining runs to complete sort</span></span><br><span class="line">      <span class="keyword">assert</span> lo == hi;</span><br><span class="line">      ts.mergeForceCollapse();</span><br><span class="line">      <span class="keyword">assert</span> ts.stackSize == <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
   
   
@@ -580,7 +586,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T08:27:37+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-04-19T16:54:51+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2021年4月19日</p>
@@ -602,7 +608,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList的sort函数 - Tang7O'S BLOG&summary="
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList.sort()函数底层实现 - Tang7O'S BLOG&summary="
           
           >
           
@@ -614,7 +620,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList的sort函数 - Tang7O'S BLOG&summary="
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList.sort()函数底层实现 - Tang7O'S BLOG&summary="
           
           >
           
@@ -626,7 +632,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
           
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList的sort函数 - Tang7O'S BLOG&summary="
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2021/04/19/ArrayList%E7%9A%84sort%E5%87%BD%E6%95%B0/&title=ArrayList.sort()函数底层实现 - Tang7O'S BLOG&summary="
           
           >
           
