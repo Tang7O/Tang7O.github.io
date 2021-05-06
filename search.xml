@@ -67,14 +67,18 @@
       
       <categories>
           
-          <category> -Java </category>
+          <category> Java </category>
+          
+          <category> JVM </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> -Java -JVM </tag>
+            <tag> Java </tag>
+            
+            <tag> JVM </tag>
             
         </tags>
       
@@ -92,14 +96,14 @@
       
       <categories>
           
-          <category> -Java </category>
+          <category> Java </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> -Java </tag>
+            <tag> Java </tag>
             
         </tags>
       
