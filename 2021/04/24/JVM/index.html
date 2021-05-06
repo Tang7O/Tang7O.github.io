@@ -19,7 +19,7 @@
   
   <title>JVM - Tang7O&#39;S BLOG</title>
   
-    <meta name="keywords" content="Java,JVM">
+    <meta name="keywords" content="JVM">
   
 
   
@@ -539,9 +539,9 @@
   <h2 id="简介">1. 简介:</h2>
 <p>JVM(Java Virtual Machine), Java 虚拟机. JVM 是一种用于计算机设备的规范, 它是一个虚拟出来的计算机, 是通过在实际计算机上仿真模拟各种计算机功能来实现的.</p>
 <p><strong>JVM 的位置:</strong></p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485087958-98b9d355-18e1-4bbf-8a85-25ebdae89d62.png" class="lazyload" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485087958-98b9d355-18e1-4bbf-8a85-25ebdae89d62.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="位置.png" class="lazyload" data-srcset="位置.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <h2 id="jvm-运行时数据区">2. JVM 运行时数据区</h2>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485094949-efa832d5-1090-4339-b43b-a113937e75ef.png" class="lazyload" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485094949-efa832d5-1090-4339-b43b-a113937e75ef.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="结构.png" class="lazyload" data-srcset="结构.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <h3 id="java堆-heap">2.1 Java堆 (heap)</h3>
 <p>对大多数应用来说, Java堆 (heap) 是 Java虚拟机所管理的内存中<strong>最大</strong>的一块. Java 堆是被所有线程共享的一段内存区域, 在虚拟机启动时创建, 此内存区域的唯一作用就是存放对象实例, <strong>几乎所有的对象实例都在这里分配内存</strong>.</p>
 <p>Java堆是垃圾收集器 (GC) 管理的主要区域, 因此很多时候也被叫做 <strong>"GC堆"</strong>.</p>
@@ -599,7 +599,7 @@
 <h4 id="标记---清除算法">3.2.1 标记 - 清除算法</h4>
 <p>"标记 - 清除" (Mark - Sweep)算法, 如它的名字一样, 算法分为 "标记" 和 "清除" 二个阶段: 首先标记出所有要被回收的对象, 在标记完成后统一回收所有被标记的对象.</p>
 <p>标记 - 清除是最基础的 GC 算法, 后续的收集算法都是基于这种思路并对其缺点进行改进而得到的.</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485116313-52b23ee9-2fca-4963-90ce-8a0bec1f2c3f.png" class="lazyload" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485116313-52b23ee9-2fca-4963-90ce-8a0bec1f2c3f.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="标记-清除.png" class="lazyload" data-srcset="标记-清除.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <p>缺点:</p>
 <ul>
 <li>标记和清除的效率都不高.</li>
@@ -611,13 +611,11 @@
 <ul>
 <li>浪费了一半的内存空间.</li>
 </ul>
-<figure>
-<img src="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485122182-5f27b6d0-a06b-4b28-8038-20f04151b2ee.png" class="lazyload" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485122182-5f27b6d0-a06b-4b28-8038-20f04151b2ee.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="复制" /><figcaption aria-hidden="true">复制</figcaption>
-</figure>
+<p><img src="标记-复制.png" class="lazyload" data-srcset="标记-复制.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <h4 id="标记---整理算法">3.2.3 标记 - 整理算法</h4>
 <p>标记 - 整理算法: 与标 - 清除算法类似, 只不过标记后不是直接对可回收的对象进行清理, 而是让所有存活的对象向一端移动, 然后清理掉端边界以外的内存.</p>
 <figure>
-<img src="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485128759-05ef8d8e-5941-43f5-bacf-d2338c435d6e.png" class="lazyload" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619485128759-05ef8d8e-5941-43f5-bacf-d2338c435d6e.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="标记-整理" /><figcaption aria-hidden="true">标记-整理</figcaption>
+<img src="标记-整理.png" class="lazyload" data-srcset="标记-整理.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="标记-整理" /><figcaption aria-hidden="true">标记-整理</figcaption>
 </figure>
 <p>缺点:</p>
 <ul>
@@ -756,7 +754,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T17:02:14+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T17:17:26+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2021年5月6日</p>
@@ -768,7 +766,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
 
 
         

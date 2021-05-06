@@ -545,7 +545,7 @@
 <p>JDK 1.8 之前, HashMap 底层数据结构为 <strong>数组+链表</strong>, JDK1.8 引入<strong>红黑树</strong>优化过长的链表.</p>
 <p>当链表长度大于等于 8 且 hash 桶的长度大于等于 64 时, 会将链表优化为红黑树, 查找效率从<span class="math inline">\(O(n)\)</span>优化为<span class="math inline">\(O(logn)\)</span>.</p>
 <h3 id="继承关系">1.3 继承关系</h3>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619180128981-7f8e5705-6b1a-4708-88ad-a781824ee877.png" class="lazyload" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619180128981-7f8e5705-6b1a-4708-88ad-a781824ee877.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="UML.png" class="lazyload" data-srcset="UML.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <p>Cloneable: 可以被克隆</p>
 <p>Serializable: 可以序列化</p>
 <p>AbstractMap: 具有 Map 的所有功能</p>
@@ -661,7 +661,7 @@
 <p>为什么用位运算(&amp;) 而不是取余(%) 计算索引呢?</p>
 <p>位运算比取余快得多.</p>
 <h3 id="hashmap-插入数据的流程">7. HashMap 插入数据的流程?</h3>
-<p><img src="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619180160442-40fbf1e0-1fcf-4353-bbc2-de0469a7463e.png" class="lazyload" data-srcset="https://cdn.nlark.com/yuque/0/2021/png/1555580/1619180160442-40fbf1e0-1fcf-4353-bbc2-de0469a7463e.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="put.png" class="lazyload" data-srcset="put.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <h3 id="hashmap-怎么计算哈希值的">8. HashMap 怎么计算哈希值的?</h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>拿到 key 的 hashCode, 并将 hashCode 的高 16 位和 hashCode 进行异或运算.</p>
@@ -738,7 +738,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T17:02:08+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T17:17:59+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2021年5月6日</p>
