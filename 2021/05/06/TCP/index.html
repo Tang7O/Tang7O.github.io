@@ -544,7 +544,7 @@
 <li><strong>字节流</strong>：消息是「没有边界」的，所以无论我们消息有多大都可以进行传输。并且消息是「有序的」，当「前一个」消息没有收到的时候，即使它先收到了后面的字节，那么也不能扔给应用层去处理，同时对「重复」的报文会自动丢弃。</li>
 </ul>
 <h2 id="报文头格式">2. 报文头格式</h2>
-<p><img src="https://upload-images.jianshu.io/upload_images/745509-4d58ceda7ce69518.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/554/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/745509-4d58ceda7ce69518.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/554/format/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="报文.webp" class="lazyload" data-srcset="报文.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <ul>
 <li>源端口：数据从哪来</li>
 <li>目的端口：要到哪里去</li>
@@ -609,7 +609,7 @@
 </ul></li>
 </ol>
 <h2 id="三次握手">4. 三次握手</h2>
-<p><img src="https://upload-images.jianshu.io/upload_images/25454423-c3ca603821ef3204.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/25454423-c3ca603821ef3204.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940/format/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="三次握手.webp" class="lazyload" data-srcset="三次握手.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <ol type="1">
 <li>一开始客户端跟服务器都处于 closed 状态，然后服务端主动监听某个客户端端口，此时服务端处于listen 状态。</li>
 <li>客户端随机初始化序列号 seq = client_isn，同时将 SYN = 1 表示这是SYN 报文，接着把该 SYN 报文发给服务器，注意此时报文不包含引用层数据，客户端处于 syn-sent状态。</li>
@@ -629,7 +629,7 @@
 <p>二次握手情况下，如果客户端的 SYN 阻塞导致重复发送多次 SYN 报文，那么服务器在收到请求后就会建立多个冗余的无效连接，造成不必要的资源浪费。而三次握手发现无效连接可在第三次给服务器端发送终止指令。</p></li>
 </ol>
 <h2 id="四次挥手">5. 四次挥手</h2>
-<p><img src="https://upload-images.jianshu.io/upload_images/25454423-29fd6fdc73a3acb9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1104/format/webp" class="lazyload" data-srcset="https://upload-images.jianshu.io/upload_images/25454423-29fd6fdc73a3acb9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1104/format/webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
+<p><img src="四次挥手" class="lazyload" data-srcset="四次挥手" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" /></p>
 <ol type="1">
 <li>客户端停止发送数据并且发出释放连接的报文，报文中FIN = 1，FIN 报文段即使不携带数据，也要消耗一个序号，此时序列号 seq = u ，u = 前面已经传输过来数据最后一个字节序号加 1，客户端进入 FIN-WAIT-1 状态。</li>
 <li>服务器收到连接释放报文，发出确认报文，ACK = 1，应答确认号 ACK = u + 1，并且带上自己的序列号 seq = v，此时服务端就进入了 CLOSE-WAIT 状态。TCP 服务器通知高层的应用进程进入半闭状态，即客户端已经没有数据要发送了，但是服务器若发送数据，客户端依然要接受。这个状态还要持续一段时间，也就是整个 CLOSE-WAIT 状态持续的时间。</li>
@@ -722,7 +722,7 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T17:06:38+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-06T17:23:35+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
     <p>更新于：2021年5月6日</p>
