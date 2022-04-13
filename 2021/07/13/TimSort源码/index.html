@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html>
+<script>
+	var _hmt = _hmt || [];
+	(function () {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?a1a9ed973d0d7eb4e044c1d97e47cb4e";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <meta name="baidu-site-verification" content="code-HjKZn1JVt2" />
+  <!-- 页面元数据 -->
+  
+  <title>TimSort源码 - Tang7O&#39;S BLOG</title>
+  
+    <meta name="keywords" content="Java">
+  
+
+  
+    <meta name="description" content=" ">
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Tang7O'S BLOG" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+
+  
+
+  
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f423.svg">
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+  
+  <link href="https://cdn.jsdelivr.net/gh/inkss/common@1/css/roboto.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  <!-- 脚本懒加载函数 -->
+  <script>
+  function loadScript(src, cb) {
+    var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+    var script = document.createElement('script');
+    script.setAttribute('type','text/javascript');
+    if (cb) script.onload = cb;
+    script.setAttribute('src', src);
+    HEAD.appendChild(script);
+  }
+  //https://github.com/filamentgroup/loadCSS
+  !function(c){"use strict";var e=function(e,t,n,r){var o,i=c.document,a=i.createElement("link");if(t)o=t;else{var d=(i.body||i.getElementsByTagName("head")[0]).childNodes;o=d[d.length-1]}var f=i.styleSheets;if(r)for(var l in r)r.hasOwnProperty(l)&&a.setAttribute(l,r[l]);a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(i.body)return t();setTimeout(function(){e(t)})}(function(){o.parentNode.insertBefore(a,t?o:o.nextSibling)});var s=function(e){for(var t=a.href,n=f.length;n--;)if(f[n].href===t)return e();setTimeout(function(){s(e)})};function u(){a.addEventListener&&a.removeEventListener("load",u),a.media=n||"all"}return a.addEventListener&&a.addEventListener("load",u),(a.onloadcssdefined=s)(u),a};"undefined"!=typeof exports?exports.loadCSS=e:c.loadCSS=e}("undefined"!=typeof global?global:this);
+  </script>
+  <script id="loadcss"></script>
+</head>
+
+<body>
+  <header class="l_header auto shadow blur " style='opacity: 0' >
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Tang7O
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div class="l_body">
+    <div class="l_cover">
+  
+    
+    
+        <div class='cover-wrapper post search' style="display: none;">
+          
+            <div class='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+      <img no-lazy class='logo' src='https://alioss.tang7o.cn/blog/logo.png'/>
+    
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="搜索一下?" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>主页</p>
+            </a>
+          
+            <a href="/categories"
+              
+              
+              id="categories">
+              <i class='fas fa-folder-open fa-fw'></i><p>分类</p>
+            </a>
+          
+            <a href="/tags"
+              
+              
+              id="tags">
+              <i class='fas fa-tags fa-fw'></i><p>标签</p>
+            </a>
+          
+            <a href="/archives"
+              
+              
+              id="archives">
+              <i class='fas fa-rss fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/friends"
+              
+              
+              id="friends">
+              <i class='fas fa-link fa-fw'></i><p>友链</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+  
+
+    <div class='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+          <!--此文件用来存放一些不方便取值的变量--> 
+<!--思路大概是将值藏到重加载的区域内--> 
+ 
+ 
+ 
+<div id="pjax-data" style="display: none"> 
+  <div id="pjax-ispage">true</div> 
+  <div id="pjax-pageTitle">TimSort源码</div> 
+  <div id="pjax-enable-cover">true</div> 
+  <div id="pjax-comment-path"></div> 
+  <div id="pjax-comment-placeholder"></div> 
+</div> 
+ 
+ 
+<script> 
+  // 处理封面 此时 jquery 还没加载 
+  if ("none" == "none") { // 移除封面 
+    document.getElementsByClassName('cover-wrapper')[0].style.display = "none"; 
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show"); 
+  } else { 
+    if ("none" == "half") { // 半屏 
+      document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'half'); 
+      document.getElementsByClassName('scroll-down')[0].style.display = "none"; 
+    } else if ("none" == "full") { // 全屏 
+      document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'full'); 
+      document.getElementsByClassName('scroll-down')[0].style.display = ""; 
+    } 
+    document.getElementsByClassName('cover-wrapper')[0].style.display = ""; 
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show"); 
+  } 
+</script> 
+ 
+
+        
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        TimSort源码
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="tang7o.cn" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
+    <p>Tang7O</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Java/">Java</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年7月13日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="TimSort源码" data-path="/2021/07/13/TimSort%E6%BA%90%E7%A0%81/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div>
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">4.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">21分</span>
+      </span>
+    </span>
+</div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>TimSort 是一种稳定的, 自适应的变种归并排序. 当被应用在部分有序的数组排序问题时, TimSort 有远好于$O(NlogN)$的时间性能. 而在最差情况下, TimSort 也能保持与传统归并排序相近的表现.<br>从 JDK 1.7 开始被引入并成为 Java 中 Arrays 的默认排序算法.</p>
+<h2 id="2-核心思想"><a href="#2-核心思想" class="headerlink" title="2. 核心思想"></a>2. 核心思想</h2><p>TimSort 算法结合了归并排序和插入排序.</p>
+<p>TimSort 算法为了减少对升序部分的回溯和对降序部分的性能倒退, 将输入按其升序和降序的特点进行了分区. 排序的输入单位不是一个个单独的数字, 而是一个个的分区. 每一个分区叫一个 run, 针对这些 run 进行排序. 每次拿出来两个 run 按照规则进行合并, 合并成一个 run 压入栈中. 直到栈中只剩一个 run. 这个 run 就是排序好的结果.</p>
+<p><strong>算法过程:</strong></p>
+<ol>
+<li>如果输入数组长度小于 32, 直接使用二分插入排序.</li>
+<li>找到每个 run, 压入栈.</li>
+<li>按照规则合并.</li>
+</ol>
+<h2 id="3-源码"><a href="#3-源码" class="headerlink" title="3. 源码"></a>3. 源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TimSort</span>&lt;T&gt; &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用 TimSort 算法的阈值, 小于此值使用 二分插入排序.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MIN_MERGE</span> <span class="operator">=</span> <span class="number">32</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 待排序的数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> T[] a;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 比较器(排序规则)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Comparator&lt;? <span class="built_in">super</span> T&gt; c;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 进入 gallop 模式的阈值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span>  <span class="variable">MIN_GALLOP</span> <span class="operator">=</span> <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 控制何时进入 gallop 模式.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">minGallop</span> <span class="operator">=</span> MIN_GALLOP;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * tem 数组的最大初始大小.</span></span><br><span class="line"><span class="comment">     * 用于合并相关操作.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">INITIAL_TMP_STORAGE_LENGTH</span> <span class="operator">=</span> <span class="number">256</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 合并时使用的数组.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> T[] tmp;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> tmpBase;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> tmpLen;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 压入栈中的 run 的个数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">stackSize</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span>[] runBase; <span class="comment">// 每个 run 的起始索引</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">int</span>[] runLen; <span class="comment">// 每个 run 的长度.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建 TimSort 实例以维护正在进行的排序状态.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">TimSort</span><span class="params">(T[] a, Comparator&lt;? <span class="built_in">super</span> T&gt; c, T[] work, <span class="type">int</span> workBase, <span class="type">int</span> workLen)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.a = a;</span><br><span class="line">        <span class="built_in">this</span>.c = c;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 分配临时存储 tem</span></span><br><span class="line">        <span class="comment">// 如有必要,可以在以后增加</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> a.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">tlen</span> <span class="operator">=</span> (len &lt; <span class="number">2</span> * INITIAL_TMP_STORAGE_LENGTH) ?</span><br><span class="line">            len &gt;&gt;&gt; <span class="number">1</span> : INITIAL_TMP_STORAGE_LENGTH;</span><br><span class="line">        <span class="keyword">if</span> (work == <span class="literal">null</span> || workLen &lt; tlen || workBase + tlen &gt; work.length) &#123;</span><br><span class="line">            <span class="meta">@SuppressWarnings(&#123;&quot;unchecked&quot;, &quot;UnnecessaryLocalVariable&quot;&#125;)</span></span><br><span class="line">            T[] newArray = (T[])java.lang.reflect.Array.newInstance</span><br><span class="line">                (a.getClass().getComponentType(), tlen);</span><br><span class="line">            tmp = newArray;</span><br><span class="line">            tmpBase = <span class="number">0</span>;</span><br><span class="line">            tmpLen = tlen;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            tmp = work;</span><br><span class="line">            tmpBase = workBase;</span><br><span class="line">            tmpLen = workLen;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 根据原数组长度，为序列栈分配初始空间</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">stackLen</span> <span class="operator">=</span> (len &lt;    <span class="number">120</span>  ?  <span class="number">5</span> :</span><br><span class="line">                        len &lt;   <span class="number">1542</span>  ? <span class="number">10</span> :</span><br><span class="line">                        len &lt; <span class="number">119151</span>  ? <span class="number">24</span> : <span class="number">49</span>);</span><br><span class="line">        runBase = <span class="keyword">new</span> <span class="title class_">int</span>[stackLen];</span><br><span class="line">        runLen = <span class="keyword">new</span> <span class="title class_">int</span>[stackLen];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 排序</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(T[] a, <span class="type">int</span> lo, <span class="type">int</span> hi, Comparator&lt;? <span class="built_in">super</span> T&gt; c,</span></span><br><span class="line"><span class="params">                         T[] work, <span class="type">int</span> workBase, <span class="type">int</span> workLen)</span> &#123;</span><br><span class="line">        <span class="comment">// 断言, 保证后面的条件成立, 多用于调试阶段</span></span><br><span class="line">        <span class="comment">// 除非手动打开, 否则无用</span></span><br><span class="line">        <span class="keyword">assert</span> c != <span class="literal">null</span> &amp;&amp; a != <span class="literal">null</span> &amp;&amp; lo &gt;= <span class="number">0</span> &amp;&amp; lo &lt;= hi &amp;&amp; hi &lt;= a.length;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">nRemaining</span>  <span class="operator">=</span> hi - lo;</span><br><span class="line">        <span class="keyword">if</span> (nRemaining &lt; <span class="number">2</span>)</span><br><span class="line">            <span class="keyword">return</span>;  <span class="comment">// 长度为 0 或 1 数组总是有序的.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 数组长度小于 32, 直接使用二分插入排序.</span></span><br><span class="line">        <span class="keyword">if</span> (nRemaining &lt; MIN_MERGE) &#123;</span><br><span class="line">            <span class="comment">// 寻找第一个 run</span></span><br><span class="line">            <span class="comment">// 执行完成之后. [lo, lo+initRunLen) 是有序的.</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">initRunLen</span> <span class="operator">=</span> countRunAndMakeAscending(a, lo, hi, c);</span><br><span class="line">            <span class="comment">// 二分插入排序</span></span><br><span class="line">            binarySort(a, lo, hi, lo + initRunLen, c);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 新建一个 TimSort 实例, 存储运行时的状态, 比如临时的 run</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        TimSort&lt;T&gt; ts = <span class="keyword">new</span> <span class="title class_">TimSort</span>&lt;&gt;(a, c, work, workBase, workLen);</span><br><span class="line">        <span class="comment">// 当 run 块长度小于 minRun 时, 使用二分插入排序. (MIN_MERGE / 2 &lt;= minRun &lt;= MIN_MERGE)</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">minRun</span> <span class="operator">=</span> minRunLength(nRemaining);</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="comment">// 寻找下一个 run</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">runLen</span> <span class="operator">=</span> countRunAndMakeAscending(a, lo, hi, c);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// run 太短了, 扩展到 min(minRun, nRemaining) 使用二分插入排序.</span></span><br><span class="line">            <span class="keyword">if</span> (runLen &lt; minRun) &#123;</span><br><span class="line">                <span class="comment">// 排到最后剩余元素可能不足 minRun 个.</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">force</span> <span class="operator">=</span> nRemaining &lt;= minRun ? nRemaining : minRun;</span><br><span class="line">                <span class="comment">// 二分插入排序</span></span><br><span class="line">                binarySort(a, lo, lo + force, lo + runLen, c);</span><br><span class="line">                <span class="comment">// 更新 run 长度.</span></span><br><span class="line">                runLen = force;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 将 run 压入栈中</span></span><br><span class="line">            ts.pushRun(lo, runLen);</span><br><span class="line">            <span class="comment">// 根据栈中的 run 块长度选择合并.</span></span><br><span class="line">            ts.mergeCollapse();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 更新, 继续寻找</span></span><br><span class="line">            lo += runLen;</span><br><span class="line">            nRemaining -= runLen;</span><br><span class="line">        &#125; <span class="keyword">while</span> (nRemaining != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">assert</span> <span class="variable">lo</span> <span class="operator">=</span>= hi;</span><br><span class="line">        <span class="comment">// 合并剩余的 run</span></span><br><span class="line">        ts.mergeForceCollapse();</span><br><span class="line">        <span class="keyword">assert</span> ts.stackSize == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 二分插入排序</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a 总数组, 只对 a 的 [lo, hi) 部分进行排序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lo 要排序的范围第一个元素的索引.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> hi 要排序的范围最后一个元素之后的索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> start [lo,start) 是有序的, 从 start 开始乱序.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;fallthrough&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">binarySort</span><span class="params">(T[] a, <span class="type">int</span> lo, <span class="type">int</span> hi, <span class="type">int</span> start,</span></span><br><span class="line"><span class="params">                                       Comparator&lt;? <span class="built_in">super</span> T&gt; c)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> lo &lt;= start &amp;&amp; start &lt;= hi;</span><br><span class="line">        <span class="keyword">if</span> (start == lo)</span><br><span class="line">            start++;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> ( ; start &lt; hi; start++) &#123;</span><br><span class="line">            <span class="comment">// 待插入的数据</span></span><br><span class="line">            <span class="type">T</span> <span class="variable">pivot</span> <span class="operator">=</span> a[start];</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// 在 [left, right] 中找到插入 privot 的位置.</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> lo;</span><br><span class="line">            <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> start;</span><br><span class="line">            <span class="keyword">assert</span> left &lt;= right;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">             * 寻找插入的位置</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> (left + right) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (c.compare(pivot, a[mid]) &lt; <span class="number">0</span>)</span><br><span class="line">                    right = mid;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">assert</span> <span class="variable">left</span> <span class="operator">=</span>= right;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> start - left;  <span class="comment">// 需要移动的元素的数量</span></span><br><span class="line">            <span class="comment">// 如果待移动的元素 &lt;= 2 个, 直接移动</span></span><br><span class="line">            <span class="comment">// 减少 System.arraycopy 的调用</span></span><br><span class="line">            <span class="keyword">switch</span> (n) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">2</span>:  a[left + <span class="number">2</span>] = a[left + <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">case</span> <span class="number">1</span>:  a[left + <span class="number">1</span>] = a[left];</span><br><span class="line">                         <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>: System.arraycopy(a, left, a, left + <span class="number">1</span>, n);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 插入元素</span></span><br><span class="line">            a[left] = pivot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 寻找 run 的函数.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="type">int</span> <span class="title function_">countRunAndMakeAscending</span><span class="params">(T[] a, <span class="type">int</span> lo, <span class="type">int</span> hi,</span></span><br><span class="line"><span class="params">                                                    Comparator&lt;? <span class="built_in">super</span> T&gt; c)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> lo &lt; hi;</span><br><span class="line">        <span class="type">int</span> <span class="variable">runHi</span> <span class="operator">=</span> lo + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (runHi == hi)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 寻找 run</span></span><br><span class="line">        <span class="keyword">if</span> (c.compare(a[runHi++], a[lo]) &lt; <span class="number">0</span>) &#123; <span class="comment">// 降序</span></span><br><span class="line">            <span class="keyword">while</span> (runHi &lt; hi &amp;&amp; c.compare(a[runHi], a[runHi - <span class="number">1</span>]) &lt; <span class="number">0</span>)</span><br><span class="line">                runHi++;</span><br><span class="line">            <span class="comment">// 原地反转数组, 使其变为升序</span></span><br><span class="line">            reverseRange(a, lo, runHi);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;                              <span class="comment">// 升序</span></span><br><span class="line">            <span class="keyword">while</span> (runHi &lt; hi &amp;&amp; c.compare(a[runHi], a[runHi - <span class="number">1</span>]) &gt;= <span class="number">0</span>)</span><br><span class="line">                runHi++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> runHi - lo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 原地反转数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">reverseRange</span><span class="params">(Object[] a, <span class="type">int</span> lo, <span class="type">int</span> hi)</span> &#123;</span><br><span class="line">        hi--;</span><br><span class="line">        <span class="keyword">while</span> (lo &lt; hi) &#123;</span><br><span class="line">            <span class="type">Object</span> <span class="variable">t</span> <span class="operator">=</span> a[lo];</span><br><span class="line">            a[lo++] = a[hi];</span><br><span class="line">            a[hi--] = t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 求 minRun</span></span><br><span class="line"><span class="comment">     * minRun: 小于 minRun 的 run, 扩展为 min(minRun, 剩余元素), 使用二分插入排序.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">minRunLength</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> n &gt;= <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">r</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        <span class="comment">// n &lt; MIN_MERGE 直接使用二分插入排序了, 不会调用此方法</span></span><br><span class="line">        <span class="comment">// 若 n 为 2 的幂, 那么 r 最终会为 0, 返回结果是 MIN_MERGE / 2</span></span><br><span class="line">    	<span class="comment">// 在剩余情况下, 返回值 k 落在 [MIN_MERGE/2, MIN_MERGE] 间</span></span><br><span class="line">    	<span class="comment">// 同时保证 n / k 接近且严格小于一个 2 的幂</span></span><br><span class="line">        <span class="keyword">while</span> (n &gt;= MIN_MERGE) &#123;</span><br><span class="line">            r |= (n &amp; <span class="number">1</span>);</span><br><span class="line">            n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n + r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将 run 压入栈.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> runBase  run 第一个元素的索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> runLen   run 的长度</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">pushRun</span><span class="params">(<span class="type">int</span> runBase, <span class="type">int</span> runLen)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.runBase[stackSize] = runBase;</span><br><span class="line">        <span class="built_in">this</span>.runLen[stackSize] = runLen;</span><br><span class="line">        stackSize++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 根据栈顶的三个 run 的长度进行选择合并</span></span><br><span class="line"><span class="comment">     * 将较短的二个合并(i-1 和 i-2  或者  i-2 和 i-3)</span></span><br><span class="line"><span class="comment">     * (和 2048 游戏差不多)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">mergeCollapse</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (stackSize &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> stackSize - <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (n &gt; <span class="number">0</span> &amp;&amp; runLen[n-<span class="number">1</span>] &lt;= runLen[n] + runLen[n+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (runLen[n - <span class="number">1</span>] &lt; runLen[n + <span class="number">1</span>])</span><br><span class="line">                    n--;</span><br><span class="line">                mergeAt(n);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (runLen[n] &lt;= runLen[n + <span class="number">1</span>]) &#123;</span><br><span class="line">                mergeAt(n);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 合并栈中的所有 run, 直到只剩下一个 run</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">mergeForceCollapse</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (stackSize &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> stackSize - <span class="number">2</span>;</span><br><span class="line">            <span class="comment">// 判断 合并 i-1 i-2 还是合并 i-3 i-2</span></span><br><span class="line">            <span class="comment">// 和上个方法一个道理</span></span><br><span class="line">            <span class="comment">// 尽量合并短的</span></span><br><span class="line">            <span class="keyword">if</span> (n &gt; <span class="number">0</span> &amp;&amp; runLen[n - <span class="number">1</span>] &lt; runLen[n + <span class="number">1</span>])</span><br><span class="line">                n--;</span><br><span class="line">            mergeAt(n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 合并栈中的第 i 个和第 i + 1 个 run</span></span><br><span class="line"><span class="comment">     * i 必须时倒数第二个或者倒数第三个</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">mergeAt</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> stackSize &gt;= <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">assert</span> i &gt;= <span class="number">0</span>;</span><br><span class="line">        <span class="type">assert</span> <span class="variable">i</span> <span class="operator">=</span>= stackSize - <span class="number">2</span> || i == stackSize - <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">base1</span> <span class="operator">=</span> runBase[i];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len1</span> <span class="operator">=</span> runLen[i];</span><br><span class="line">        <span class="type">int</span> <span class="variable">base2</span> <span class="operator">=</span> runBase[i + <span class="number">1</span>];</span><br><span class="line">        <span class="type">int</span> <span class="variable">len2</span> <span class="operator">=</span> runLen[i + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">assert</span> len1 &gt; <span class="number">0</span> &amp;&amp; len2 &gt; <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">assert</span> base1 + len1 == base2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 更新 run 的长度</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        runLen[i] = len1 + len2;</span><br><span class="line">        <span class="comment">// 如果准备进行归并的是倒数第二和倒数第三的序列, 那么还需要维护倒数第一序列的状态</span></span><br><span class="line">        <span class="keyword">if</span> (i == stackSize - <span class="number">3</span>) &#123;</span><br><span class="line">            runBase[i + <span class="number">1</span>] = runBase[i + <span class="number">2</span>];</span><br><span class="line">            runLen[i + <span class="number">1</span>] = runLen[i + <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        stackSize--;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 目前我们有 run1: [base1, base1 + len1) 和 run2 : [base2, base2 + len2)</span></span><br><span class="line"><span class="comment">    	 * 其中 base1 + len1 == base2</span></span><br><span class="line"><span class="comment">    	 * 首先尝试在 run1 中寻找一个索引 base1 + k</span></span><br><span class="line"><span class="comment">    	 * 使得 [base1 + k, base1 + len1) 中的每一个元素都比 run2 中的元素小</span></span><br><span class="line"><span class="comment">    	 * 从而减少实际需进行归并操作的 run 的长度</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> gallopRight(a[base2], a, base1, len1, <span class="number">0</span>, c);</span><br><span class="line">        <span class="keyword">assert</span> k &gt;= <span class="number">0</span>;</span><br><span class="line">        base1 += k;</span><br><span class="line">        len1 -= k;</span><br><span class="line">        <span class="comment">// 说明 run1 和 run2 已经是有序的了</span></span><br><span class="line">        <span class="keyword">if</span> (len1 == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 与上一段类似, 在 run2 中寻找索引 base2 + k</span></span><br><span class="line"><span class="comment">         * 使得 [base2 + k, base2 + len2) 中每一个元素都比 run1 中的元素大</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        len2 = gallopLeft(a[base1 + len1 - <span class="number">1</span>], a, base2, len2, len2 - <span class="number">1</span>, c);</span><br><span class="line">        <span class="keyword">assert</span> len2 &gt;= <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 说明 run1 和 run2 已经是有序的了</span></span><br><span class="line">        <span class="keyword">if</span> (len2 == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 合并剩余的元素, 长度短的 run 为基底.</span></span><br><span class="line">        <span class="keyword">if</span> (len1 &lt;= len2)</span><br><span class="line">            mergeLo(base1, len1, base2, len2);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            mergeHi(base1, len1, base2, len2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 查找最接近 key 的索引</span></span><br><span class="line"><span class="comment">     * 使用的二分查找, 加了一些优化</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key 查找的值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> a 要在其中搜索的数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> base 查找范围中的第一个元素的索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> len 查找范围的长度</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> hint 开始搜索的索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> c 比较器(排序规则)</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> k 使得 [base, base + k - 1] &lt; key &lt;= [base + k, base + len]</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="type">int</span> <span class="title function_">gallopLeft</span><span class="params">(T key, T[] a, <span class="type">int</span> base, <span class="type">int</span> len, <span class="type">int</span> hint,</span></span><br><span class="line"><span class="params">                                      Comparator&lt;? <span class="built_in">super</span> T&gt; c)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> len &gt; <span class="number">0</span> &amp;&amp; hint &gt;= <span class="number">0</span> &amp;&amp; hint &lt; len;</span><br><span class="line">        <span class="comment">// 在经典二分查找开始前, 先尝试缩小查找范围</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">lastOfs</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ofs</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (c.compare(key, a[base + hint]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 查看 key 属于哪个区间</span></span><br><span class="line">            <span class="comment">// [base + hint, base + hint + 1), [base + hint + 1, base + hint + 3), [base + hint + 3, base + hint + 7),[base + hint + 7, base + hint + 15)...  </span></span><br><span class="line">            <span class="comment">// 使 a[base+hint+lastOfs] &lt; key &lt;= a[base+hint+ofs]</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">maxOfs</span> <span class="operator">=</span> len - hint;</span><br><span class="line">            <span class="keyword">while</span> (ofs &lt; maxOfs &amp;&amp; c.compare(key, a[base + hint + ofs]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                lastOfs = ofs;</span><br><span class="line">                ofs = (ofs &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (ofs &lt;= <span class="number">0</span>)   <span class="comment">// 溢出</span></span><br><span class="line">                    ofs = maxOfs;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ofs &gt; maxOfs)</span><br><span class="line">                ofs = maxOfs;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 更新下标, 相对 hint 进行偏移</span></span><br><span class="line">            <span class="comment">// 之前的ofs和lastOfs都是相对于hint位置的, 现在把它重置为相对于base的位置</span></span><br><span class="line">            lastOfs += hint;</span><br><span class="line">            ofs += hint;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// key &lt;= a[base + hint]</span></span><br><span class="line">            <span class="comment">// 和上面同样的思路</span></span><br><span class="line">            <span class="comment">// 使 a[base+hint-ofs] &lt; key &lt;= a[base+hint-lastOfs]</span></span><br><span class="line">            <span class="keyword">final</span> <span class="type">int</span> <span class="variable">maxOfs</span> <span class="operator">=</span> hint + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (ofs &lt; maxOfs &amp;&amp; c.compare(key, a[base + hint - ofs]) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                lastOfs = ofs;</span><br><span class="line">                ofs = (ofs &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (ofs &lt;= <span class="number">0</span>)   <span class="comment">// 溢出</span></span><br><span class="line">                    ofs = maxOfs;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ofs &gt; maxOfs)</span><br><span class="line">                ofs = maxOfs;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 更新下标, 相对 hint 进行偏移</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> lastOfs;</span><br><span class="line">            lastOfs = hint - ofs;</span><br><span class="line">            ofs = hint - tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">assert</span> -<span class="number">1</span> &lt;= lastOfs &amp;&amp; lastOfs &lt; ofs &amp;&amp; ofs &lt;= len;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 在区间 [base + lastOfs, base + ofs) 上进行二分查找</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        lastOfs++;</span><br><span class="line">        <span class="keyword">while</span> (lastOfs &lt; ofs) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> lastOfs + ((ofs - lastOfs) &gt;&gt;&gt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (c.compare(key, a[base + m]) &gt; <span class="number">0</span>)</span><br><span class="line">                lastOfs = m + <span class="number">1</span>;  <span class="comment">// a[base + m] &lt; key</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                ofs = m;          <span class="comment">// key &lt;= a[base + m]</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">assert</span> <span class="variable">lastOfs</span> <span class="operator">=</span>= ofs;    <span class="comment">// so a[base + ofs - 1] &lt; key &lt;= a[base + ofs]</span></span><br><span class="line">        <span class="keyword">return</span> ofs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 与上个方法对称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="type">int</span> <span class="title function_">gallopRight</span><span class="params">(T key, T[] a, <span class="type">int</span> base, <span class="type">int</span> len,</span></span><br><span class="line"><span class="params">                                       <span class="type">int</span> hint, Comparator&lt;? <span class="built_in">super</span> T&gt; c)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> len &gt; <span class="number">0</span> &amp;&amp; hint &gt;= <span class="number">0</span> &amp;&amp; hint &lt; len;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">ofs</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">lastOfs</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (c.compare(key, a[base + hint]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// Gallop left until a[b+hint - ofs] &lt;= key &lt; a[b+hint - lastOfs]</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">maxOfs</span> <span class="operator">=</span> hint + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (ofs &lt; maxOfs &amp;&amp; c.compare(key, a[base + hint - ofs]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                lastOfs = ofs;</span><br><span class="line">                ofs = (ofs &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (ofs &lt;= <span class="number">0</span>)   <span class="comment">// int overflow</span></span><br><span class="line">                    ofs = maxOfs;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ofs &gt; maxOfs)</span><br><span class="line">                ofs = maxOfs;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Make offsets relative to b</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> lastOfs;</span><br><span class="line">            lastOfs = hint - ofs;</span><br><span class="line">            ofs = hint - tmp;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// a[b + hint] &lt;= key</span></span><br><span class="line">            <span class="comment">// Gallop right until a[b+hint + lastOfs] &lt;= key &lt; a[b+hint + ofs]</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">maxOfs</span> <span class="operator">=</span> len - hint;</span><br><span class="line">            <span class="keyword">while</span> (ofs &lt; maxOfs &amp;&amp; c.compare(key, a[base + hint + ofs]) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                lastOfs = ofs;</span><br><span class="line">                ofs = (ofs &lt;&lt; <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (ofs &lt;= <span class="number">0</span>)   <span class="comment">// int overflow</span></span><br><span class="line">                    ofs = maxOfs;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ofs &gt; maxOfs)</span><br><span class="line">                ofs = maxOfs;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Make offsets relative to b</span></span><br><span class="line">            lastOfs += hint;</span><br><span class="line">            ofs += hint;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">assert</span> -<span class="number">1</span> &lt;= lastOfs &amp;&amp; lastOfs &lt; ofs &amp;&amp; ofs &lt;= len;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * Now a[b + lastOfs] &lt;= key &lt; a[b + ofs], so key belongs somewhere to</span></span><br><span class="line"><span class="comment">         * the right of lastOfs but no farther right than ofs.  Do a binary</span></span><br><span class="line"><span class="comment">         * search, with invariant a[b + lastOfs - 1] &lt;= key &lt; a[b + ofs].</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        lastOfs++;</span><br><span class="line">        <span class="keyword">while</span> (lastOfs &lt; ofs) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> lastOfs + ((ofs - lastOfs) &gt;&gt;&gt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (c.compare(key, a[base + m]) &lt; <span class="number">0</span>)</span><br><span class="line">                ofs = m;          <span class="comment">// key &lt; a[b + m]</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                lastOfs = m + <span class="number">1</span>;  <span class="comment">// a[b + m] &lt;= key</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">assert</span> <span class="variable">lastOfs</span> <span class="operator">=</span>= ofs;    <span class="comment">// so a[b + ofs - 1] &lt;= key &lt; a[b + ofs]</span></span><br><span class="line">        <span class="keyword">return</span> ofs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 以稳定的方式合并两个相邻的 run.</span></span><br><span class="line"><span class="comment">     * a[base1] &gt; a[base2]&amp;&amp; 第一个 run 的最后一个元素比第二个 run 的所有元素都大.</span></span><br><span class="line"><span class="comment">     * 为了性能, 只有 len1 ≤ len2 时才调用此方法, 否则调用它的孪生兄弟 mergeHi.</span></span><br><span class="line"><span class="comment">     * 如果 len1 == len2 可以调用任意一个方法.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">mergeLo</span><span class="params">(<span class="type">int</span> base1, <span class="type">int</span> len1, <span class="type">int</span> base2, <span class="type">int</span> len2)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> len1 &gt; <span class="number">0</span> &amp;&amp; len2 &gt; <span class="number">0</span> &amp;&amp; base1 + len1 == base2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将第一个 run 复制到 tem</span></span><br><span class="line">        T[] a = <span class="built_in">this</span>.a; <span class="comment">// 出于性能考虑, 将类中的对象用本地变量形式声明出来</span></span><br><span class="line">        T[] tmp = ensureCapacity(len1);</span><br><span class="line">        <span class="comment">// 声明游标 cursor1 和 cursor2 分别指向两个序列头部</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">cursor1</span> <span class="operator">=</span> tmpBase; <span class="comment">// 第一个 run 的起始索引</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">cursor2</span> <span class="operator">=</span> base2;  <span class="comment">// 第二个 run 的起始索引</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">dest</span> <span class="operator">=</span> base1; </span><br><span class="line">        System.arraycopy(a, base1, tmp, cursor1, len1);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 对一些极端情况的处理</span></span><br><span class="line">        a[dest++] = a[cursor2++];</span><br><span class="line">        <span class="keyword">if</span> (--len2 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果 run2 只有一个元素</span></span><br><span class="line">            System.arraycopy(tmp, cursor1, a, dest, len1);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (len1 == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// 如果 run1 只有一个元素</span></span><br><span class="line">            System.arraycopy(a, cursor2, a, dest, len2);</span><br><span class="line">            <span class="comment">// 将 run2 放入合适位置后在其后面加上 run1 的元素</span></span><br><span class="line">            a[dest + len2] = tmp[cursor1];</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Comparator&lt;? <span class="built_in">super</span> T&gt; c = <span class="built_in">this</span>.c;  <span class="comment">// 使用局部变量, 提高性能</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">minGallop</span> <span class="operator">=</span> <span class="built_in">this</span>.minGallop; </span><br><span class="line">    outer:</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 一次元素比较中, 某个 run 的元素小, 算这个 run 赢了一次</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">count1</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 第一个 run 赢的次数</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">count2</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 第二个 run 赢的次数</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">             * D如果忽略 count1 和 count2 下面的循环就是经典的合并操作.</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">assert</span> len1 &gt; <span class="number">1</span> &amp;&amp; len2 &gt; <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">if</span> (c.compare(a[cursor2], tmp[cursor1]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    a[dest++] = a[cursor2++];</span><br><span class="line">                    <span class="comment">// 一个 run 赢了之后, 另一个 run 的 count 清零</span></span><br><span class="line">                    <span class="comment">// 所以 count 的实际意义为连赢的次数.</span></span><br><span class="line">                    count2++;</span><br><span class="line">                    count1 = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">if</span> (--len2 == <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    a[dest++] = tmp[cursor1++];</span><br><span class="line">                    count1++;</span><br><span class="line">                    count2 = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">if</span> (--len1 == <span class="number">1</span>)</span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">while</span> ((count1 | count2) &lt; minGallop);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">             * 某一个 run 连胜的次数太多了(&gt; minGallop), 进入 gallop 模式.</span></span><br><span class="line"><span class="comment">             * 接下来不再逐个比较, 而是通过 gallopRight 和 gallopLeft 比较.</span></span><br><span class="line"><span class="comment">             * 目的是加快合并的过程.</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">assert</span> len1 &gt; <span class="number">1</span> &amp;&amp; len2 &gt; <span class="number">0</span>;</span><br><span class="line">                <span class="comment">// gallopRight 返回的是索引的偏移量</span></span><br><span class="line">                <span class="comment">// 在此循环的逻辑下, 此返回值也恰好是 run1 连续赢的次数</span></span><br><span class="line">                count1 = gallopRight(a[cursor2], tmp, cursor1, len1, <span class="number">0</span>, c);</span><br><span class="line">                <span class="keyword">if</span> (count1 != <span class="number">0</span>) &#123;</span><br><span class="line">                    System.arraycopy(tmp, cursor1, a, dest, count1);</span><br><span class="line">                    dest += count1;</span><br><span class="line">                    cursor1 += count1;</span><br><span class="line">                    len1 -= count1;</span><br><span class="line">                    <span class="keyword">if</span> (len1 &lt;= <span class="number">1</span>) <span class="comment">// len1 == 1 || len1 == 0</span></span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125;</span><br><span class="line">                a[dest++] = a[cursor2++];</span><br><span class="line">                <span class="keyword">if</span> (--len2 == <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">break</span> outer;</span><br><span class="line">				<span class="comment">// 同理, run2</span></span><br><span class="line">                count2 = gallopLeft(tmp[cursor1], a, cursor2, len2, <span class="number">0</span>, c);</span><br><span class="line">                <span class="keyword">if</span> (count2 != <span class="number">0</span>) &#123;</span><br><span class="line">                    System.arraycopy(a, cursor2, a, dest, count2);</span><br><span class="line">                    dest += count2;</span><br><span class="line">                    cursor2 += count2;</span><br><span class="line">                    len2 -= count2;</span><br><span class="line">                    <span class="keyword">if</span> (len2 == <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125;</span><br><span class="line">                a[dest++] = tmp[cursor1++];</span><br><span class="line">                <span class="keyword">if</span> (--len1 == <span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">break</span> outer;</span><br><span class="line">                <span class="comment">// 动态调整minGallop的值</span></span><br><span class="line">                minGallop--;</span><br><span class="line">            &#125; <span class="keyword">while</span> (count1 &gt;= MIN_GALLOP | count2 &gt;= MIN_GALLOP);</span><br><span class="line">            <span class="keyword">if</span> (minGallop &lt; <span class="number">0</span>)</span><br><span class="line">                minGallop = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 离开 gallop 模式惩罚</span></span><br><span class="line">            <span class="comment">// 主要是为了优化, 避免连赢不多的情况进入 gallop</span></span><br><span class="line">            minGallop += <span class="number">2</span>;</span><br><span class="line">        &#125;  <span class="comment">// End of &quot;outer&quot; loop</span></span><br><span class="line">        <span class="built_in">this</span>.minGallop = minGallop &lt; <span class="number">1</span> ? <span class="number">1</span> : minGallop;  <span class="comment">// 写回字段</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (len1 == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">assert</span> len2 &gt; <span class="number">0</span>;</span><br><span class="line">            System.arraycopy(a, cursor2, a, dest, len2);</span><br><span class="line">            a[dest + len2] = tmp[cursor1]; <span class="comment">//  Last elt of run 1 to end of merge</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (len1 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(</span><br><span class="line">                <span class="string">&quot;Comparison method violates its general contract!&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">assert</span> <span class="variable">len2</span> <span class="operator">=</span>= <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">assert</span> len1 &gt; <span class="number">1</span>;</span><br><span class="line">            System.arraycopy(tmp, cursor1, a, dest, len1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 与 mergeLo 对称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">mergeHi</span><span class="params">(<span class="type">int</span> base1, <span class="type">int</span> len1, <span class="type">int</span> base2, <span class="type">int</span> len2)</span> &#123;</span><br><span class="line">        <span class="keyword">assert</span> len1 &gt; <span class="number">0</span> &amp;&amp; len2 &gt; <span class="number">0</span> &amp;&amp; base1 + len1 == base2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Copy second run into temp array</span></span><br><span class="line">        T[] a = <span class="built_in">this</span>.a; <span class="comment">// For performance</span></span><br><span class="line">        T[] tmp = ensureCapacity(len2);</span><br><span class="line">        <span class="type">int</span> <span class="variable">tmpBase</span> <span class="operator">=</span> <span class="built_in">this</span>.tmpBase;</span><br><span class="line">        System.arraycopy(a, base2, tmp, tmpBase, len2);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">cursor1</span> <span class="operator">=</span> base1 + len1 - <span class="number">1</span>;  <span class="comment">// Indexes into a</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">cursor2</span> <span class="operator">=</span> tmpBase + len2 - <span class="number">1</span>; <span class="comment">// Indexes into tmp array</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">dest</span> <span class="operator">=</span> base2 + len2 - <span class="number">1</span>;     <span class="comment">// Indexes into a</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Move last element of first run and deal with degenerate cases</span></span><br><span class="line">        a[dest--] = a[cursor1--];</span><br><span class="line">        <span class="keyword">if</span> (--len1 == <span class="number">0</span>) &#123;</span><br><span class="line">            System.arraycopy(tmp, tmpBase, a, dest - (len2 - <span class="number">1</span>), len2);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (len2 == <span class="number">1</span>) &#123;</span><br><span class="line">            dest -= len1;</span><br><span class="line">            cursor1 -= len1;</span><br><span class="line">            System.arraycopy(a, cursor1 + <span class="number">1</span>, a, dest + <span class="number">1</span>, len1);</span><br><span class="line">            a[dest] = tmp[cursor2];</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Comparator&lt;? <span class="built_in">super</span> T&gt; c = <span class="built_in">this</span>.c;  <span class="comment">// Use local variable for performance</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">minGallop</span> <span class="operator">=</span> <span class="built_in">this</span>.minGallop;    <span class="comment">//  &quot;    &quot;       &quot;     &quot;      &quot;</span></span><br><span class="line">    outer:</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">count1</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// Number of times in a row that first run won</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">count2</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// Number of times in a row that second run won</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">             * Do the straightforward thing until (if ever) one run</span></span><br><span class="line"><span class="comment">             * appears to win consistently.</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">assert</span> len1 &gt; <span class="number">0</span> &amp;&amp; len2 &gt; <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (c.compare(tmp[cursor2], a[cursor1]) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    a[dest--] = a[cursor1--];</span><br><span class="line">                    count1++;</span><br><span class="line">                    count2 = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">if</span> (--len1 == <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    a[dest--] = tmp[cursor2--];</span><br><span class="line">                    count2++;</span><br><span class="line">                    count1 = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">if</span> (--len2 == <span class="number">1</span>)</span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">while</span> ((count1 | count2) &lt; minGallop);</span><br><span class="line"></span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">             * One run is winning so consistently that galloping may be a</span></span><br><span class="line"><span class="comment">             * huge win. So try that, and continue galloping until (if ever)</span></span><br><span class="line"><span class="comment">             * neither run appears to be winning consistently anymore.</span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                <span class="keyword">assert</span> len1 &gt; <span class="number">0</span> &amp;&amp; len2 &gt; <span class="number">1</span>;</span><br><span class="line">                count1 = len1 - gallopRight(tmp[cursor2], a, base1, len1, len1 - <span class="number">1</span>, c);</span><br><span class="line">                <span class="keyword">if</span> (count1 != <span class="number">0</span>) &#123;</span><br><span class="line">                    dest -= count1;</span><br><span class="line">                    cursor1 -= count1;</span><br><span class="line">                    len1 -= count1;</span><br><span class="line">                    System.arraycopy(a, cursor1 + <span class="number">1</span>, a, dest + <span class="number">1</span>, count1);</span><br><span class="line">                    <span class="keyword">if</span> (len1 == <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125;</span><br><span class="line">                a[dest--] = tmp[cursor2--];</span><br><span class="line">                <span class="keyword">if</span> (--len2 == <span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">break</span> outer;</span><br><span class="line"></span><br><span class="line">                count2 = len2 - gallopLeft(a[cursor1], tmp, tmpBase, len2, len2 - <span class="number">1</span>, c);</span><br><span class="line">                <span class="keyword">if</span> (count2 != <span class="number">0</span>) &#123;</span><br><span class="line">                    dest -= count2;</span><br><span class="line">                    cursor2 -= count2;</span><br><span class="line">                    len2 -= count2;</span><br><span class="line">                    System.arraycopy(tmp, cursor2 + <span class="number">1</span>, a, dest + <span class="number">1</span>, count2);</span><br><span class="line">                    <span class="keyword">if</span> (len2 &lt;= <span class="number">1</span>)  <span class="comment">// len2 == 1 || len2 == 0</span></span><br><span class="line">                        <span class="keyword">break</span> outer;</span><br><span class="line">                &#125;</span><br><span class="line">                a[dest--] = a[cursor1--];</span><br><span class="line">                <span class="keyword">if</span> (--len1 == <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">break</span> outer;</span><br><span class="line">                minGallop--;</span><br><span class="line">            &#125; <span class="keyword">while</span> (count1 &gt;= MIN_GALLOP | count2 &gt;= MIN_GALLOP);</span><br><span class="line">            <span class="keyword">if</span> (minGallop &lt; <span class="number">0</span>)</span><br><span class="line">                minGallop = <span class="number">0</span>;</span><br><span class="line">            minGallop += <span class="number">2</span>;  <span class="comment">// Penalize for leaving gallop mode</span></span><br><span class="line">        &#125;  <span class="comment">// End of &quot;outer&quot; loop</span></span><br><span class="line">        <span class="built_in">this</span>.minGallop = minGallop &lt; <span class="number">1</span> ? <span class="number">1</span> : minGallop;  <span class="comment">// Write back to field</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (len2 == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">assert</span> len1 &gt; <span class="number">0</span>;</span><br><span class="line">            dest -= len1;</span><br><span class="line">            cursor1 -= len1;</span><br><span class="line">            System.arraycopy(a, cursor1 + <span class="number">1</span>, a, dest + <span class="number">1</span>, len1);</span><br><span class="line">            a[dest] = tmp[cursor2];  <span class="comment">// Move first elt of run2 to front of merge</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (len2 == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(</span><br><span class="line">                <span class="string">&quot;Comparison method violates its general contract!&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">assert</span> <span class="variable">len1</span> <span class="operator">=</span>= <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">assert</span> len2 &gt; <span class="number">0</span>;</span><br><span class="line">            System.arraycopy(tmp, tmpBase, a, dest - (len2 - <span class="number">1</span>), len2);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 为 tmp 分配空间</span></span><br><span class="line"><span class="comment">     * 出于性能考虑, 以指数方式增加</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> T[] ensureCapacity(<span class="type">int</span> minCapacity) &#123;</span><br><span class="line">        <span class="keyword">if</span> (tmpLen &lt; minCapacity) &#123;</span><br><span class="line">            <span class="comment">// 计算最小的大于 minCapacity 的 2 的幂</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">newSize</span> <span class="operator">=</span> minCapacity;</span><br><span class="line">            newSize |= newSize &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            newSize |= newSize &gt;&gt; <span class="number">2</span>;</span><br><span class="line">            newSize |= newSize &gt;&gt; <span class="number">4</span>;</span><br><span class="line">            newSize |= newSize &gt;&gt; <span class="number">8</span>;</span><br><span class="line">            newSize |= newSize &gt;&gt; <span class="number">16</span>;</span><br><span class="line">            newSize++;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (newSize &lt; <span class="number">0</span>) <span class="comment">// 不太可能, int 溢出</span></span><br><span class="line">                newSize = minCapacity;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                newSize = Math.min(newSize, a.length &gt;&gt;&gt; <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">            <span class="meta">@SuppressWarnings(&#123;&quot;unchecked&quot;, &quot;UnnecessaryLocalVariable&quot;&#125;)</span></span><br><span class="line">            T[] newArray = (T[])java.lang.reflect.Array.newInstance</span><br><span class="line">                (a.getClass().getComponentType(), newSize);</span><br><span class="line">            tmp = newArray;</span><br><span class="line">            tmpLen = newSize;</span><br><span class="line">            tmpBase = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      <!-- 打赏 -->
+       <!-- %- partial('donate') % -->
+      <iframe src="https://alioss.tang7o.cn/blog/simple/index.html" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe>
+        <div class='donate'>
+          <div class='imgs'> 
+            
+            
+          </div>
+        </div>
+      
+      <!-- 博客说明/协议 -->
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>本文作者： Tang7O</p>
+
+              
+            
+              
+                <p>本文链接：<a href=https://tang7o.cn/2021/07/13/TimSort%E6%BA%90%E7%A0%81/>https://tang7o.cn/2021/07/13/TimSort%E6%BA%90%E7%A0%81/</a></p>
+              
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议。转载请注明出处！</p>
+
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-04-13T21:31:48+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2022年4月13日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2021/07/13/TimSort%E6%BA%90%E7%A0%81/&title=TimSort源码 - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2021/07/13/TimSort%E6%BA%90%E7%A0%81/&title=TimSort源码 - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2021/07/13/TimSort%E6%BA%90%E7%A0%81/&title=TimSort源码 - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/08/20/MySQL%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>MySQL分页查询</p>
+          <p class='content'>limit基本格式查询第1条到第10条的数据的sql是：
+1select * from table limit 0,10;
+对应我们的需求就是查询第一页的数据：
+1select * from t...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/06/09/TCP/'>
+          <p class='title'>TCP<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1. 简介TCP是一个面向连接的、可靠的、基于字节流的传输层协议。
+
+面向连接：一定是「一对一」才能连接，不能像 UDP 协议可以一个主机同时向多个主机发送消息，也就是一对多是无法做到的；
+可靠...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-text">2. 核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%BA%90%E7%A0%81"><span class="toc-text">3. 源码</span></a></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+      </div>
+      
+
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br> 
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+        
+      
+    
+      
+        
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("04/01/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已等待你 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+      
+    
+      
+        本站使用
+        
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+     <a href="http://miit.gov.cn/" target="_blank">鲁ICP备-20012065号</a>
+  </footer>
+
+
+
+      <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/010.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/021.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/053.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover-backstretch') {
+          $('.cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "300000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "300000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = $.trim($('#pjax-comment-placeholder').text()) || "快来评论吧~";
+
+    let path = $.trim($('#pjax-comment-path').text());
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "BpQWR8MBbbiTMBF9ruh1AAU8-gzGzoHsz",
+      appKey: "nFdXC4cOWaRGSRdgLn4dcd6h",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'true',
+      enableQQ: 'true',
+      master: 'cdd4c31fd981df4d223579ee17d22303',
+      friends: 'a4cdcb2e57089ff280571d3c5db4b00a',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://tang7o.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://tang7o.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://tang7o.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+<!-- more -->
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      $('.s-top').unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+          
+          if ('.cover-backstretch') {
+            $('.cover-backstretch').backstretch("resize");
+            if($('.cover-wrapper').is(':hidden')){
+              $('.cover-backstretch').backstretch("pause");
+            }else{
+              $('.cover-backstretch').backstretch("next");
+            }
+          } else {
+            $.backstretch("resize");
+            if($('.cover-wrapper').is(':hidden')){
+              $.backstretch("pause");
+            }else{
+              $.backstretch("next");
+            }
+          }
+        
+        
+        
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+
+<!--浏览器搞笑标题
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+-->
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script> 
+
+<!--动态线条背景
+<script type="text/javascript"
+color="20,220,220" opacity='0.6' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+-->
+
+
+<!--单击显示文字
+	<script type="text/javascript" src="/js/click_show_text.js"></script> -->
+	
+	
+<!-- 数字雨 
+<canvas id="canvas" width="1440" height="900" ></canvas>
+<script type="text/javascript" src="/js/DigitalRain.js"></script>  -->
+

@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html>
+<script>
+	var _hmt = _hmt || [];
+	(function () {
+		var hm = document.createElement("script");
+		hm.src = "https://hm.baidu.com/hm.js?a1a9ed973d0d7eb4e044c1d97e47cb4e";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+<head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <meta name="baidu-site-verification" content="code-HjKZn1JVt2" />
+  <!-- 页面元数据 -->
+  
+  <title>JVM - Tang7O&#39;S BLOG</title>
+  
+    <meta name="keywords" content="JVM">
+  
+
+  
+    <meta name="description" content=" ">
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="Tang7O'S BLOG" type="application/atom+xml">
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css">
+
+  
+  
+
+  
+
+  
+    <link rel="shortcut icon" type='image/x-icon' href="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f423.svg">
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+  
+  <link href="https://cdn.jsdelivr.net/gh/inkss/common@1/css/roboto.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+  
+
+  
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  <!-- 脚本懒加载函数 -->
+  <script>
+  function loadScript(src, cb) {
+    var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+    var script = document.createElement('script');
+    script.setAttribute('type','text/javascript');
+    if (cb) script.onload = cb;
+    script.setAttribute('src', src);
+    HEAD.appendChild(script);
+  }
+  //https://github.com/filamentgroup/loadCSS
+  !function(c){"use strict";var e=function(e,t,n,r){var o,i=c.document,a=i.createElement("link");if(t)o=t;else{var d=(i.body||i.getElementsByTagName("head")[0]).childNodes;o=d[d.length-1]}var f=i.styleSheets;if(r)for(var l in r)r.hasOwnProperty(l)&&a.setAttribute(l,r[l]);a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(i.body)return t();setTimeout(function(){e(t)})}(function(){o.parentNode.insertBefore(a,t?o:o.nextSibling)});var s=function(e){for(var t=a.href,n=f.length;n--;)if(f[n].href===t)return e();setTimeout(function(){s(e)})};function u(){a.addEventListener&&a.removeEventListener("load",u),a.media=n||"all"}return a.addEventListener&&a.addEventListener("load",u),(a.onloadcssdefined=s)(u),a};"undefined"!=typeof exports?exports.loadCSS=e:c.loadCSS=e}("undefined"!=typeof global?global:this);
+  </script>
+  <script id="loadcss"></script>
+</head>
+
+<body>
+  <header class="l_header auto shadow blur " style='opacity: 0' >
+  <div class='container'>
+  <div class='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a class="s-comment fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+          
+          
+            Tang7O
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>博客
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-folder-open fa-fw'></i>分类
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fas fa-rss fa-fw'></i>归档
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fas fa-info-circle fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+  <div class="l_body">
+    <div class="l_cover">
+  
+    
+    
+        <div class='cover-wrapper post search' style="display: none;">
+          
+            <div class='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+      <img no-lazy class='logo' src='https://alioss.tang7o.cn/blog/logo.png'/>
+    
+    
+    
+  </div>
+  <div class='bottom'>
+    
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <input type="text" class="input u-search-input" placeholder="搜索一下?" />
+          <i class="icon fas fa-search fa-fw"></i>
+        </form>
+      </div>
+    
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw'></i><p>主页</p>
+            </a>
+          
+            <a href="/categories"
+              
+              
+              id="categories">
+              <i class='fas fa-folder-open fa-fw'></i><p>分类</p>
+            </a>
+          
+            <a href="/tags"
+              
+              
+              id="tags">
+              <i class='fas fa-tags fa-fw'></i><p>标签</p>
+            </a>
+          
+            <a href="/archives"
+              
+              
+              id="archives">
+              <i class='fas fa-rss fa-fw'></i><p>归档</p>
+            </a>
+          
+            <a href="/friends"
+              
+              
+              id="friends">
+              <i class='fas fa-link fa-fw'></i><p>友链</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+  
+
+    <div class='safearea'>
+      <div class='body-wrapper' id="pjax-container">
+        
+          <!--此文件用来存放一些不方便取值的变量--> 
+<!--思路大概是将值藏到重加载的区域内--> 
+ 
+ 
+ 
+<div id="pjax-data" style="display: none"> 
+  <div id="pjax-ispage">true</div> 
+  <div id="pjax-pageTitle">JVM</div> 
+  <div id="pjax-enable-cover">true</div> 
+  <div id="pjax-comment-path"></div> 
+  <div id="pjax-comment-placeholder"></div> 
+</div> 
+ 
+ 
+<script> 
+  // 处理封面 此时 jquery 还没加载 
+  if ("none" == "none") { // 移除封面 
+    document.getElementsByClassName('cover-wrapper')[0].style.display = "none"; 
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.add("show"); 
+  } else { 
+    if ("none" == "half") { // 半屏 
+      document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'half'); 
+      document.getElementsByClassName('scroll-down')[0].style.display = "none"; 
+    } else if ("none" == "full") { // 全屏 
+      document.getElementsByClassName('cover-wrapper')[0].setAttribute('id', 'full'); 
+      document.getElementsByClassName('scroll-down')[0].style.display = ""; 
+    } 
+    document.getElementsByClassName('cover-wrapper')[0].style.display = ""; 
+    document.getElementsByClassName('l_header', 'cover-wrapper')[0].classList.remove("show"); 
+  } 
+</script> 
+ 
+
+        
+        
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-post" id="post" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        JVM
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' href="tang7o.cn" rel="nofollow">
+    <img no-lazy src="https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0.1/assets/svg/1f468-1f3fc-200d-1f393.svg">
+    <p>Tang7O</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/Java/">Java</a><span class="sep"></span><a class="category-link" href="/categories/Java/JVM/">JVM</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年5月24日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="JVM" data-path="/2021/05/24/JVM/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div>
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">4.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">16分</span>
+      </span>
+    </span>
+</div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介:"></a>1. 简介:</h2><p>JVM(Java Virtual Machine), Java 虚拟机. JVM 是一种用于计算机设备的规范, 它是一个虚拟出来的计算机, 是通过在实际计算机上仿真模拟各种计算机功能来实现的.</p>
+<p><strong>JVM 的位置:</strong></p>
+<p><img src="位置.png" class="lazyload" data-srcset="位置.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p>
+<h2 id="2-JVM-运行时数据区"><a href="#2-JVM-运行时数据区" class="headerlink" title="2. JVM 运行时数据区"></a>2. JVM 运行时数据区</h2><p><img src="结构.png" class="lazyload" data-srcset="结构.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p>
+<h3 id="2-1-Java堆-heap"><a href="#2-1-Java堆-heap" class="headerlink" title="2.1 Java堆 (heap)"></a>2.1 Java堆 (heap)</h3><p>对大多数应用来说, Java堆 (heap) 是 Java虚拟机所管理的内存中<strong>最大</strong>的一块. Java 堆是被所有线程共享的一段内存区域, 在虚拟机启动时创建, 此内存区域的唯一作用就是存放对象实例, <strong>几乎所有的对象实例都在这里分配内存</strong>.</p>
+<p>Java堆是垃圾收集器 (GC) 管理的主要区域, 因此很多时候也被叫做 <strong>“GC堆”</strong>. </p>
+<p>如果从内存回收的角度看, 由于现在的收集器基本都是采用的分代收集算法, 所以 Java堆 还可以细分为: <strong>新生代和老年代, 新生代又可以细分为 Eden空间, From Survivor空间, To Survivor空间(8 : 1 : 1)</strong>.</p>
+<p>根据 Java 虚拟机规范的规定, Java堆可以出于物理上不连续的内存空间中, 只要逻辑上连续即可. 在实现时, 既可以实现成固定大小的, 又可以是可扩展的, 当前主流的虚拟机是按照可扩展来实现的.</p>
+<p>如果在堆中没有内存完成实例分配, 并且堆也无法再扩展时, 将会抛出 OutOfMemoryError 异常。</p>
+<p>可以通过以下的参数调整 Java堆的大小.</p>
+<p><strong>控制参数</strong>:</p>
+<ul>
+<li>-Xms设置堆的最小空间大小.</li>
+<li>-Xmx设置堆的最大空间大小.</li>
+<li>-XX:NewSize设置新生代最小空间大小.</li>
+<li>-XX:MaxNewSize设置新生代最大空间大小.</li>
+<li>-XX:PermSize设置永久代最小空间大小.</li>
+<li>-XX:MaxPermSize设置永久代最大空间大小.</li>
+<li>-Xss设置每个线程的堆栈大小.</li>
+</ul>
+<p><strong>永久代</strong>是 HotSpot虚拟机特有的概念, 在<strong>方法区</strong>的一种实现, 在 JDK8 中被完全废弃, 改用在本地内存中实现的元空间代替.</p>
+<p>虽然没有直接设置老年代的参数, 但是可以通过设置堆空间大小和新生代空间大小两个参数来直接控制.</p>
+<p>老年代空间大小 = 堆空间大小 - 新生代最大空间大小</p>
+<h3 id="2-2-方法区-Method-Area"><a href="#2-2-方法区-Method-Area" class="headerlink" title="2.2 方法区 (Method Area)"></a>2.2 方法区 (Method Area)</h3><p>方法区 (Method Area) 和 Java堆 一样是各个线程共享的内存区域. <strong>它用于存储已经被虚拟机加载的类信息, 常量, 静态变量, 即时编译器编译后的代码等数据</strong>. </p>
+<p>Java虚拟机规范对这个区域的限制非常宽松, 出了和 Java堆一样不需要连续的内存空间和可以选择固定大小或者可扩展外, 还可以选择不实现垃圾收集.  相对而言, 垃圾收集行为在这个区域是比较少出现的, <strong>这个区域的内存回收主要目标是针对常量池的回收和对类型的卸载</strong>. </p>
+<p>根据Java虚拟机规范的规定, 当方法区无法满足内存分配需求时, 将抛出OutOfMemoryError异常.</p>
+<h3 id="2-3-程序计数器-Program-Counter-Register"><a href="#2-3-程序计数器-Program-Counter-Register" class="headerlink" title="2.3 程序计数器 (Program Counter Register)"></a>2.3 程序计数器 (Program Counter Register)</h3><p>程序计数器 (Program Counter Register) 是一块较小的内存空间, 可以看作<strong>当前线程所执行字节码的行号指示器</strong>, 字节码解释器工作时通过改变计数器的值选取下一条执行指令, 分支,循环, 跳转, 线程恢复等功能都需要依赖计数器完成, <strong>是唯一在虚拟机规范中没有规定内存溢出情况的区域</strong>.</p>
+<p>由于 J<strong>ava虚拟机的多线程是通过线程轮流切换并分配处理器执行时间的方式实现</strong>的, 在任何一个确定的时间, 一个处理器 (对多核处理器来说是一个内核) 只会执行一条线程中的指令. 因此, 为了线程切换后能恢复到正确的执行位置, 每个线程都需要有一个独立的程序计数器, 各条线程之间的计数器互不影响, 独立存储, 我们称这种内存为 <strong>“线程私有”</strong> 的内存.</p>
+<h3 id="2-4-JVM栈-JVM-Stacks"><a href="#2-4-JVM栈-JVM-Stacks" class="headerlink" title="2.4 JVM栈 (JVM Stacks)"></a>2.4 JVM栈 (JVM Stacks)</h3><p>JVM栈 (JVM Stacks) 与程序计数器一样是 <strong>线程私有</strong> 的, <strong>它的生命周期和线程相同</strong>, <strong>JVM 栈描述的是 Java 方法执行的内存模型:</strong> 每个方法被执行的时候都会创建一个栈帧 (Stack Frame) 用于存储方法的局部变量表, 操作栈, 动态链接, 方法出口等信息. <strong>每一个方法被调用至执行完成的过程, 就对应着一个栈帧在虚拟机中从入栈到出栈的过程.</strong></p>
+<p>在 java虚拟机规范中, 对这个区域规定了两种异常: 如果线程请求的栈深度大于虚拟机所允许的深度, 将抛出 StackOverflowError 异常; 如果虚拟机栈可以动态扩展, 当扩展无法申请到足够的内存时会抛出 OutOfMemoryError 异常.</p>
+<h3 id="2-5-本地方法栈-Native-Method-Stacks"><a href="#2-5-本地方法栈-Native-Method-Stacks" class="headerlink" title="2.5 本地方法栈 (Native Method Stacks)"></a>2.5 本地方法栈 (Native Method Stacks)</h3><p>本地方法栈 (Native Method Stacks) 和虚拟机栈发挥的作用非常相似, 其区别不过是虚拟机栈为虚拟机执行 Java 方法 (字节码) 服务, <strong>而本地方法栈则是为虚拟机使用 Native 方法服务.</strong> 虚拟机规范中对本地方法栈中方法的使用的语言, 使用方式和数据结构并没有强制规定, 因此具体的虚拟机可以自由实现它. 与虚拟机栈一样, 本地方法区域也会抛出 StackOverflowError 和 OutOfMemoryError 异常.</p>
+<h2 id="3-垃圾收集"><a href="#3-垃圾收集" class="headerlink" title="3. 垃圾收集"></a>3. 垃圾收集</h2><h3 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1 简介"></a>3.1 简介</h3><p>垃圾收集  Garbage Collection 通常被称为 “GC”.</p>
+<p>JVM中, 程序计数器, 虚拟机栈, 本地方法栈都是随线程而生随线程而灭, 栈帧随着方法的进入和退出做入栈和出栈操作, 实现了自动的内存清理, 因此, 我们的内存垃圾回收主要集中于 java 堆和方法区中, 在程序运行期间, 这部分内存的分配和使用都是动态的.</p>
+<h3 id="3-2-对象存活判断"><a href="#3-2-对象存活判断" class="headerlink" title="3.2 对象存活判断"></a>3.2 对象存活判断</h3><p>判断对象是否存活有二种方式:</p>
+<ul>
+<li><strong>引用计数:</strong> 每个对象有一个引用计数属性, 新增一个引用时 + 1, 引用释放时 - 1, 计数为 0 可回收. 此方法实现简单, 但是无法解决循环引用问题.</li>
+<li><strong>可达性分析:</strong> 从 GC Roots 开始向下搜索, 搜索走过的路径称为引用链. 当一个对象到 GC Roots 没有任何引用链相连时, 则会被表为垃圾. </li>
+</ul>
+<p>可作为 GC Roots 的对象: </p>
+<ul>
+<li>虚拟机栈和本地方法栈中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+</ul>
+<p>引用类型: </p>
+<p><strong>强引用:</strong> 最常见的引用, 例如 <code>Object object = new Object()</code> 就属于强引用. 只要对象有强引用指向且 GC Roots 可达, 在内存回收时即使濒临内存耗尽也不会被回收.</p>
+<p><strong>软引用:</strong> 弱于强引用, 描述非必需对象. 在系统将发生内存溢出前,  会把软引用关联的对象加入回收范围以获取更多的空间. 常用来缓存服务器中间计算结果及不需要实时保存的用户行为.</p>
+<p><strong>弱引用:</strong> 弱于软引用, 描述非必需对象. 弱引用关联的对象只能生存到下次 YGC(对新生代进行 GC) 前, 当垃圾收集器开始工作时无论当前内存是否足够都会回收被弱引用关联的对象. 由于 YGC 具有不确定性, 因此弱引用何时被回收也不能确定.</p>
+<p><strong>虚引用:</strong> 最弱的引用, 定义完成后无法通过该引用获取对象. 唯一目的就是为了在对象被回收时收到一个通知. 虚引用必须与引用队列联合使用, 垃圾回收时如果出现虚引用, 就会在回收对象前把这个虚引用加入引用队列.</p>
+<h3 id="3-2-GC-算法"><a href="#3-2-GC-算法" class="headerlink" title="3.2 GC 算法"></a>3.2 GC 算法</h3><h4 id="3-2-1-标记-清除算法"><a href="#3-2-1-标记-清除算法" class="headerlink" title="3.2.1 标记 - 清除算法"></a>3.2.1 标记 - 清除算法</h4><p>“标记 - 清除” (Mark - Sweep)算法, 如它的名字一样, 算法分为 “标记” 和 “清除” 二个阶段: 首先标记出所有要被回收的对象, 在标记完成后统一回收所有被标记的对象. </p>
+<p>标记 - 清除是最基础的 GC 算法, 后续的收集算法都是基于这种思路并对其缺点进行改进而得到的.</p>
+<p><img src="标记-清除.png" class="lazyload" data-srcset="标记-清除.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p>
+<p>缺点: </p>
+<ul>
+<li>标记和清除的效率都不高.</li>
+<li>标记 - 清除之后会产生大量的不连续的内存碎片, 空间碎片太多可能会导致: 当程序运行过程中无法分配一个较大的空间而提前触发 GC.</li>
+</ul>
+<h4 id="3-2-2-复制算法"><a href="#3-2-2-复制算法" class="headerlink" title="3.2.2 复制算法"></a>3.2.2 复制算法</h4><p>为了<strong>解决内存碎片化问题</strong>, 将可用的内存分为大小相等的两块, 每次只用其中一块. 当这一块内存用完了, 就将还存活的对象复制到另一块上, 再把已使用过的内存空间一次清理掉.</p>
+<p>缺点: </p>
+<ul>
+<li>浪费了一半的内存空间.</li>
+</ul>
+<p><img src="标记-复制.png" class="lazyload" data-srcset="标记-复制.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p>
+<h4 id="3-2-3-标记-整理算法"><a href="#3-2-3-标记-整理算法" class="headerlink" title="3.2.3 标记 - 整理算法"></a>3.2.3 标记 - 整理算法</h4><p>标记 - 整理算法: 与标 - 清除算法类似, 只不过标记后不是直接对可回收的对象进行清理, 而是让所有存活的对象向一端移动, 然后清理掉端边界以外的内存.</p>
+<p><img src="标记-整理.png" class="lazyload" data-srcset="标记-整理.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="标记-整理"></p>
+<p>缺点:</p>
+<ul>
+<li>移动活对象, 尤其是在老年代这种都有大量对象存活的区域, 是一种极为负重的操作, 而且移动必须全程暂停用户线程. </li>
+</ul>
+<h3 id="3-3-垃圾收集器"><a href="#3-3-垃圾收集器" class="headerlink" title="3.3 垃圾收集器"></a>3.3 垃圾收集器</h3><h4 id="3-3-1-Serial收集器"><a href="#3-3-1-Serial收集器" class="headerlink" title="3.3.1 Serial收集器"></a>3.3.1 Serial收集器</h4><p>最基础,最稳定以及效率高的收集器, 单线程工作, 只用<strong>一条 GC 线程进行垃圾回收</strong>, 进行垃圾收集必须停止一切用户线程(Stop The World).</p>
+<p>简单高效, 对于内存受限的环境它是所有收集器中额外内存消耗最小的, 对于处理器核心较少的环境, Serial 由于没有线程交互开销, 可获得最高的单线程收集效率.</p>
+<p><strong>适合客户端使用.</strong></p>
+<h4 id="3-3-2-ParNew-收集器"><a href="#3-3-2-ParNew-收集器" class="headerlink" title="3.3.2 ParNew 收集器"></a>3.3.2 ParNew 收集器</h4><p>ParNew收集器其实就是Serial收集器的多线程版本. 清理过程需要 Stop The World.</p>
+<p>ParNew 追求”低停顿时间”, 与 Serial 唯一的区别就是使用了多线程进行垃圾收集, 在多 CPU 环境下性能比 Serial 会有一定的提升; 但<strong>线程切换需要额外开销</strong>, 因此在单 CPU 环境下表现不如 Serial.</p>
+<h4 id="3-3-3-Parallel-收集器"><a href="#3-3-3-Parallel-收集器" class="headerlink" title="3.3.3 Parallel 收集器"></a>3.3.3 Parallel 收集器</h4><p>Parallel Scavenge收集器类似ParNew收集器, Parallel收集器更关注系统的<strong>吞吐量</strong>, 吞吐量就是处理器用于运行用户代码的时间与处理器消耗总时间的比值.</p>
+<h4 id="3-3-4-Serial-Old-垃圾收集器"><a href="#3-3-4-Serial-Old-垃圾收集器" class="headerlink" title="3.3.4 Serial Old 垃圾收集器"></a>3.3.4 Serial Old 垃圾收集器</h4><p>Serial 的老年代版本, 都是单线程收集器, 只启用一条 GC 线程.</p>
+<p>和 Serial 的区别: Serial Old 工作在老年代, 使用 “标记-整理”算法; Serial 工作在新生代, 使用复制算法.</p>
+<h4 id="3-3-5-Parallel-Old-收集器"><a href="#3-3-5-Parallel-Old-收集器" class="headerlink" title="3.3.5 Parallel Old 收集器"></a>3.3.5 Parallel Old 收集器</h4><p>Parallel Old是Parallel Scavenge收集器的老年代版本, 使用多线程和”标记-整理” 算法, 在 JDK 1.6 提供.</p>
+<h4 id="3-3-6-CMS-收集器"><a href="#3-3-6-CMS-收集器" class="headerlink" title="3.3.6 CMS 收集器"></a>3.3.6 CMS 收集器</h4><p>CMS(Concurrent Mark Sweep)收集器,以获取最短回收停顿时间为目标, 基于标记-清除算法, 过程相对复杂, 分为四个步骤:</p>
+<ul>
+<li>初始标记: Stop The World, 仅使用一条初始标记线程对所有与 GC Roots 直接关联的对象进行标记.</li>
+<li>并发标记: 使用<strong>多条</strong>标记线程, 与用户线程并发执行. 此过程进行可达性分析, 标记出所有废弃对象, 速度很慢. </li>
+<li>重新标记: Stop The World, 使用多条标记线程并发执行, 将并发标记期间出现的废弃对象标记出来.</li>
+<li>并发清除: 只使用一条 GC 线程, 与用户线程并发执行, 清除标记的对象. 这个过程非常耗时.</li>
+</ul>
+<p>优点: 并发收集, 低停顿</p>
+<p>缺点: </p>
+<ul>
+<li>并发阶段会降低吞吐量</li>
+<li>无法处理浮动垃圾, 导致频繁 Full GC</li>
+<li>产生空间碎片</li>
+</ul>
+<h4 id="3-3-7-G1-收集器"><a href="#3-3-7-G1-收集器" class="headerlink" title="3.3.7 G1 收集器"></a>3.3.7 G1 收集器</h4><p>G1 是一款<strong>面向服务端应用</strong>的垃圾收集器, 它没有新生代和老年代的概念, 而是将堆划分为一块块独立的 Region. 当要进行垃圾收集时, 首先计算每个 Region 中垃圾的数量, 每次都从垃圾回收价值最大的 Region 开始回收, 因此可以获得最大的回收效率.</p>
+<p>从整体上看, G1 是基于”标记-整理”算法实现的收集器, 从局部 (两个 Region 之间) 上看是基于”复制”算法实现的, 这意味着运行期间不会产生内存碎片.</p>
+<p>每个 Region 中都有一个 Remembered Set, 用于记录本区域中所有对象的引用所在的区域, 进行可达性分析时, 只要在 GC Roots 中再加上 Remembered Set 即可防止对整个堆内存进行遍历.</p>
+<p>如果不计算维护 Remembered Set 的操作, G1 收集器的工作过程可以分为一下几个步骤:</p>
+<ul>
+<li>初始标记: Stop The World, 仅使用一条初始标记线程对所有与 GC Roots 直接关联的对象进行标记.</li>
+<li>并发标记: 使用<strong>一条</strong>标记线程, 与用户线程并发执行. 此过程进行可达性分析, 标记出所有废弃对象, 速度很慢. </li>
+<li>最终标记: Stop The world, 使用多条线程并发执行.</li>
+<li>筛选回收: 回收废弃对象, 此时也要 Stop The world, 并使用多条筛选回收线程并发执行.</li>
+</ul>
+<h2 id="4-内存分配与回收策略"><a href="#4-内存分配与回收策略" class="headerlink" title="4. 内存分配与回收策略"></a>4. 内存分配与回收策略</h2><p>对象只要分配在新生代的 Eden 区域, 少数情况下可能直接分配在老年代, <strong>分配规则不固定</strong>, 取决于当前使用的垃圾收集器组合以及相关的参数配置.</p>
+<h4 id="4-1-对象优先在-Eden-分配"><a href="#4-1-对象优先在-Eden-分配" class="headerlink" title="4.1 对象优先在 Eden 分配"></a>4.1 对象优先在 Eden 分配</h4><p>大多数情况下, 对象在新生代 Eden 区中分配, 当 Eden 没有足够的内存空间进行分配时, 虚拟机将发起一次 Minor GC.</p>
+<p>Minor GC 和 Major GC/Full GC:</p>
+<ul>
+<li>Minor GC: 回收新生代 (包括 Eden 和 Survivor 区域), 因为 Java 对象大多都具备朝生息灭的特性, 所以 Minor GC 非常频繁, 一般回收速度也比较快.</li>
+<li>Major GC/Full GC: 回收老年代, 出现了 Major GC 经常会伴随着至少一次的 Minor GC, 但非绝对. Major GC 的速度一般会比 Minor GC 慢 10 倍以上.</li>
+</ul>
+<blockquote>
+<p>在 JVM 规范中, Major GC 和 Full GC 没有正式的定义, 所以有人也简单的认为 Major GC 清理老年代, Full GC 清理整个内存堆.</p>
+</blockquote>
+<h4 id="4-2-大对象直接进入老年代"><a href="#4-2-大对象直接进入老年代" class="headerlink" title="4.2 大对象直接进入老年代"></a>4.2 大对象直接进入老年代</h4><p>大对象是指需要大量连续内存空间的 Java 对象, 如很长的字符串或数据.</p>
+<p>出现大对象会导致内存还有不少空间就提前触发垃圾收集以获取足够的连续空间来”放置”它们. </p>
+<p>虚拟机提供了一个 -XX:PretenureSizeThreshold 参数, 使大于设置值的对象直接在老年代分配, 避免在 Eden 以及两个 Survivor 区之间发生大量的内存复制.</p>
+<h4 id="4-3-长期存活的对象进入老年代"><a href="#4-3-长期存活的对象进入老年代" class="headerlink" title="4.3 长期存活的对象进入老年代"></a>4.3 长期存活的对象进入老年代</h4><p>JVM 给每个对象定义了一个对象年龄计数器, 新生代发生 Minor GC 后, 存活下来的对象年龄 + 1, 当年龄超过一定值时, 就将该对象移入老年代.</p>
+<p>使用 -XX:MaxTenuringThreshold 设置新生代的最大年龄, 只要超过该参数的新生代对象都会被转移到老年代中去.</p>
+<h4 id="4-4-动态对象年龄判定"><a href="#4-4-动态对象年龄判定" class="headerlink" title="4.4 动态对象年龄判定"></a>4.4 动态对象年龄判定</h4><p>如果当新生代的 Survivor 中, 相同年龄的所有对象大小的总和大于 Survivor 空间的一半, 年龄大于等于该年龄的对象就可以直接进入老年代, 无序等到 MaxTenuringThreshold 中要求的值.</p>
+<p>注意: 计算的年龄是累计和.</p>
+<p>例如:</p>
+<p>年龄 1 的对象占 33%</p>
+<p>年龄 2 的对象占 33%</p>
+<p>年龄 3 的对象占 34%</p>
+<p>年龄 1 + 年龄 2 = 33% + 33% = 66% &gt; 50% 所以年龄大于等于 2 的对象都会进入老年代.</p>
+<h4 id="4-5-空间分配担保"><a href="#4-5-空间分配担保" class="headerlink" title="4.5 空间分配担保"></a>4.5 空间分配担保</h4><p>只要老年代的连续空间大于新生代对象总大小或者历届晋升的平均大小, 就会进行 Minor GC, 否则进行 Full GC.</p>
+<p>通过清理老年代中废弃数据来扩大老年代空间, 以便给新生代作担保. 这个过程就是分配担保.</p>
+<h4 id="4-6-触发-Full-GC-的情况"><a href="#4-6-触发-Full-GC-的情况" class="headerlink" title="4.6 触发 Full GC 的情况"></a>4.6 触发 Full GC 的情况</h4><ul>
+<li><p>调用 System.gc() 方法</p>
+<p>此方法的调用是建议 JVM 进行 Full GC, <strong>只是建议并非一定</strong>.</p>
+</li>
+<li><p>老年代空间不足</p>
+<p>老年代空间不足时会触发 Full GC, 若 Full GC 后空间依然不足, 会抛出: <code>java.lang.OutOfMemoryError: Java heap space</code>.</p>
+</li>
+<li><p>永久代空间不足</p>
+<p>JVM 规范中运行时数据区域中的方法区, 在 HotSpot 虚拟机中也被称为永久代, 存放一下类信息, 常量, 静态变量等数据, 当系统要加载的类, 反射的类, 和调用的方法比较多使, 永久代可能会被占满, 会触发 Full GC. 如果经过 Full GC 空间依然不足, 会抛出: <code>java.lang.OutOfMemoryError: PermGen space</code></p>
+</li>
+<li><p>CMS GC 时出现 promotion failed 和 concurrent mode failure</p>
+<p>promotion failed, 就是上文所说的担保失败, 而 concurrent mode failure 是执行 CMS GC 的过程中同时有对象要放入老年代, 而此时老年代空间不足造成的.</p>
+</li>
+<li><p>统计得到的 Minor GC 晋升到旧生代的平均大小大于老年代的剩余空间</p>
+</li>
+</ul>
+
+  
+  
+    
+    <div class='footer'>
+      
+      
+      <!-- 打赏 -->
+       <!-- %- partial('donate') % -->
+      <iframe src="https://alioss.tang7o.cn/blog/simple/index.html" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe>
+        <div class='donate'>
+          <div class='imgs'> 
+            
+            
+          </div>
+        </div>
+      
+      <!-- 博客说明/协议 -->
+      
+        <div class='copyright'>
+          <blockquote>
+            
+              
+                <p>本文作者： Tang7O</p>
+
+              
+            
+              
+                <p>本文链接：<a href=https://tang7o.cn/2021/05/24/JVM/>https://tang7o.cn/2021/05/24/JVM/</a></p>
+              
+            
+              
+                <p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议。转载请注明出处！</p>
+
+              
+            
+          </blockquote>
+        </div>
+      
+      
+    </div>
+  
+  
+    
+
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-04-13T21:31:48+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2022年4月13日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/JVM/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>JVM</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://tang7o.cn/2021/05/24/JVM/&title=JVM - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://tang7o.cn/2021/05/24/JVM/&title=JVM - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://tang7o.cn/2021/05/24/JVM/&title=JVM - Tang7O'S BLOG&summary="
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" class="lazyload" data-srcset="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </div>
+
+
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/06/09/TCP/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>TCP</p>
+          <p class='content'>1. 简介TCP是一个面向连接的、可靠的、基于字节流的传输层协议。
+
+面向连接：一定是「一对一」才能连接，不能像 UDP 协议可以一个主机同时向多个主机发送消息，也就是一对多是无法做到的；
+可靠...</p>
+        </a>
+      
+      
+        <a class='next' href='/2021/05/06/Java%E9%9B%86%E5%90%88LinkedList/'>
+          <p class='title'>Java集合LinkedList<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>1.概述1.1 说明作者水平有限, 如有错误还望各位指正.
+本文源码来自: JDK8.
+1.2 简介LinkedList 是非线程安全的, 允许元素为 null 的双向链表.
+底层结构是链表, ...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+  <script>
+  // https://github.com/theme-next/hexo-theme-next/blob/master/layout/_third-party/math/mathjax.swig
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.0/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    // 文章章节标题不能为 “MathJax” ，否则会报错。
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-text">1. 简介:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-JVM-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-text">2. JVM 运行时数据区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Java%E5%A0%86-heap"><span class="toc-text">2.1 Java堆 (heap)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%96%B9%E6%B3%95%E5%8C%BA-Method-Area"><span class="toc-text">2.2 方法区 (Method Area)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8-Program-Counter-Register"><span class="toc-text">2.3 程序计数器 (Program Counter Register)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-JVM%E6%A0%88-JVM-Stacks"><span class="toc-text">2.4 JVM栈 (JVM Stacks)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88-Native-Method-Stacks"><span class="toc-text">2.5 本地方法栈 (Native Method Stacks)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86"><span class="toc-text">3. 垃圾收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%AE%80%E4%BB%8B"><span class="toc-text">3.1 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%AF%B9%E8%B1%A1%E5%AD%98%E6%B4%BB%E5%88%A4%E6%96%AD"><span class="toc-text">3.2 对象存活判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-GC-%E7%AE%97%E6%B3%95"><span class="toc-text">3.2 GC 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-text">3.2.1 标记 - 清除算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-text">3.2.2 复制算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-text">3.2.3 标记 - 整理算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3 垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-Serial%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3.1 Serial收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-ParNew-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3.2 ParNew 收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3-Parallel-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3.3 Parallel 收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4-Serial-Old-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3.4 Serial Old 垃圾收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-5-Parallel-Old-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3.5 Parallel Old 收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-6-CMS-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3.6 CMS 收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-7-G1-%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">3.3.7 G1 收集器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6%E7%AD%96%E7%95%A5"><span class="toc-text">4. 内存分配与回收策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-%E5%AF%B9%E8%B1%A1%E4%BC%98%E5%85%88%E5%9C%A8-Eden-%E5%88%86%E9%85%8D"><span class="toc-text">4.1 对象优先在 Eden 分配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E5%A4%A7%E5%AF%B9%E8%B1%A1%E7%9B%B4%E6%8E%A5%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="toc-text">4.2 大对象直接进入老年代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E9%95%BF%E6%9C%9F%E5%AD%98%E6%B4%BB%E7%9A%84%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3"><span class="toc-text">4.3 长期存活的对象进入老年代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-%E5%8A%A8%E6%80%81%E5%AF%B9%E8%B1%A1%E5%B9%B4%E9%BE%84%E5%88%A4%E5%AE%9A"><span class="toc-text">4.4 动态对象年龄判定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-%E7%A9%BA%E9%97%B4%E5%88%86%E9%85%8D%E6%8B%85%E4%BF%9D"><span class="toc-text">4.5 空间分配担保</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-6-%E8%A7%A6%E5%8F%91-Full-GC-%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-text">4.6 触发 Full GC 的情况</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+      </div>
+      
+
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+
+        </div>
+      
+    
+      
+        <br> 
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+        
+      
+    
+      
+        
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("04/01/2020 17:38:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "本站已等待你 "+dnum+" 天 "; 
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+    } 
+setInterval("createtime()",250);
+</script>
+      
+    
+      
+        本站使用
+        
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.0.0-rc.4" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+     <a href="http://miit.gov.cn/" target="_blank">鲁ICP备-20012065号</a>
+  </footer>
+
+
+
+      <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+  </div>
+  <div>
+    <!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    setTimeout(function() {
+      loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+    }, 1);
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+        var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/010.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/021.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/053.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg"];
+        if ('true' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+        if ('.cover-backstretch') {
+          $('.cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "300000",
+            fade: "1500"
+          });
+        } else {
+          $.backstretch(
+            imgs,
+          {
+            duration: "300000",
+            fade: "1500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+  <script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+    setTimeout(function() {
+      loadScript('/js/issues.js');
+    }, 1);
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+</script>
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+  
+    <script>
+      window.FPConfig = {
+        delay: 0,
+        ignoreKeywords: [],
+        maxRPS: 5,
+        hoverDelay: 25
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.btn-copy', {
+        target: function (trigger) {
+            return trigger.nextElementSibling
+        }
+    });
+    function wait(callback, seconds) {
+        var timelag = null;
+        timelag = window.setTimeout(callback, seconds)
+    }
+    function pjax_initCopyCode() {
+		if($(".highlight .code pre").length+$(".article pre code").length==0)return;
+        var copyHtml = '';
+        copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+        copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+        copyHtml += '</button>';
+        $(".highlight .code pre").before(copyHtml);
+        $(".article pre code").before(copyHtml);
+        clipboard.off('success').on('success', function (e) {
+            let $btn = $(e.trigger);
+            $btn.addClass('copied');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-check-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPIED';
+            wait(function () {
+                $icon.removeClass('fa-check-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        });
+        clipboard.off('error').on('error', function (e) {
+            e.clearSelection();
+            let $btn = $(e.trigger);
+            $btn.addClass('copy-failed');
+            let $icon = $($btn.find('i'));
+            $icon.removeClass('fa-copy');
+            $icon.addClass('fa-times-circle');
+            let $span = $($btn.find('span'));
+            $span[0].innerText = 'COPY FAILED';
+            wait(function () {
+                $icon.removeClass('fa-times-circle');
+                $icon.addClass('fa-copy');
+                $span[0].innerText = 'COPY'
+            }, 2000)
+        })
+    }
+    $(function () {
+        pjax_initCopyCode()
+    });
+</script>
+
+
+
+
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/gh/HCLonely/Valine@latest/dist/Valine.min.js"></script>
+
+
+<script>
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link'.split(',').filter(function (item) {
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick', 'mail', 'link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function (item) {
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+
+    let pagePlaceholder = $.trim($('#pjax-comment-placeholder').text()) || "快来评论吧~";
+
+    let path = $.trim($('#pjax-comment-path').text());
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+
+    var valine = new Valine();
+    valine.init({
+      el: '#valine_container',
+      meta: meta,
+      placeholder: pagePlaceholder,
+      path: path,
+      appId: "BpQWR8MBbbiTMBF9ruh1AAU8-gzGzoHsz",
+      appKey: "nFdXC4cOWaRGSRdgLn4dcd6h",
+      pageSize: '10',
+      avatar: 'robohash',
+      lang: 'zh-cn',
+      visitor: 'true',
+      highlight: 'true',
+      mathJax: 'true',
+      enableQQ: 'true',
+      master: 'cdd4c31fd981df4d223579ee17d22303',
+      friends: 'a4cdcb2e57089ff280571d3c5db4b00a',
+      requiredFields: requiredFields,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps
+    })
+  }
+
+  $(function () {
+    pjax_valine();
+  });
+</script>
+
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+
+  
+    
+<script src="/js/search.js"></script>
+
+  
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+(function ($) {
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+})(jQuery);
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://tang7o.cn' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://tang7o.cn' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://tang7o.cn' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+<!-- more -->
+
+
+    
+      
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+<!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
+    <script>
+      window.ShowLoading = function() {
+        NProgress.start();
+      };
+      window.HideLoading = function() {
+        NProgress.done();
+      }
+    </script>
+  
+</div>
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+      $('.l_header .switcher .s-search').removeClass('active'); // 关闭移动端激活的搜索框
+      $('.l_header').removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      $('.wrapper').removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      $('.s-top').unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+      window.ShowLoading();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      // 关于百度统计对 SPA 页面的处理：
+      // 方案一：百度统计>管理>单页应用设置中，打开开启按钮即可对SPA进行统计。 https://tongji.baidu.com/web/help/article?id=324
+      // 方案二：取消注释下列代码。 https://tongji.baidu.com/web/help/article?id=235
+      // 
+
+      // 关于谷歌统计对 SPA 页面的处理：
+      // 当应用以动态方式加载内容并更新地址栏中的网址时，也应该更新通过 gtag.js 存储的网页网址。
+      // https://developers.google.cn/analytics/devguides/collection/gtagjs/single-page-applications?hl=zh-cn
+      
+
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+          if (typeof $.fancybox == "undefined") {
+            SCload_fancybox();
+          } else {
+            pjax_fancybox();
+          }
+        
+          
+          if ('.cover-backstretch') {
+            $('.cover-backstretch').backstretch("resize");
+            if($('.cover-wrapper').is(':hidden')){
+              $('.cover-backstretch').backstretch("pause");
+            }else{
+              $('.cover-backstretch').backstretch("next");
+            }
+          } else {
+            $.backstretch("resize");
+            if($('.cover-wrapper').is(':hidden')){
+              $.backstretch("pause");
+            }else{
+              $.backstretch("next");
+            }
+          }
+        
+        
+        
+        
+          if (typeof IssuesAPI == "undefined") {
+            loadIssuesJS();
+          }
+        
+        
+          pjax_initCopyCode();
+        
+        
+          pjax_valine();
+        
+        
+        
+        
+        
+      } catch (e) {
+        console.log(e);
+      }
+      window.HideLoading();
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.HideLoading();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+
+    
+  </div>
+</body>
+</html>
+
+<!--浏览器搞笑标题
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+-->
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/love.js"></script> 
+
+<!--动态线条背景
+<script type="text/javascript"
+color="20,220,220" opacity='0.6' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+-->
+
+
+<!--单击显示文字
+	<script type="text/javascript" src="/js/click_show_text.js"></script> -->
+	
+	
+<!-- 数字雨 
+<canvas id="canvas" width="1440" height="900" ></canvas>
+<script type="text/javascript" src="/js/DigitalRain.js"></script>  -->
+
