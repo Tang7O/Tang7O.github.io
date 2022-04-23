@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title>MySQL order by limit同时使用的问题</title>
+      <link href="/2022/04/23/MySQL-orderby-limit%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8/"/>
+      <url>/2022/04/23/MySQL-orderby-limit%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://dev.mysql.com/doc/refman/5.7/en/limit-optimization.html">MySQL文档原文</a></p><p>有一定英语阅读能力的读者，可以直接去读文档。</p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>如果<code>order by</code>排序属性的值不唯一，<code>order by</code>与<code>limit</code>同时使用可能会出现查询结果不同的现象。例如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM ratings ORDER BY category;</span><br><span class="line">+----+----------+--------+</span><br><span class="line">| id | category | rating |</span><br><span class="line">+----+----------+--------+</span><br><span class="line">|  1 |        1 |    4.5 |</span><br><span class="line">|  5 |        1 |    3.2 |</span><br><span class="line">|  3 |        2 |    3.7 |</span><br><span class="line">|  4 |        2 |    3.5 |</span><br><span class="line">|  6 |        2 |    3.5 |</span><br><span class="line">|  2 |        3 |    5.0 |</span><br><span class="line">|  7 |        3 |    2.7 |</span><br><span class="line">+----+----------+--------+</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM ratings ORDER BY category LIMIT 5;</span><br><span class="line">+----+----------+--------+</span><br><span class="line">| id | category | rating |</span><br><span class="line">+----+----------+--------+</span><br><span class="line">|  1 |        1 |    4.5 |</span><br><span class="line">|  5 |        1 |    3.2 |</span><br><span class="line">|  4 |        2 |    3.5 |</span><br><span class="line">|  3 |        2 |    3.7 |</span><br><span class="line">|  6 |        2 |    3.5 |</span><br><span class="line">+----+----------+--------+</span><br></pre></td></tr></table></figure><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>文档原文如下：</p><blockquote><p>If you combine <code>LIMIT *</code>row_count<code>*</code> with <code>ORDER BY</code>, MySQL stops sorting as soon as it has found the first <em><code>row_count</code></em> rows of the sorted result, rather than sorting the entire result. If ordering is done by using an index, this is very fast. If a filesort must be done, all rows that match the query without the <code>LIMIT</code> clause are selected, and most or all of them are sorted, before the first <em><code>row_count</code></em> are found. After the initial rows have been found, MySQL does not sort any remainder of the result set.</p><p>One manifestation of this behavior is that an <code>ORDER BY</code> query with and without <code>LIMIT</code> may return rows in different order, as described later in this section.</p></blockquote><p>如果你将LIMIT <strong>row_count</strong>子句与ORDER BY子句组合在一起使用的话，MySQL会在找到排序结果的第一个<strong>row_count</strong>行后立即停止排序，而不是对整个结果进行排序。如果使用索引来完成排序，这将非常快。如果必须执行文件排序，则在找到第一个<strong>row_count</strong>行之前，选择所有与查询匹配但不包括LIMIT子句的行，并对其中大部分或所有行进行排序。一旦找到第一个<strong>row_count</strong>之后，MySQL不会对结果集的任何剩余部分进行排序。</p><p>这种行为的一种表现形式是，一个ORDER BY查询带或者不带LIMIT可能返回行的顺序是不一样的。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>在<code>order by</code>子句中包含其他列以使顺序具有确定性。</p><p>例如，假如id的值是唯一的，你可以通过下面的方式解决此问题：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM ratings ORDER BY category, id;</span><br><span class="line">+----+----------+--------+</span><br><span class="line">| id | category | rating |</span><br><span class="line">+----+----------+--------+</span><br><span class="line">|  1 |        1 |    4.5 |</span><br><span class="line">|  5 |        1 |    3.2 |</span><br><span class="line">|  3 |        2 |    3.7 |</span><br><span class="line">|  4 |        2 |    3.5 |</span><br><span class="line">|  6 |        2 |    3.5 |</span><br><span class="line">|  2 |        3 |    5.0 |</span><br><span class="line">|  7 |        3 |    2.7 |</span><br><span class="line">+----+----------+--------+</span><br><span class="line"></span><br><span class="line">mysql&gt; SELECT * FROM ratings ORDER BY category, id LIMIT 5;</span><br><span class="line">+----+----------+--------+</span><br><span class="line">| id | category | rating |</span><br><span class="line">+----+----------+--------+</span><br><span class="line">|  1 |        1 |    4.5 |</span><br><span class="line">|  5 |        1 |    3.2 |</span><br><span class="line">|  3 |        2 |    3.7 |</span><br><span class="line">|  4 |        2 |    3.5 |</span><br><span class="line">|  6 |        2 |    3.5 |</span><br><span class="line">+----+----------+--------+</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTTPS解析</title>
+      <link href="/2022/04/22/HTTPS%E8%A7%A3%E6%9E%90/"/>
+      <url>/2022/04/22/HTTPS%E8%A7%A3%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h2 id="HTTPS是什么"><a href="#HTTPS是什么" class="headerlink" title="HTTPS是什么"></a>HTTPS是什么</h2><h3 id="为什么需要HTTPS"><a href="#为什么需要HTTPS" class="headerlink" title="为什么需要HTTPS"></a>为什么需要HTTPS</h3><p>由于HTTP存在一些缺陷：</p><ul><li>通信使用明文，内容可能被窃听</li><li>不验证通信方的身份，可能遭到伪装</li><li>无法验证报文的完整性，报文可能被篡改</li></ul><p>为了解决这些问题HTTPS诞生了。</p><h3 id="HTTPS的实质"><a href="#HTTPS的实质" class="headerlink" title="HTTPS的实质"></a>HTTPS的实质</h3><p>HTTP协议加上<strong>加密</strong>、<strong>认证机制</strong>和<strong>完整性验证</strong>就是HTTPS。</p><p>HTTPS并非一种新的协议。只是HTTP通信接口部分用SSL或TLS协议代替而已。所谓的HTTPS其实就是HTTP+SSL/TLS。</p><p><strong>TLS以SSL为原型开发的协议，有时会统称该协议为SSL。</strong></p><h2 id="HTTPS的加密原理"><a href="#HTTPS的加密原理" class="headerlink" title="HTTPS的加密原理"></a>HTTPS的加密原理</h2><p>HTTPS加密过程中使用了<strong>非对称加密</strong>和<strong>对称加密</strong>结合的方式。</p><p><a href="https://www.tang7o.cn/2021/09/28/https%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B/">HTTPS加密过程</a></p><p><strong>为什么不只用对称加密？</strong></p><blockquote><p>采用单钥密码系统的加密方式，同一个密钥可以同时做信息的加密和解密，这种加密的方法称为对称加密，也称为单密钥加密。</p></blockquote><p><strong>缺点：</strong>以对称加密算法加密，必须将密钥发送给对方。这时候，假如通信被监听，密钥被攻击人获取，这个时候加密就是去了意义。</p><p>如何解决这个问题？使用两把密钥（非对称加密）。</p><p><strong>为什么不只用非对称加密？</strong></p><blockquote><p>与对称加密算法相反，非对称加密算法需要两个密钥来进行加密和解密，这两个密钥是配对的，分别是公开密钥（公钥）和私有密钥（私钥）。</p></blockquote><p>一般情况下，公钥是公开的，私钥是服务器私有的。<strong>公钥加密后的密文只能通过对应的私钥来解密，而私钥加密的密文却可以通过对应的公钥来解密。</strong></p><p><strong>缺点：</strong>加密比对称加密复杂，效率低。</p><h2 id="如何保证公钥的正确性"><a href="#如何保证公钥的正确性" class="headerlink" title="如何保证公钥的正确性"></a>如何保证公钥的正确性</h2><p>与服务器进行通信时，如何才能保证你收到的公钥服务器发行的公钥，而不是被攻击者替换掉的呢？</p><p>为了解决这个问题，可以使用数字证书认证机构（CA）颁发证书。</p><p>CA业务流程：</p><ul><li>CA会向申请者颁发一个证书，证书的内容有：签发者、证书用途、域名、证书到期时间、使用的HASH算法、签名使用的算法等。</li><li>将证书的内容做一次HASH，得到HASH值。</li><li>用<strong>CA的私钥</strong>对这个HASH值和使用的HASH算法加密，这样就完成了数字签名。</li><li>将数字签名附加在证书的末尾。</li></ul><p>客户端检验证书流程：</p><ul><li>用<strong>CA私钥对应的公钥</strong>，解密数字证书末尾的签名，得到HASH值和HASH算法。</li><li>用得到的HASH算法，对证书内容进行HASH运算。如果得到的HASH值与解密得到的HASH值相同，那么检验通过，否则失败。</li></ul><p>上面提到的C公钥怎么来的呢？</p><p>CA除了给申请者颁发证书，它本身也有自己的证书。CA自身的证书（一般由它自己颁发）在我们系统安装好的时候，就被微软（或其他操作系统的开发机构）安装再操作系统中了。而CA的公钥包含在其中。这样CA就可以通过自身的是要对发布的数字证书进行签名，而客户端就能用相应的公钥来解密。</p><h2 id="HTTPS通信的过程"><a href="#HTTPS通信的过程" class="headerlink" title="HTTPS通信的过程"></a>HTTPS通信的过程</h2><p><img src="1.jpg" class="lazyload" data-srcset="1.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><ol><li>客户端发送Client Hello报文开始SLL通信。报文中包括客户端支持的SSL版本、加密组件（Cipher Suite）列表以及一个随机数A。</li><li>服务器可以进行SSL通信时，发送Server Hello报文作为应答。和客户端一样，在报文中包括SSL版本、加密组件列表（从客户端接收到的加密组件筛选出来的）以及一个随机数B。</li><li>之后服务器发送Certificate报文。报文中包含公钥证书。</li><li>最后服务器发送Server Hello Done报文通知客户端，最初阶段的SSL握手协商部分结束。</li><li>SSL第一次握手结束后，客户端会对服务器发过来的证书进行验证，如果验证成功，解密出证书的公钥。接着客户端以Client Key Exchange报文作为回应。报文中包含通信加密使用的一种被称为<code>Pre-master secret</code>的随机密码串，报文使用解密出的公钥进行加密。</li><li>客户端继续发送Change Cipher Spec报文。用于告知服务端，客户端已经切换到之前协商好的加密套件（Cipher Suite）的状态，准备使用之前协商好的加密套件加密数据并传输了。</li><li>客户端发送Finished报文。该报文包含连接至今全部报文的整体校验值（也就是HASH值），用来供服务器校验。</li><li>服务器接收到客户端的请求之后，使用私钥解密报文，把<code>Pre-master secret</code>取出来。接着，服务器同样发送Change Cipher Spec报文。</li><li>服务器同样发送Finished报文，用来供客户端校验。</li><li>服务器和客户端的Finished报文交换完毕之后，SSL连接就算建立完成。当然，通信会受到SSL的保护。从此处开始进行应用层协议的通信，即发送HTTP请求。</li><li>应用层协议通信，即返回HTTP响应。</li><li>最后由客户端断开连接。断开连接时，发送close_notify报文。上图做了一些省略，这步之后再发送TCP FIN报文来关闭与TCP的通信。</li></ol><h3 id="Finish报文的作用？"><a href="#Finish报文的作用？" class="headerlink" title="Finish报文的作用？"></a>Finish报文的作用？</h3><p>上面已经提及，Finish报文是对至今全部报文的整体校验值（也就是HASH值）。当客户端把这个值通过得到的公钥进行加密的时候，服务器得到之后对其进行解密，然后再对全部报文进行一个HASH求值。如果这个值跟解密得到的值相等的话，那么说明客户端是可信赖的。<br>同样的，服务器发送这样的一个整体校验值，用来客户端验证服务器是否是真正要进行通信的那一个。<br>综上，这个Finish报文就是用来校验双方的身份的。</p><h3 id="三个随机数的作用？"><a href="#三个随机数的作用？" class="headerlink" title="三个随机数的作用？"></a>三个随机数的作用？</h3><p>对于<strong>客户端</strong>：<br>当其生成了<code>Pre-master secret</code>之后，会结合原来的A、B随机数，用DH算法计算出一个<code>master secret</code>，紧接着根据这个<code>master secret</code>推导出<code>hash secret</code>和<code>session secret</code>。</p><p>对于<strong>服务端</strong>：<br>当其解密获得了<code>Pre-master secret</code>之后，会结合原来的A、B随机数，用DH算法计算出一个<code>master secret</code>，紧接着根据这个<code>master secret</code>推导出<code>hash secret</code>和<code>session secret</code>。</p><blockquote><p>在客户端和服务端的<code>master secret</code>是依据三个随机数推导出来的，它是不会在网络上传输的，只有双方知道，不会有第三者知道。同时，客户端推导出来的<code>session secret</code>和<code>hash secret</code>与服务端也是完全一样的。</p></blockquote><p>那么现在双方如果开始使用对称算法加密来进行通讯，使用哪个作为共享的密钥呢？过程是这样子的：</p><p>双方使用对称加密算法进行加密，用<code>hash secret</code>对HTTP报文做一次运算生成一个<code>MAC</code>，附在HTTP报文的后面，然后用<code>session-secret</code>加密所有数据（<code>HTTP+MAC</code>），然后发送。</p><p>接收方则先用<code>session-secret</code>解密数据，然后得到<code>HTTP+MAC</code>，再用相同的算法计算出自己的<code>MAC</code>，如果两个<code>MAC</code>相等，证明数据没有被篡改。</p><blockquote><p>MAC(Message Authentication Code)称为报文摘要，能够查知报文是否遭到篡改，从而保护报文的完整性。</p></blockquote><h3 id="为什么使用三个随机数？"><a href="#为什么使用三个随机数？" class="headerlink" title="为什么使用三个随机数？"></a>为什么使用三个随机数？</h3><p>客户端和服务器都需要生成随机数，以此来保证每次生成的秘钥都不相同。</p><p>使用三个随机数，是因为 SSL 的协议默认不信任每个主机都能产生完全随机的数，如果只使用一个伪随机的数来生成秘钥，就很容易被破解。</p><p>通过使用三个随机数的方式，增加了自由度，一个伪随机可能被破解，但是三个伪随机就很接近于随机了，因此可以使用这种方法来保持生成秘钥的随机性和安全性。</p><h3 id="黑客拦截服务器证书并篡改，会出现什么情况？"><a href="#黑客拦截服务器证书并篡改，会出现什么情况？" class="headerlink" title="黑客拦截服务器证书并篡改，会出现什么情况？"></a>黑客拦截服务器证书并篡改，会出现什么情况？</h3><ol><li>如果黑客只是单纯的篡改，由于有数字签名，客户端会很容易判断出报文被篡改过。</li><li>黑客不仅修改了证书内柔，还替换了数字签名，由于黑客不知道CA的私钥，于是客户端用CA公钥解密时，得不到正确的信息，也很容易判断出报文是否被修改。</li><li>黑客从相同的CA申请了一个数字证书。由于这个数字证书是真实存在的，所以客户端可以成功的用CA公钥进行解密。但是，由于数字证书绑定了<strong>域名</strong>，因此客户端很容易发现证书域名与访问域名的不一致，便会发出警告。警告如下图：</li></ol><p><img src="2.jpg" class="lazyload" data-srcset="2.jpg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><h2 id="一定要用HTTPS吗"><a href="#一定要用HTTPS吗" class="headerlink" title="一定要用HTTPS吗"></a>一定要用HTTPS吗</h2><p>当然不是，虽然HTTPS比HTTP要安全许多，但是由于加入了诸多的验证机制，导致它处理速度变慢。原因如下：</p><ul><li>客户端和服务器<strong>协商的次数变多</strong>，整体处理通信量会不可避免的增加。</li><li>客户端和服务器需要进行<strong>额外的加密和解密的运算处理</strong>。会消耗更多的资源。</li></ul><p>同时，使用HTTPS需要购买CA证书，需要额外的开销。</p><p>因此，大部分的Web网址都采用了一个折中的方法。对一些需要隐藏、私密的信息进行加密，而普通的信息不进行机密处理，以节省资源。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络 </category>
+          
+          <category> HTTPS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络 </tag>
+            
+            <tag> HTTPS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>浏览器输入url后发生了什么</title>
+      <link href="/2022/04/22/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5url%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B/"/>
+      <url>/2022/04/22/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5url%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B/</url>
+      
+        <content type="html"><![CDATA[<h3 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h3><ol><li>合成URL</li><li>DNS域名解析</li><li>建立TCP连接</li><li>发送HTTP请求，处理请求，返回响应结果</li><li>关闭TCP连接</li><li>浏览器渲染</li></ol><h3 id="合成URL"><a href="#合成URL" class="headerlink" title="合成URL"></a>合成URL</h3><p>浏览器根据用户输入信息判断是搜索还是网址，如果是搜索内容，就将搜索内容+默认搜索引擎合成新的URL；如果用户输入内容符合URL规则，浏览器就会根据URL协议生成合法的URL。</p><h3 id="DNS域名解析"><a href="#DNS域名解析" class="headerlink" title="DNS域名解析"></a>DNS域名解析</h3><p>DNS的域名解析，在客户端和浏览器、本地DNS之间的查询是递归查询；在本地DNS服务器和根DNS服务器及其子服务器之间是迭代查询。</p><p>递归：</p><p><img src="1.jpeg" class="lazyload" data-srcset="1.jpeg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>在客户端输入URL后，从历览器缓存查找-&gt;本地hosts文件查找-&gt;本地DNS解析器缓存查找-&gt;本地DNS服务器查找，这个步骤中任意一步查到了都会直接返回结果。</p><p>如果本地DNS服务器也查不到，则根据本地DNS服务器设置的转发器进行查询。若未用转发模式，则迭代查找过程如下图：</p><p><img src="2.jpeg" class="lazyload" data-srcset="2.jpeg" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><h3 id="建立TCP连接"><a href="#建立TCP连接" class="headerlink" title="建立TCP连接"></a>建立TCP连接</h3><p>首先判断是不是HTTPS（HTTP+SSL/TLS）协议，若是，服务端和客户端的信息传输都会通过TLS进行加密，所以传输的数据都是加密的数据。</p><p><a href="https://www.tang7o.cn/2021/06/09/TCP/">三次握手，建立TCP连接</a></p><p><a href="https://www.tang7o.cn/2021/09/28/https%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B/">HTTPS加密过程</a></p><h3 id="发送HTTP请求，服务器处理请求，返回响应结果"><a href="#发送HTTP请求，服务器处理请求，返回响应结果" class="headerlink" title="发送HTTP请求，服务器处理请求，返回响应结果"></a>发送HTTP请求，服务器处理请求，返回响应结果</h3><p>TCP建立连接后，浏览器就可以利用HTTP/HTTPS协议向服务器发送请求。服务器接受到请求，处理请求返回响应。</p><h3 id="关闭TCP连接"><a href="#关闭TCP连接" class="headerlink" title="关闭TCP连接"></a>关闭TCP连接</h3><p><a href="https://www.tang7o.cn/2021/06/09/TCP/">四次挥手，关闭TCP连接</a></p><h3 id="浏览器渲染"><a href="#浏览器渲染" class="headerlink" title="浏览器渲染"></a>浏览器渲染</h3><p>浏览器根据服务器返回的响应，渲染并显示界面。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>进程切换为什么比线程切换开销大</title>
       <link href="/2022/03/22/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2/"/>
       <url>/2022/03/22/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2/</url>

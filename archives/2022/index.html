@@ -489,6 +489,164 @@
   
     
     <h2 class="article-title" >
+      <a href="/2022/04/23/MySQL-orderby-limit%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8/">
+        MySQL order by limit同时使用的问题
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        MySQL文档原文
+有一定英语阅读能力的读者，可以直接去读文档。
+问题如果order by排序属性的值不唯一，order by与limit同时使用可能会出现查询结果不同的现象。例如：
+1234567891011121314151617181920212223mysql&gt; SELECT * FROM ratings ORDER BY category;+----+----------+-...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-04-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/MySQL/">MySQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/04/23/MySQL-orderby-limit%E5%90%8C%E6%97%B6%E4%BD%BF%E7%94%A8/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2022/04/22/HTTPS%E8%A7%A3%E6%9E%90/">
+        HTTPS解析
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        HTTPS是什么为什么需要HTTPS由于HTTP存在一些缺陷：
+
+通信使用明文，内容可能被窃听
+不验证通信方的身份，可能遭到伪装
+无法验证报文的完整性，报文可能被篡改
+
+为了解决这些问题HTTPS诞生了。
+HTTPS的实质HTTP协议加上加密、认证机制和完整性验证就是HTTPS。
+HTTPS并非一种新的协议。只是HTTP通信接口部分用SSL或TLS协议代替而已。所谓的HTTPS其实就是HTT...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-04-22</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/HTTPS/">HTTPS</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/04/22/HTTPS%E8%A7%A3%E6%9E%90/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2022/04/22/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5url%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B/">
+        浏览器输入url后发生了什么
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        大致流程
+合成URL
+DNS域名解析
+建立TCP连接
+发送HTTP请求，处理请求，返回响应结果
+关闭TCP连接
+浏览器渲染
+
+合成URL浏览器根据用户输入信息判断是搜索还是网址，如果是搜索内容，就将搜索内容+默认搜索引擎合成新的URL；如果用户输入内容符合URL规则，浏览器就会根据URL协议生成合法的URL。
+DNS域名解析DNS的域名解析，在客户端和浏览器、本地DNS之间的查询是递归查询；...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-04-22</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/04/22/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5url%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2022/03/22/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2/">
         进程切换为什么比线程切换开销大
       </a>
@@ -682,151 +840,6 @@ Host 头处理
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2022/03/07/Redis%E5%B9%B6%E5%8F%91/">
-        Redis并发竞争 key 问题
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        Redis 并发竞争 key 就是多个客户端操作一个 key，可能会导致数据出现问题，主要有以下几种解决方法：
-
-乐观锁，watch 命令可以方便的实现乐观锁。watch 命令会监视给的的每一个 key，当 exec 时如果监视的任一个 key 自从调用 watch 后发生过变化，则整个事务会回滚，不执行任何动作。不能在分片集群中使用。
-分布式锁，适合分布式场景
-时间戳，适合有序场景，比如 ...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2022-03-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Redis/">Redis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/03/07/Redis%E5%B9%B6%E5%8F%91/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2022/03/04/Redis%E5%88%86%E5%B8%83%E5%BC%8F/">
-        Redis分布式锁
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        什么是分布式锁？分布式锁就是为了保证在分布式场景下，共享资源在同一时刻只能被一个线程访问，或者说是用来控制分布式系统之间同步访问共享资源。
-分布式锁有什么特性？
-互斥性：在任意时刻，同一条数据只能被一台机器的一个线程访问。
-高可用性：当部分节点宕机后，客户端仍可以正常的获取锁和释放锁。
-独占性：加锁和释放锁必须在同一台服务器执行，不能在一个服务器上获取锁，在另一个服务器释放锁。
-防锁超时：如...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2022-03-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Redis/">Redis</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/03/04/Redis%E5%88%86%E5%B8%83%E5%BC%8F/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2022/03/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%B3%E9%97%AD-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%A7%E7%BB%AD%E5%86%99%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/">
-        服务器关闭,客户端继续写会发生什么？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>服务器关闭，客户端继续发送报文，会发生什么呢？</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2022-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/TCP/">TCP</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/03/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%B3%E9%97%AD-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%A7%E7%BB%AD%E5%86%99%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -988,7 +1001,7 @@ Host 头处理
           <li><a class="flat-box"
             title="/categories/MySQL/" href="/categories/MySQL/"
             id="categoriesMySQL"
-            ><div class='name'>MySQL</div><div class='badge'>(7)</div></a></li>
+            ><div class='name'>MySQL</div><div class='badge'>(8)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/OS/" href="/categories/OS/"
@@ -1003,7 +1016,7 @@ Host 头处理
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C/" href="/categories/%E7%BD%91%E7%BB%9C/"
             id="categoriesE7BD91E7BB9C"
-            ><div class='name'>网络</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>网络</div><div class='badge'>(7)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E7%BD%91%E7%BB%9C/HTTP/" href="/categories/%E7%BD%91%E7%BB%9C/HTTP/"
@@ -1013,7 +1026,7 @@ Host 头处理
           <li><a class="flat-box child"
             title="/categories/%E7%BD%91%E7%BB%9C/HTTPS/" href="/categories/%E7%BD%91%E7%BB%9C/HTTPS/"
             id="categoriesE7BD91E7BB9CHTTPS"
-            ><div class='name'>HTTPS</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>HTTPS</div><div class='badge'>(2)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E7%BD%91%E7%BB%9C/TCP/" href="/categories/%E7%BD%91%E7%BB%9C/TCP/"
@@ -1042,7 +1055,7 @@ Host 头处理
 
 
     <div class='content'>
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Elasticsearch/" style="font-size: 14px; color: #999">Elasticsearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 14px; color: #999">HTTPS</a> <a href="/tags/JVM/" style="font-size: 16.5px; color: #888">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 22.75px; color: #5e5e5e">Java</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Linux/" style="font-size: 15.25px; color: #919191">Linux</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/MySQL/" style="font-size: 20.25px; color: #6f6f6f">MySQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/Redis/" style="font-size: 19px; color: #777">Redis</a> <a href="/tags/Roaring-Bitmap/" style="font-size: 14px; color: #999">Roaring Bitmap</a> <a href="/tags/SpringBoot/" style="font-size: 15.25px; color: #919191">SpringBoot</a> <a href="/tags/TCP/" style="font-size: 16.5px; color: #888">TCP</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 20.25px; color: #6f6f6f">并发</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 17.75px; color: #808080">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 16.5px; color: #888">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 15.25px; color: #919191">网络</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 21.5px; color: #666">题目</a>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Elasticsearch/" style="font-size: 14px; color: #999">Elasticsearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 15px; color: #929292">HTTPS</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 23px; color: #5c5c5c">Java</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Linux/" style="font-size: 15px; color: #929292">Linux</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/MySQL/" style="font-size: 21px; color: #696969">MySQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/Redis/" style="font-size: 19px; color: #777">Redis</a> <a href="/tags/Roaring-Bitmap/" style="font-size: 14px; color: #999">Roaring Bitmap</a> <a href="/tags/SpringBoot/" style="font-size: 15px; color: #929292">SpringBoot</a> <a href="/tags/TCP/" style="font-size: 16px; color: #8b8b8b">TCP</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 20px; color: #707070">并发</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 18px; color: #7e7e7e">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 16px; color: #8b8b8b">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 17px; color: #858585">网络</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
     </div>
   </section>
 
