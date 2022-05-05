@@ -638,9 +638,32 @@
 <h3 id="4-HashMap-的初始容量-和容量限制"><a href="#4-HashMap-的初始容量-和容量限制" class="headerlink" title="4. HashMap 的初始容量, 和容量限制"></a>4. HashMap 的初始容量, 和容量限制</h3><p>默认初始容量为 16, HashMap 的容量必须为 2 的 N 次方, HashMap 会根据我们传入的容量计算<strong>第一个大于等于</strong>该容量的 2 的幂.</p>
 <h3 id="5-HashMap-怎么计算容量的"><a href="#5-HashMap-怎么计算容量的" class="headerlink" title="5. HashMap 怎么计算容量的"></a>5. HashMap 怎么计算容量的</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="title function_">tableSizeFor</span><span class="params">(<span class="type">int</span> cap)</span> &#123;</span><br><span class="line">    <span class="comment">// 处理 n 本来就是 2 的幂的情况</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> cap - <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">2</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">8</span>;</span><br><span class="line">    n |= n &gt;&gt;&gt; <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">return</span> (n &lt; <span class="number">0</span>) ? <span class="number">1</span> : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>$&gt;&gt;&gt;$ : 无符号右移.</p>
-<p>以  0010 0110 举例：</p>
-<p>​    n             0010 0110<br>n&gt;&gt;&gt;1        0001 0011</p>
-<p>n|n&gt;&gt;&gt;1    0011 0111</p>
+<p>以<code>0010 0110</code>举例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td>0010 0110</td>
+</tr>
+<tr>
+<td>n&gt;&gt;&gt;1</td>
+<td>0001 0011</td>
+</tr>
+<tr>
+<td>n\</td>
+<td>n&gt;&gt;&gt;1</td>
+<td>0011 0111</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>我们可以看到 n|n&gt;&gt;&gt;1 将n的最高位和次高位都置为了 1.</p>
 <p>同理 n|n&gt;&gt;&gt;2 会将 n 的高 4 位置为 1.</p>
 <p>经过上述函数的运算后, 会将 n 由 $001X XXXX$ 变成 $0011 1111$, 也就是说将 n 的低位全置为 1.</p>
@@ -725,10 +748,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-04-13T21:31:48+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-05-05T09:38:32+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2022年4月13日</p>
+    <p>更新于：2022年5月5日</p>
   </a>
 </div>
 

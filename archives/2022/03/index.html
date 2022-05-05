@@ -489,6 +489,57 @@
   
     
     <h2 class="article-title" >
+      <a href="/2022/03/24/next-key/">
+        next-key lock
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        对记录加锁时，加锁的基本单位是 next-key lock，它是由记录锁和间隙锁组合而成的，next-key lock 是前开后闭区间，而间隙锁是前开后开区间。
+但是，next-key lock 会在一些场景下会退化成记录锁或者间隙锁。
+那到底是什么场景呢？我们以下表来举例说明：
+
+其中，id 是主键索引（唯一索引），b 是普通索引（非唯一索引），a 是普通列。
+注意：本文 MySQL 版本...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-03-24</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/MySQL/">MySQL</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/03/24/next-key/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2022/03/22/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2/">
         进程切换为什么比线程切换开销大
       </a>
@@ -783,50 +834,6 @@ Host 头处理
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2022/03/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%B3%E9%97%AD-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%A7%E7%BB%AD%E5%86%99%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/">
-        服务器关闭,客户端继续写会发生什么？
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p>服务器关闭，客户端继续发送报文，会发生什么呢？</p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2022-03-01</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/TCP/">TCP</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/03/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%85%B3%E9%97%AD-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BB%A7%E7%BB%AD%E5%86%99%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -988,7 +995,7 @@ Host 头处理
           <li><a class="flat-box"
             title="/categories/MySQL/" href="/categories/MySQL/"
             id="categoriesMySQL"
-            ><div class='name'>MySQL</div><div class='badge'>(8)</div></a></li>
+            ><div class='name'>MySQL</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box"
             title="/categories/OS/" href="/categories/OS/"

@@ -710,9 +710,10 @@
         </a>
       
       
-        <a class='next' href='/2022/03/22/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2/'>
-          <p class='title'>进程切换为什么比线程切换开销大<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>进程切换比线程切换开销大是因为进程切换时要切页表，而且往往伴随着页调度，因为进程的数据段代码段要换出去，以便把将要执行的进程的内容换进来。本来进程的内容就是线程的超集。而且线程只需要保存线程的上...</p>
+        <a class='next' href='/2022/03/24/next-key/'>
+          <p class='title'>next-key lock<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>对记录加锁时，加锁的基本单位是 next-key lock，它是由记录锁和间隙锁组合而成的，next-key lock 是前开后闭区间，而间隙锁是前开后开区间。
+但是，next-key lock...</p>
         </a>
       
     </div>

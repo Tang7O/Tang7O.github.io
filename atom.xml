@@ -94,6 +94,31 @@
   </entry>
   
   <entry>
+    <title>next-key lock</title>
+    <link href="https://tang7o.cn/2022/03/24/next-key/"/>
+    <id>https://tang7o.cn/2022/03/24/next-key/</id>
+    <published>2022-03-24T01:19:20.000Z</published>
+    <updated>2022-04-24T05:40:44.475Z</updated>
+    
+    <content type="html"><![CDATA[<p>对记录加锁时，<strong>加锁的基本单位是 next-key lock</strong>，它是由记录锁和间隙锁组合而成的，<strong>next-key lock 是前开后闭区间，而间隙锁是前开后开区间</strong>。</p><p>但是，next-key lock 会在一些场景下会退化成记录锁或者间隙锁。</p><p>那到底是什么场景呢？我们以下表来举例说明：</p><p><img src="1.png" class="lazyload" data-srcset="1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>其中，id 是主键索引（唯一索引），b 是普通索引（非唯一索引），a 是普通列。</p><p><strong>注意：本文 MySQL 版本为 8.0.26，不同版本的加锁规则可能不同。</strong></p><h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><h3 id="唯一索引等值查询"><a href="#唯一索引等值查询" class="headerlink" title="唯一索引等值查询"></a>唯一索引等值查询</h3><p>我们用唯一索引进行等值查询的时候，查询的记录存不存在，加锁的规则也会不同：</p><ul><li>查询的记录存在：在用「唯一索引进行等值查询」时，next-key lock 会退化成「记录锁」。</li><li>当查询的记录不存在，在用「唯一索引进行等值查询」时，next-key lock 会退化成间隙锁。</li></ul><h4 id="记录存在的情况："><a href="#记录存在的情况：" class="headerlink" title="记录存在的情况："></a>记录存在的情况：</h4><p><img src="2.png" class="lazyload" data-srcset="2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>会话 1 加锁变化过程如下：</p><ol><li>加锁的基本单位是 next-key lock，因此会话 1 加锁的范围是 (8,16]；</li><li>但是由于使用唯一索引进行等值查询，且查询的记录存在，所以<strong>next-key lock 退化成记录锁，因此最终加锁的范围是 id = 16 这一行</strong>。</li></ol><p>所以，会话 2 在修改 id = 16 的记录时会被锁住，而会话 3 插入 id = 9 的记录可以被正常执行。</p><h4 id="记录不存在的情况："><a href="#记录不存在的情况：" class="headerlink" title="记录不存在的情况："></a>记录不存在的情况：</h4><p><img src="3.png" class="lazyload" data-srcset="3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>会话 1 加锁变化过程如下：</p><ol><li>加锁的基本单位是 next-key lock，因此主键索引 id 的加锁范围是 (8,16]；</li><li>但是由于查询记录不存在，next-key lock 退化成间隙锁，因此最终加锁范围是 (8,16).</li></ol><p>所以，会话 2 要往这个间隙里面插入 id = 9 的记录会被锁住，但是会话 3 修改 id = 16 是可以正常执行的，因为 id = 16 这条记录并没有加锁。</p><h3 id="唯一索引范围查询"><a href="#唯一索引范围查询" class="headerlink" title="唯一索引范围查询"></a>唯一索引范围查询</h3><p>范围查询和等值查询的加锁规则是不同的。</p><p>举个例子，下面这两条查询语句，查询的结果虽然是一样的，但是加锁的范围是不一样的。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from t_test where id=8 for update;</span><br><span class="line">select * from t_test where id&gt;=8 and id&lt;9 for update;</span><br></pre></td></tr></table></figure><p><img src="4.png" class="lazyload" data-srcset="4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>会话 1 加锁变化过程如下：</p><ol><li>最开始要找的第一行是 id = 8，因此 next-key lock (4,8]，但是由于 id 是唯一索引，且该记录是存在的，因此会退化成记录锁，也就是只会对 id = 8 这一行加锁；</li><li>由于是范围查找，就会继续往后找存在的记录，也就是会找到 id = 16 这一行停下来，然后加 next-key lock (8, 16]，但由于 id = 16 不满足 id &lt; 9，所以会退化成间隙锁，加锁范围变为 (8, 16)。</li></ol><p>所以，会话 1 这时候主键索引的锁是记录锁 id = 8 和间隙锁(8, 16)。</p><p>会话 2 由于往间隙锁里插入了 id = 9 的记录，所以会被锁住了，而 id = 8 是被加锁的，因此会话 3 的语句也会被阻塞。</p><p>由于 id = 16 并没有加锁，所以会话 4 是可以正常被执行。</p><h2 id="非唯一索引"><a href="#非唯一索引" class="headerlink" title="非唯一索引"></a>非唯一索引</h2><h3 id="非唯一索引等值查询"><a href="#非唯一索引等值查询" class="headerlink" title="非唯一索引等值查询"></a>非唯一索引等值查询</h3><p>当我们用非唯一索引进行等值查询的时候，查询的记录存不存在，加锁的规则也会不同：</p><ul><li><strong>当查询的记录存在时，除了会加 next-key lock 外，还额外加间隙锁，也就是会加两把锁</strong>。</li><li><strong>当查询的记录不存在时，只会加 next-key lock，然后会退化为间隙锁，也就是只会加一把锁。</strong></li></ul><h4 id="记录存在的情况：-1"><a href="#记录存在的情况：-1" class="headerlink" title="记录存在的情况："></a>记录存在的情况：</h4><p><img src="5.png" class="lazyload" data-srcset="5.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>会话 1 加锁变化过程如下：</p><ol><li>先会对普通索引 b 加上 next-key lock，范围是(4,8];</li><li>然后因为是非唯一索引，且查询的记录是存在的，所以还会加上间隙锁，规则是向下遍历到第一个不符合条件的值才能停止，因此间隙锁的范围是(8,16)。</li></ol><p>所以，会话 1 的普通索引 b 上共有两个锁，分别是 next-key lock (4,8] 和间隙锁 (8,16) 。</p><p>那么，当会话 2 往间隙锁里插入 id = 9 的记录就会被锁住，而会话 3 和会话 4 是因为更改了 next-key lock 范围里的记录而被锁住的。</p><p>然后因为 b = 16 这条记录没有加锁，所以会话 5 是可以正常执行的。</p><h4 id="记录不存在的情况：-1"><a href="#记录不存在的情况：-1" class="headerlink" title="记录不存在的情况："></a>记录不存在的情况：</h4><p><img src="6.png" class="lazyload" data-srcset="6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>会话 1 加锁变化过程如下：</p><ol><li>先会对普通索引 b 加上 next-key lock，范围是(8,16];</li><li>但是由于查询的记录是不存在的，所以不会再额外加个间隙锁，但是 next-key lock 会退化为间隙锁，最终加锁范围是 (8,16)。</li></ol><p>会话 2 因为往间隙锁里插入了 b = 9 的记录，所以会被锁住，而 b = 16 是没有被加锁的，因此会话 3 的语句可以正常执行。</p><h3 id="非唯一索引范围查询"><a href="#非唯一索引范围查询" class="headerlink" title="非唯一索引范围查询"></a>非唯一索引范围查询</h3><p><img src="7.png" class="lazyload" data-srcset="7.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>会话 1 加锁变化过程如下：</p><ol><li>最开始要找的第一行是 b = 8，因此 next-key lock(4,8]，但是由于 b 不是唯一索引，并不会退化成记录锁。</li><li>但是由于是范围查找，就会继续往后找存在的记录，也就是会找到 b = 16 这一行停下来，然后加 next-key lock (8, 16]，因为是普通索引查询，所以并不会退化成间隙锁。</li></ol><p>所以，会话 1 的普通索引 b 有两个 next-key lock，分别是 (4,8] 和(8, 16]。这样，你就明白为什么会话 2 、会话 3 、会话 4 的语句都会被锁住了。</p><h2 id="普通字段"><a href="#普通字段" class="headerlink" title="普通字段"></a>普通字段</h2><p>普通字段查询，会查询全表，这里锁的话就会锁住主键的所有区间。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>唯一索引等值查询：</p><ul><li>当查询的记录是存在的，next-key lock 会退化成「记录锁」。</li><li>当查询的记录是不存在的，next-key lock 会退化成「间隙锁」。</li></ul><p>非唯一索引等值查询：</p><ul><li>当查询的记录存在时，除了会加 next-key lock 外，还额外加间隙锁，也就是会加两把锁。</li><li>当查询的记录不存在时，只会加 next-key lock，然后会退化为间隙锁，也就是只会加一把锁。</li></ul><p>非唯一索引和主键索引的范围查询的加锁规则不同之处在于：</p><ul><li>唯一索引在满足一些条件的时候，next-key lock 退化为间隙锁和记录锁。</li><li>非唯一索引范围查询，next-key lock 不会退化为间隙锁和记录锁。</li></ul><p>转载于：</p><p><a href="https://mp.weixin.qq.com/s?__biz=MzUxODAzNDg4NQ==&amp;mid=2247497197&amp;idx=1&amp;sn=9f82f73d876636944fb75348ef568c01&amp;scene=21#wechat_redirect">小林coding</a> </p><p><a href="https://www.cnblogs.com/liuzhihang/p/14861807.html">程序员小航</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;对记录加锁时，&lt;strong&gt;加锁的基本单位是 next-key lock&lt;/strong&gt;，它是由记录锁和间隙锁组合而成的，&lt;strong&gt;next-key lock 是前开后闭区间，而间隙锁是前开后开区间&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;但是，next-key loc</summary>
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://tang7o.cn/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://tang7o.cn/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>进程切换为什么比线程切换开销大</title>
     <link href="https://tang7o.cn/2022/03/22/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2/"/>
     <id>https://tang7o.cn/2022/03/22/%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2/</id>
@@ -476,34 +501,6 @@
     
     
     <category term="TCP" scheme="https://tang7o.cn/tags/TCP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CAS</title>
-    <link href="https://tang7o.cn/2021/10/23/CAS/"/>
-    <id>https://tang7o.cn/2021/10/23/CAS/</id>
-    <published>2021-10-23T07:03:59.000Z</published>
-    <updated>2022-04-13T13:31:47.951Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="什么是CAS"><a href="#什么是CAS" class="headerlink" title="什么是CAS"></a>什么是CAS</h3><p>CAS 的全称为 Compare-And-Swap，直译就是对比交换。是一条 CPU 的原子指令，其作用是让 CPU 先进行比较两个值是否相等，然后原子地更新某个位置的值，经过调查发现，其实现方式是基于硬件平台的汇编指令，就是说 CAS 是靠硬件实现的，JVM 只是封装了汇编调用，那些 AtomicInteger 类便是使用了这些封装后的接口。  简单解释：CAS 操作需要输入两个数值，一个旧值（期望操作前的值）和一个新值，在操作期间先比较下在旧值有没有发生变化，如果没有发生变化，才交换成新值，发生了变化则不交换。</p><p>CAS 操作是原子性的，所以多线程并发使用 CAS 更新数据时，可以不使用锁。JDK 中大量使用了CAS 来更新数据而防止加锁（synchronized 重量级锁）来保持原子更新。</p><p>相信 sql 大家都熟悉，类似 sql 中的条件更新一样：<code>update set id=3 from table where id=2</code>。因为单条 sql 执行具有原子性，如果有多个线程同时执行此 sql 语句，只有一条能更新成功。</p><h3 id="CAS使用示例"><a href="#CAS使用示例" class="headerlink" title="CAS使用示例"></a>CAS使用示例</h3><p>如果不使用 CAS，在高并发下，多线程同时修改一个变量的值我们需要 synchronized 加锁（可能有人说可以用 Lock 加锁，Lock 底层的 AQS 也是基于 CAS 进行获取锁的）。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>java 中为我们提供了 AtomicInteger 原子类（底层基于 CAS 进行更新数据的），不需要加锁就在多线程并发场景下实现数据的一致性。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">private</span>  <span class="type">AtomicInteger</span> <span class="variable">i</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">add</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i.addAndGet(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="CAS-问题"><a href="#CAS-问题" class="headerlink" title="CAS 问题"></a>CAS 问题</h3><p>CAS 方式为乐观锁，synchronized 为悲观锁。因此使用 CAS 解决并发问题通常情况下性能更优。</p><p>但使用 CAS 方式也会有几个问题：</p><h4 id="ABA-问题"><a href="#ABA-问题" class="headerlink" title="ABA 问题"></a>ABA 问题</h4><p>因为 CAS 需要在操作值的时候，检查值有没有发生变化，比如没有发生变化则更新，但是如果一个值原来是 A，变成了 B，又变成了 A，那么使用 CAS 进行检查时则会发现它的值没有发生变化，但是实际上却变化了。</p><p>ABA 问题的解决思路就是使用版本号。在变量前面追加上版本号，每次变量更新的时候把版本号加 1，那么 A-&gt;B-&gt;A 就会变成 1A-&gt;2B-&gt;3A。</p><p>从 Java 1.5 开始，JDK 的 Atomic 包里提供了一个类 AtomicStampedReference 来解决 ABA 问题。这个类的 compareAndSet 方法的作用是首先检查当前引用是否等于预期引用，并且检查当前标志是否等于预期标志，如果全部相等，则以原子方式将该引用和该标志的值设置为给定的更新值。</p><h4 id="循环时间长开销大"><a href="#循环时间长开销大" class="headerlink" title="循环时间长开销大"></a>循环时间长开销大</h4><p>自旋 CAS 如果长时间不成功，会给 CPU 带来非常大的执行开销。如果 JVM 能支持处理器提供的 pause 指令，那么效率会有一定的提升。pause 指令有两个作用：第一，它可以延迟流水线执行命令（de-pipeline），使 CPU 不会消耗过多的执行资源，延迟的时间取决于具体实现的版本，在一些处理器上延迟时间是零；第二，它可以避免在退出循环的时候因内存顺序冲突（Memory Order Violation）而引起 CPU 流水线被清空（CPU Pipeline Flush），从而提高 CPU 的执行效率。</p><h4 id="只能保证一个共享变量的原子操作"><a href="#只能保证一个共享变量的原子操作" class="headerlink" title="只能保证一个共享变量的原子操作"></a>只能保证一个共享变量的原子操作</h4><p>当对一个共享变量执行操作时，我们可以使用循环 CAS 的方式来保证原子操作，但是对多个共享变量操作时，循环 CAS 就无法保证操作的原子性，这个时候就可以用锁。</p><p>还有一个取巧的办法，就是把多个共享变量合并成一个共享变量来操作。比如，有两个共享变量 <code>i = 2，j = a</code>，合并一下 <code>ij = 2a</code>，然后用 CAS 来操作 ij。</p><p>从Java 1.5开始，JDK 提供了 AtomicReference 类来保证引用对象之间的原子性，就可以把多个变量放在一个对象里来进行 CAS 操作。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;什么是CAS&quot;&gt;&lt;a href=&quot;#什么是CAS&quot; class=&quot;headerlink&quot; title=&quot;什么是CAS&quot;&gt;&lt;/a&gt;什么是CAS&lt;/h3&gt;&lt;p&gt;CAS 的全称为 Compare-And-Swap，直译就是对比交换。是一条 CPU 的原子指令，其作用是让</summary>
-      
-    
-    
-    
-    <category term="Java" scheme="https://tang7o.cn/categories/Java/"/>
-    
-    <category term="并发" scheme="https://tang7o.cn/categories/Java/%E5%B9%B6%E5%8F%91/"/>
-    
-    
-    <category term="Java" scheme="https://tang7o.cn/tags/Java/"/>
-    
-    <category term="并发" scheme="https://tang7o.cn/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   
