@@ -472,6 +472,109 @@
   
     
     <h2 class="article-title" >
+      <a href="/2021/10/26/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7/">
+        TCP可靠性
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        众所周知，TCP 协议传输的特点主要就是面向字节流、传输可靠、面向连接。这篇文章，我们讨论以下 TCP 如何确保传输的可靠性的。
+确保传输可靠性的方式TCP 协议保证数据传输可靠性的方式主要有：
+
+校验和
+序列号
+确认应答
+超时重传
+连接管理
+流量控制
+拥塞控制
+
+校验和TCP 检验和的计算与 UDP 一样，在计算时要加上 12byte 的伪首部，检验范围包括 TCP 首部及数据部分，但是 ...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-10-26</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/TCP/">TCP</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/10/26/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2021/10/23/CAS/">
+        CAS
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        什么是CASCAS 的全称为 Compare-And-Swap，直译就是对比交换。是一条 CPU 的原子指令，其作用是让 CPU 先进行比较两个值是否相等，然后原子地更新某个位置的值，经过调查发现，其实现方式是基于硬件平台的汇编指令，就是说 CAS 是靠硬件实现的，JVM 只是封装了汇编调用，那些 AtomicInteger 类便是使用了这些封装后的接口。  简单解释：CAS 操作需要输入两...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2021-10-23</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/Java/">Java</a><span class="sep"></span><a class="category-link" href="/categories/Java/%E5%B9%B6%E5%8F%91/">并发</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2021/10/23/CAS/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
       <a href="/2021/10/20/FutureTask/">
         FutureTask
       </a>
@@ -683,94 +786,6 @@
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/10/08/final/">
-        final
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p> </p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/10/08/final/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2021/10/07/Java%E7%BA%BF%E7%A8%8B/">
-        Java线程
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      <p> </p>
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2021-10-07</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/Java/">Java</a><span class="sep"></span><a class="category-link" href="/categories/Java/%E5%B9%B6%E5%8F%91/">并发</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2021/10/07/Java%E7%BA%BF%E7%A8%8B/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -952,12 +967,12 @@
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C/" href="/categories/%E7%BD%91%E7%BB%9C/"
             id="categoriesE7BD91E7BB9C"
-            ><div class='name'>网络</div><div class='badge'>(7)</div></a></li>
+            ><div class='name'>网络</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E7%BD%91%E7%BB%9C/HTTP/" href="/categories/%E7%BD%91%E7%BB%9C/HTTP/"
             id="categoriesE7BD91E7BB9CHTTP"
-            ><div class='name'>HTTP</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>HTTP</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E7%BD%91%E7%BB%9C/HTTPS/" href="/categories/%E7%BD%91%E7%BB%9C/HTTPS/"
@@ -991,7 +1006,7 @@
 
 
     <div class='content'>
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Elasticsearch/" style="font-size: 14px; color: #999">Elasticsearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 15px; color: #929292">HTTPS</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 23px; color: #5c5c5c">Java</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Linux/" style="font-size: 15px; color: #929292">Linux</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/MySQL/" style="font-size: 21px; color: #696969">MySQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/Redis/" style="font-size: 19px; color: #777">Redis</a> <a href="/tags/Roaring-Bitmap/" style="font-size: 14px; color: #999">Roaring Bitmap</a> <a href="/tags/SpringBoot/" style="font-size: 15px; color: #929292">SpringBoot</a> <a href="/tags/TCP/" style="font-size: 16px; color: #8b8b8b">TCP</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 20px; color: #707070">并发</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 18px; color: #7e7e7e">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 16px; color: #8b8b8b">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 17px; color: #858585">网络</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Elasticsearch/" style="font-size: 14px; color: #999">Elasticsearch</a> <a href="/tags/HTTP/" style="font-size: 16px; color: #8b8b8b">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 15px; color: #929292">HTTPS</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 23px; color: #5c5c5c">Java</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Linux/" style="font-size: 15px; color: #929292">Linux</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/MySQL/" style="font-size: 21px; color: #696969">MySQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/Redis/" style="font-size: 19px; color: #777">Redis</a> <a href="/tags/Roaring-Bitmap/" style="font-size: 14px; color: #999">Roaring Bitmap</a> <a href="/tags/SpringBoot/" style="font-size: 15px; color: #929292">SpringBoot</a> <a href="/tags/TCP/" style="font-size: 16px; color: #8b8b8b">TCP</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 20px; color: #707070">并发</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 18px; color: #7e7e7e">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 16px; color: #8b8b8b">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 17px; color: #858585">网络</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
     </div>
   </section>
 

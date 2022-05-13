@@ -666,9 +666,123 @@
         
           
         
+          
+        
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2022/05/13/HTTP-2%E7%89%B9%E6%80%A7/">
+        HTTP/2特性
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        二进制分帧
+帧：HTTP/2 数据通信的最小单位消息：指 HTTP/2 中逻辑上的 HTTP 消息。例如请求和响应等，消息由一个或多个帧组成。
+
+流：存在于连接中的一个虚拟通道。流可以承载双向消息，每个流都有一个唯一的整数ID。
+
+
+HTTP/2 采用二进制格式传输数据，而非 HTTP/1.x 的文本格式，二进制协议解析起来更加高效。HTTP/1 的请求和响应报文都是由起始行、首部、正文（可...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-05-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/HTTP/">HTTP</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/05/13/HTTP-2%E7%89%B9%E6%80%A7/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow">
+  
+  
+  
+  
+    
+    <h2 class="article-title" >
+      <a href="/2022/05/13/Get%E5%92%8CPost%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        Get和Post的区别
+      </a>
+    </h2>
+  
+  <div class='md'>
+    
+      
+        
+GET有缓存 POST没有
+
+GET url传参(有长度限制)， POST 请求头传参
+
+GET只产生一个TCP数据包，POST两个：
+
+对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；
+
+而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。
+
+
+...
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+        <time>2022-05-13</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/HTTP/">HTTP</a>
+        
+      </div>
+      
+        <div>
+          <a class='readmore' href='/2022/05/13/Get%E5%92%8CPost%E7%9A%84%E5%8C%BA%E5%88%AB/'>
+            阅读全文
+          </a>
+        </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -922,116 +1036,6 @@ DNS域名解析DNS的域名解析，在客户端和浏览器、本地DNS之间�
           </div>
         
       
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2022/03/16/MySQL-LIMIT/">
-        MySQL Limit优化
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        耗时本质mysql大数据量使用limit分页，随着页码的增大，查询效率越低下。
-当一个表有几百万的数据的时候成了问题！
-如 select * from table limit 0,10 这个没有问题，当 limit 100000,10 的时候就很慢。
-原因本质：
-
-limit 语句的查询时间和其实记录（offset）的大小成正比。
-mysql 的 limit 语句是很方便，但是对于记录很多：...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2022-03-16</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/MySQL/">MySQL</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/03/16/MySQL-LIMIT/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow">
-  
-  
-  
-  
-    
-    <h2 class="article-title" >
-      <a href="/2022/03/08/HTTP1-0-1-1/">
-        HTTP 1.0 VS HTTP 1.1
-      </a>
-    </h2>
-  
-  <div class='md'>
-    
-      
-        本文将从以下几个维度来对比 HTTP1.0 和 HTTP1.1:
-
-响应状态码
-缓存处理
-连接方式
-Host 头处理
-带宽优化
-
-响应状态码HTTP/1.0 仅定义了 16 种状态码。HTTP/1.1 中新加入了大量的状态码，光是错误响应码就新增了 24 种。比如说：
-
-100（Continue）：在请求大资源前的预热请求。
-206（Partial Content）：范围请求的标识码。
-40...
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-        <time>2022-03-08</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="sep"></span><a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C/HTTP/">HTTP</a>
-        
-      </div>
-      
-        <div>
-          <a class='readmore' href='/2022/03/08/HTTP1-0-1-1/'>
-            阅读全文
-          </a>
-        </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
     
   </section>
   
@@ -1207,12 +1211,12 @@ Host 头处理
           <li><a class="flat-box"
             title="/categories/%E7%BD%91%E7%BB%9C/" href="/categories/%E7%BD%91%E7%BB%9C/"
             id="categoriesE7BD91E7BB9C"
-            ><div class='name'>网络</div><div class='badge'>(7)</div></a></li>
+            ><div class='name'>网络</div><div class='badge'>(9)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E7%BD%91%E7%BB%9C/HTTP/" href="/categories/%E7%BD%91%E7%BB%9C/HTTP/"
             id="categoriesE7BD91E7BB9CHTTP"
-            ><div class='name'>HTTP</div><div class='badge'>(1)</div></a></li>
+            ><div class='name'>HTTP</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box child"
             title="/categories/%E7%BD%91%E7%BB%9C/HTTPS/" href="/categories/%E7%BD%91%E7%BB%9C/HTTPS/"
@@ -1246,7 +1250,7 @@ Host 头处理
 
 
     <div class='content'>
-      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Elasticsearch/" style="font-size: 14px; color: #999">Elasticsearch</a> <a href="/tags/HTTP/" style="font-size: 14px; color: #999">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 15px; color: #929292">HTTPS</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 23px; color: #5c5c5c">Java</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Linux/" style="font-size: 15px; color: #929292">Linux</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/MySQL/" style="font-size: 21px; color: #696969">MySQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/Redis/" style="font-size: 19px; color: #777">Redis</a> <a href="/tags/Roaring-Bitmap/" style="font-size: 14px; color: #999">Roaring Bitmap</a> <a href="/tags/SpringBoot/" style="font-size: 15px; color: #929292">SpringBoot</a> <a href="/tags/TCP/" style="font-size: 16px; color: #8b8b8b">TCP</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 20px; color: #707070">并发</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 18px; color: #7e7e7e">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 16px; color: #8b8b8b">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 17px; color: #858585">网络</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
+      <a href="/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/tags/Elasticsearch/" style="font-size: 14px; color: #999">Elasticsearch</a> <a href="/tags/HTTP/" style="font-size: 16px; color: #8b8b8b">HTTP</a> <a href="/tags/HTTPS/" style="font-size: 15px; color: #929292">HTTPS</a> <a href="/tags/JVM/" style="font-size: 16px; color: #8b8b8b">JVM</a> <a href="/tags/JWT/" style="font-size: 14px; color: #999">JWT</a> <a href="/tags/Java/" style="font-size: 23px; color: #5c5c5c">Java</a> <a href="/tags/Kafka/" style="font-size: 14px; color: #999">Kafka</a> <a href="/tags/Linux/" style="font-size: 15px; color: #929292">Linux</a> <a href="/tags/MarkDwon/" style="font-size: 14px; color: #999">MarkDwon</a> <a href="/tags/MySQL/" style="font-size: 21px; color: #696969">MySQL</a> <a href="/tags/OS/" style="font-size: 14px; color: #999">OS</a> <a href="/tags/Redis/" style="font-size: 19px; color: #777">Redis</a> <a href="/tags/Roaring-Bitmap/" style="font-size: 14px; color: #999">Roaring Bitmap</a> <a href="/tags/SpringBoot/" style="font-size: 15px; color: #929292">SpringBoot</a> <a href="/tags/TCP/" style="font-size: 16px; color: #8b8b8b">TCP</a> <a href="/tags/final/" style="font-size: 14px; color: #999">final</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 14px; color: #999">分布式</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 20px; color: #707070">并发</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 18px; color: #7e7e7e">模板</a> <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 14px; color: #999">环境配置</a> <a href="/tags/%E7%9F%A5%E8%AF%86/" style="font-size: 16px; color: #8b8b8b">知识</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 24px; color: #555">算法</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 17px; color: #858585">网络</a> <a href="/tags/%E9%A2%98%E7%9B%AE/" style="font-size: 22px; color: #636363">题目</a>
     </div>
   </section>
 

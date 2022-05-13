@@ -6,7 +6,7 @@
   <link href="https://tang7o.cn/atom.xml" rel="self"/>
   
   <link href="https://tang7o.cn/"/>
-  <updated>2022-04-23T02:52:47.582Z</updated>
+  <updated>2022-05-13T11:50:51.788Z</updated>
   <id>https://tang7o.cn/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTP/2特性</title>
+    <link href="https://tang7o.cn/2022/05/13/HTTP-2%E7%89%B9%E6%80%A7/"/>
+    <id>https://tang7o.cn/2022/05/13/HTTP-2%E7%89%B9%E6%80%A7/</id>
+    <published>2022-05-13T07:39:06.000Z</published>
+    <updated>2022-05-13T11:50:51.788Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="二进制分帧"><a href="#二进制分帧" class="headerlink" title="二进制分帧"></a>二进制分帧</h3><ul><li><p>帧：HTTP/2 数据通信的最小单位消息：指 HTTP/2 中逻辑上的 HTTP 消息。例如请求和响应等，消息由一个或多个帧组成。</p></li><li><p>流：存在于连接中的一个虚拟通道。流可以承载双向消息，每个流都有一个唯一的整数ID。</p></li></ul><p>HTTP/2 采用二进制格式传输数据，而非 HTTP/1.x 的文本格式，二进制协议解析起来更加高效。HTTP/1 的请求和响应报文都是由起始行、首部、正文（可选）组成，各个部分之间以文本换行符分割。HTTP/2 将请求和响应报文分割为更小的帧，并且采用二进制编码。</p><p><strong>HTTP/2 中，同域名下的所有通信的都在单个连接上完成，该连接可以承载任意数量的双向数据流。</strong>每个数据流都以消息的形式发送，而消息又由一个或者多个帧组成。多个帧之间可以乱序发送，根据帧首部的流标识可以重新组装。</p><h3 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h3><p>多路复用代替原来的序列和阻塞机制。所有请求都是通过一个TCP连接完成。HTTP/1.x 中，如果想要并发多个请求，必须使用多个 TCP 连接，且浏览器为了控制资源，还有每个域名 6-8 个TCP链接的请求限制。</p><p>在 HTTP/2 中，有了二进制分帧之后，HTTP/2 不再依赖 TCP 链接去实现多流并行了，在 HTTP/2 中：</p><ul><li>同域名下的所有通信都在单个连接上完成。</li><li>单个连接可以承载任意数量的双向数据流。</li><li>数据流以消息的形式发送，而消息又由一个或多个帧组成，多个帧之间可以乱序发送，可以根据帧首部的流标识重新组装。</li></ul><p>这一特性，使性能得到了极大的提升：</p><ul><li><strong>同域名只需要占用一个 TCP 连接，</strong>消除了多个 TCP 连接带来的延时和内存消耗。</li><li>单个连接上可以并行交错的请求和响应，之间互不干扰。</li><li>在 HTTP/2 中，每个请求都可以带一个 31bit 的优先值，0 表示最高优先级，数值越大优先级越低。有了这个优先值，客户端和服务器就可以在处理不同的流时采取不同的策略，以最优的方式发送流、消息和帧。</li></ul><h3 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h3><p>服务端可以在发送页面 HTML 的时候主动推送其他资源，而不用等浏览器解析到响应资源发起请求在响应。例如服务端可以主动把 JS 和 CSS 文件推送给客户端，而不需要客户端解析 HTML 时再发送这些请求。</p><p>服务端可以主动推送，客户端也有权选择是否接收。如果服务端推送的资源已经被浏览器缓存过，浏览器可以通过发送 <code>RST_STREAM</code> 帧来拒收。主动推送也遵守同源策略，服务器不会随便推送第三方给客户端。</p><h3 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h3><p>HTTP/1.1 请求的大小变得越来越大，有时甚至会大于 TCP 窗口的初始大小，因为他们需要等待带着 ACK 的响应回来以后才能继续被发送。HTTP/2 对消息头采用 HPACK 进行压缩传输，能够节省消息头占用的网络的流量。而 HTTP/1.x 每次请求，都会携带大量冗余头信息，浪费了很多带宽资源。</p><p>HTTP每一次通信都会携带一组头部，用于描述这次通信的的资源、浏览器属性、cookie等。为了减少这块的资源消耗并提升性能，<strong>HTTP/2 对这些首部采取了压缩策略</strong>：</p><ul><li>HTTP/2 在客户端和服务器端使用“首部表”来跟踪和存储之前发送的键－值对，对于相同的数据，不再通过每次请求和响应发送；</li><li>首部表在 HTTP/2 的连接存续期内始终存在，由客户端和服务器共同渐进地更新;</li><li>每个新的首部键－值对要么被追加到当前表的末尾，要么替换表中之前的值。</li></ul><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>HTTP/2的通过支持请求与响应的多路复用来减少延迟，通过压缩HTTP首部字段将协议开销降至最低，同时增加对请求优先级和服务器端推送的支持。</p><p>转载于<a href="https://zhuanlan.zhihu.com/p/26559480">一文读懂 HTTP/2 特性</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;二进制分帧&quot;&gt;&lt;a href=&quot;#二进制分帧&quot; class=&quot;headerlink&quot; title=&quot;二进制分帧&quot;&gt;&lt;/a&gt;二进制分帧&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;帧：HTTP/2 数据通信的最小单位消息：指 HTTP/2 中逻辑上的 HTTP 消息。例如请求和</summary>
+      
+    
+    
+    
+    <category term="网络" scheme="https://tang7o.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="HTTP" scheme="https://tang7o.cn/categories/%E7%BD%91%E7%BB%9C/HTTP/"/>
+    
+    
+    <category term="HTTP" scheme="https://tang7o.cn/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Get和Post的区别</title>
+    <link href="https://tang7o.cn/2022/05/13/Get%E5%92%8CPost%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>https://tang7o.cn/2022/05/13/Get%E5%92%8CPost%E7%9A%84%E5%8C%BA%E5%88%AB/</id>
+    <published>2022-05-13T07:36:35.000Z</published>
+    <updated>2022-05-13T07:38:24.171Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>GET有缓存 POST没有</p></li><li><p>GET url传参(有长度限制)， POST 请求头传参</p></li><li><p>GET只产生一个TCP数据包，POST两个：</p><ul><li><p>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p></li><li><p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p></li></ul><p><strong>并不是所有浏览器POST都发送两次，火狐就发送一次</strong></p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;GET有缓存 POST没有&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;GET url传参(有长度限制)， POST 请求头传参&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;GET只产生一个TCP数据包，POST两个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;对于GET方式的请求，浏</summary>
+      
+    
+    
+    
+    <category term="网络" scheme="https://tang7o.cn/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+    <category term="HTTP" scheme="https://tang7o.cn/categories/%E7%BD%91%E7%BB%9C/HTTP/"/>
+    
+    
+    <category term="HTTP" scheme="https://tang7o.cn/tags/HTTP/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL order by limit同时使用的问题</title>
@@ -453,54 +513,6 @@
     
     
     <category term="Redis" scheme="https://tang7o.cn/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis复制</title>
-    <link href="https://tang7o.cn/2021/11/04/Redis%E5%A4%8D%E5%88%B6/"/>
-    <id>https://tang7o.cn/2021/11/04/Redis%E5%A4%8D%E5%88%B6/</id>
-    <published>2021-11-04T00:57:39.000Z</published>
-    <updated>2022-04-13T13:31:48.310Z</updated>
-    
-    <content type="html"><![CDATA[<p>在 Redis 中，用户可以通过执行 <code>SLAVEOF</code> 命令或者设置 slaveof 选项，让一个服务器去复制另一个服务器，我们称呼被复制的服务器为主服务器，而复制主服务器的服务器被称为从服务器。</p><p>命令如下：</p><p><code>SLAVEOF host port</code></p><h2 id="复制功能的实现"><a href="#复制功能的实现" class="headerlink" title="复制功能的实现"></a>复制功能的实现</h2><h3 id="Redis-2-8前"><a href="#Redis-2-8前" class="headerlink" title="Redis 2.8前"></a>Redis 2.8前</h3><p>Redis 复制功能分为同步（sync）和命令传播（command propagate）两个操作：</p><ul><li>同步：将从服务器的数据库状态更新至主服务器的当前所处的数据库状态。</li><li>命令传播：在主服务器的数据库状态被修改，导致主从服务器的数据库状态不一致时，让主从服务器的数据库重新回到一致的状态。</li></ul><h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><p>从服务器对主服务器的同步操作需要通过向主服务器发送 <code>SYNC</code> 命令来完成，以下是 <code>SYNC</code>命令的执行过程：</p><ol><li>从服务器向主服务器发送 <code>SYNC</code> 命令。</li><li>收到 <code>SYNC</code> 命令的主服务器执行 <code>BGSAVE</code> 命令，在后台生成一个 RDB 文件，并使用一个缓冲区记录从现在开始执行的所有<strong>写命令</strong>。</li><li>当主服务器的 <code>BGSAVE</code> 命令执行完成后，主服务器会将 <code>BGSAVE</code> 命令产生的 RDB 文件发送给从服务器，从服务器接收并载入这个 RDB 文件，将自己的数据库状态更新至<strong>主服务器执行 <code>BGSAVE</code> 时的数据库状态</strong>。</li><li>主服务器将记录在缓冲区中的命令发送给从服务器，从服务器执行这些<strong>写命令</strong>，将自己的数据库状态更新至<strong>主服务器当前的数据库状态</strong>。</li></ol><h4 id="命令传播"><a href="#命令传播" class="headerlink" title="命令传播"></a>命令传播</h4><p>主服务器会将自己执行的<strong>写命令</strong>，也即是造成主从服务器不一致的那条写命令，发送给从服务器执行，当从服务器执行来相同的写命令后，主从服务器将再次回到一致状态。</p><h4 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h4><p>在 Redis 2.8 以前，从服务器对主服务器的复制可以分为一下两种情况：</p><ul><li>初次复制：从服务器以前没有复制过任何服务器，或者从服务器当前要复制的主服务器和上一次复制的主服务器不同。</li><li>断线后重复制：处于命令传播阶段的主从服务器因为网络原因而中断了复制，但从服务器通过自动连接重新连上了主服务器，并继续复制主服务器。</li></ul><p>在 Redis 2.8 以前，断线后重复制和初次复制使用相同的方法来实现，这就意味着断线后重复制要再次执行一遍 <code>SYNC</code> 命令。这是十分消耗资源的。（断线时间较短时，断线后重复制仅需要复制断线期间的命令即可，完全没有必要重新复制一遍）</p><blockquote><p><code>SYNC</code> 命令是一个十分消耗资源的操作</p><ol><li>主服务器需要执行 <code>BGSAVE</code> 命令来生成 RDB 文件，这个命令会消耗主服务器大量的 CPU、内存和磁盘I/O 资源。</li><li>主服务器需要将生成的 RDB 文件发送给从服务器，会消耗大量的网络资源，并对主服务器响应命令请求的时间产生影响。</li><li>从服务器需要载入 RDB 文件，在载入期间，从服务器会因为阻塞而无法处理命令请求。</li></ol></blockquote><h3 id="Redis-2-8后"><a href="#Redis-2-8后" class="headerlink" title="Redis 2.8后"></a>Redis 2.8后</h3><p>为了解决旧版复制功能在处理断线后重复制情况时的抵消问题，Redis 从 2.8 版本开始，使用 <code>PSYNC</code> 代替 <code>SYNC</code> 命令来执行复制时的同步操作。</p><p><code>PSYNC</code> 具有<strong>完整重同步</strong>和<strong>部分重同步</strong>两种模式：</p><ul><li>完整重同步：用于处理初次复制情况，和 <code>SYNC</code> 命令执行步骤基本相同。</li><li>部分重同步：用于处理断线后重复制情况，当从服务器段吸纳后重新连接主服务器时，如果条件允许，主服务器可以将断线期间执行的写命令发给从服务器，从服务器只要接收并执行这些命令，就可以将数据库更新至主服务器当前所处的状态。</li></ul><h4 id="部分重同步的实现"><a href="#部分重同步的实现" class="headerlink" title="部分重同步的实现"></a>部分重同步的实现</h4><p>部分重同步功能由以下三个部分构成：</p><ul><li>主服务器的复制偏移量和从服务器复制偏移量。</li><li>主服务器的复制积压缓冲区。</li><li>服务器的运行 ID。</li></ul><h5 id="复制偏移量"><a href="#复制偏移量" class="headerlink" title="复制偏移量"></a>复制偏移量</h5><p>执行复制的双方分别维护一个复制偏移量：</p><ul><li>主服务器每次向从服务器传播 N 个字节的数据时，就将自己的复制偏移量 +N。</li><li>从服务器每次收到主服务器传来的 N 个字节的数据时，就将自己的复制偏移量 +N。</li></ul><p>通过对比主从服务器的复制偏移量，程序可以很容易的知道主从服务器是否处于一致状态：</p><ul><li>复制偏移量相同：处于一致状态。</li><li>复制偏移量不同：未处于一致状态。</li></ul><h5 id="复制积压缓冲区"><a href="#复制积压缓冲区" class="headerlink" title="复制积压缓冲区"></a>复制积压缓冲区</h5><p>由主服务器维护的一个固定长度的先进先出的队列，默认大小 1MB。</p><p>当主服务器进行命令传播时，不仅会将写命令发给所有从服务器还会将写命令入队到复制积压缓冲区。</p><p>因此，主服务器的复制积压缓冲区里面会保存着一部分最近传播的写命令，并且复制积压缓冲区会为队列的每个字节记录相应的复制偏移量。</p><p>当从服务器重新连上主服务器时，重服务器会通过 <code>PSYNC</code> 命令将自己的复制偏移量 offset 发送给主服务器，主服务器根据这个复制偏移量来决定对从服务器执行何种同步：</p><ul><li>如果 offset 复制偏移量之后的数据仍在复制积压缓冲区中，那么执行部分重同步操作（将 offset 偏移量之后的数据发给从服务器）。</li><li>否则，执行完整重同步。</li></ul><p><strong>可以根据实际情况来调整复制加压缓冲区的大小。</strong></p><h5 id="服务器运行-ID"><a href="#服务器运行-ID" class="headerlink" title="服务器运行 ID"></a>服务器运行 ID</h5><p>除了复制偏移量和复制积压缓冲区外，实现部分重同步还需要用到服务器运行 ID：</p><ul><li>每个 Redis 服务器都有自己的运行 ID。</li><li>运行 ID 在服务器启动时自动生成，由 40 个随机的十六进制组成。</li></ul><p>从服务器对主服务器进行初次复制时，从服务器会将主服务器的运行 ID 保存下来。当从服务器断线并重连上一个服务器时，从服务器会向当前连接的主服务器发送保存的运行 ID:</p><ul><li>从服务器保存的运行 ID 和主服务器的运行 ID 相同，尝试执行部分重同步。</li><li>相反，从服务器保存的运行 ID 和主服务器的运行 ID 不同，执行完整重同步。</li></ul><h4 id="PSYNC-命令的实现"><a href="#PSYNC-命令的实现" class="headerlink" title="PSYNC 命令的实现"></a>PSYNC 命令的实现</h4><p><code>PSYNC</code> 命令的调用方法有两种：</p><ul><li>如果从服务器之前没有复制过任何主服务器，或者之前执行过 <code>SLAVEOF no one</code> 命令，那么从服务器在开始一次新的复制时将向主服务器发送 <code>PSYNC ? -1</code> 命令，主动请求主服务器进行完整同步。</li><li>相反地，如果从服务器已经复制过某个主服务器，那么从服务器在开始一次新的复制时将向主服务器发送 <code>PSYNC &lt;runid&gt; &lt;offset&gt;</code> 命令，其中 runid 是上一次复制的主服务器的运行 ID，offset 是从服务器当前的复制偏移量，接收到这条命令的主服务器将通过这两个参数来判断实现哪种同步操作。</li></ul><p>根据情况，接受到 <code>PSYNC</code> 命令的主服务器会向从服务器发送以下三种回复中的其中一种：</p><ul><li><code>+FULLRESYNC &lt;runid&gt; &lt;offset&gt;</code>回复：表示主服务器与从服务器执行完整重同步操作：其中 runid 是主服务器的运行 ID，从服务器会将这个 ID 保存起来，在下次发送 <code>PSYNC</code> 命令的时候使用；offset 是主服务器当前的复制偏移量，从服务器会将这个值作为自己的初始化偏移量。</li><li><code>+CONTINUE</code> 回复：表示主服务器将与从服务器进行部分重同步，从服务器只需要等着主服务器将自己缺少的哪部分数据发送过来就可以了。</li><li><code>-ERR</code> 回复：表示主服务器的版本低于 Redis 2.8，它无法识别 <code>PSYNC</code> 命令，从服务器将向主服务器发送 <code>SYNC</code> 命令，并与主服务器执行完整同步。</li></ul><p><img src="1.png" class="lazyload" data-srcset="1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p>]]></content>
-    
-    
-    <summary type="html">讲述了 Redis 2.8 之前和 Redis 2.8 之后的复制功能的实现。</summary>
-    
-    
-    
-    <category term="Redis" scheme="https://tang7o.cn/categories/Redis/"/>
-    
-    
-    <category term="Redis" scheme="https://tang7o.cn/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TCP可靠性</title>
-    <link href="https://tang7o.cn/2021/10/26/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7/"/>
-    <id>https://tang7o.cn/2021/10/26/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7/</id>
-    <published>2021-10-26T07:34:39.000Z</published>
-    <updated>2022-04-13T13:31:48.429Z</updated>
-    
-    <content type="html"><![CDATA[<p>众所周知，TCP 协议传输的特点主要就是面向字节流、传输可靠、面向连接。这篇文章，我们讨论以下 TCP 如何确保传输的可靠性的。</p><h2 id="确保传输可靠性的方式"><a href="#确保传输可靠性的方式" class="headerlink" title="确保传输可靠性的方式"></a>确保传输可靠性的方式</h2><p>TCP 协议保证数据传输可靠性的方式主要有：</p><ul><li>校验和</li><li>序列号</li><li>确认应答</li><li>超时重传</li><li>连接管理</li><li>流量控制</li><li>拥塞控制</li></ul><h3 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h3><p>TCP 检验和的计算与 UDP 一样，在计算时要加上 12byte 的伪首部，检验范围包括 TCP 首部及数据部分，但是 UDP 的检验和字段为可选的，而 TCP 中是必须有的。</p><p>计算方法为：在发送方将整个报文段分为多个 16 位的段，然后将所有段进行反码相加，将结果存放在检验和字段中，接收方用相同的方法进行计算，如最终结果为检验字段所有位是全 1 则正确（UDP 中也是全为 1 则正确），否则存在错误。</p><p><strong>示例：</strong></p><p>为了方便以 4 位为例：</p><p>发送端计算：</p><ul><li><p>数据：1000 0100 、校验和：0000</p></li><li><p>反码：0111 1011         1111</p></li><li>叠加：0111+1011+1111 = 0010 0001，高于 4 位的，叠加到低 4 位 0001 + 0010 = 0011 即为校验和。</li></ul><p>接收端计算：</p><ul><li>数据：1000  0100 、校验和 0011</li><li>反码：0111  1011        1100</li><li>叠加：0111+1011+1100 = 0001 1110，高于 4 位的，叠加到低 4 位 0001 + 1110 = 1111。全为1，则正确。</li></ul><h3 id="确认应答与序列号"><a href="#确认应答与序列号" class="headerlink" title="确认应答与序列号"></a>确认应答与序列号</h3><p>序列号：TCP 传输时将每个字节的数据都进行了编号，这就是序列号。</p><p>序列号的作用：</p><ul><li>保证可靠性（当接收到的数据总少了某个序号的数据时，能马上知道）。</li><li>保证数据的按序到达。</li><li>提高效率，可实现多次发送，一次确认。</li><li>去除重复数据</li></ul><p>确认应答：TCP 传输的过程中，每次接收方收到数据后，都会对传输方进行确认应答。也就是发送 ACK 报文。这个 ACK 报文当中带有对应的确认序列号，告诉发送方，接收到了哪些数据，下一次的数据从哪里发。</p><p><img src="1.png" class="lazyload" data-srcset="1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><h3 id="超时重传"><a href="#超时重传" class="headerlink" title="超时重传"></a>超时重传</h3><p>在进行 TCP 传输时，由于确认应答与序列号机制，发送方发送一部分数据后，都会等待接收方发送的 ACK 报文，并且解析报文，判断数据发送是否成功。但是由于一些原因，发送方可能接收不到 ACK 报文：</p><p>情况一：</p><p><img src="2.png" class="lazyload" data-srcset="2.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>情况二：</p><p><img src="3.png" class="lazyload" data-srcset="3.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p><strong>重传时间如何确定？</strong></p><p>在 Linux 中，超时以 $500ms$ 为单位进行控制，每次判定超时重发的超时时间都是 $500ms$ 的整数倍。其规律为：如果重发一次仍得不到应答，就等待 $2<em>500ms$ 后再进行重传，如果仍然得不到应答就等待 $4</em>500ms$ 后重传，依次类推，以指数形式递增，重传次数累计到一定次数后，TCP 认为网络或对端主机出现异常，就会强行关闭连接。</p><h3 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h3><p>连接管理机制即TCP建立连接时的三次握手和断开连接时的四次挥手。</p><p><a href="https://tang7o.cn/2021/06/09/TCP/">TCP文章</a>中有详细结束，在此不在赘述。</p><h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>接收端处理数据的速度是有限的，如果发送方发送数据的速度过快，超过接收端的处理能力，就会造成丢包，继而引起丢包重传等一系列反应。</p><p>因此 TCP 支持根据接收端的处理能力，来决定发送端的发送速度，这个机制叫做流量控制。</p><p>在 <a href="https://tang7o.cn/2021/06/09/TCP/">TCP 报文段首部</a>中有一个 16 位窗口长度，当接收端接收到发送方的数据后，在应答报文 ACK 中就将自身缓冲区的剩余大小，放入 16 窗口大小中。这个大小随数据传输情况而变，窗口越大，网络吞吐量越高，而一旦接收方发现自身的缓冲区快满了，就将窗口设置为更小的值通知发送方。如果缓冲区满，就将窗口置为 0，发送方收到后就不再发送数据，但是需要定期发送一个窗口探测数据段，使接收端把窗口大小告诉发送端。</p><p><img src="4.png" class="lazyload" data-srcset="4.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p><strong>注意：窗口大小不完全受 16 位窗口大小限制，在TCP首部 40 字节选项中还包含一个窗口扩大因子 M，实际窗口大小是窗口字段的值左移 M 位。</strong></p><h3 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h3><p>TCP 传输的过程中，发送端开始发送数据的时候，如果刚开始就发送大量的数据，那么就可能造成一些问题。网络可能在开始的时候就很拥堵，如果给网络中在扔出大量数据，那么这个拥堵就会加剧。拥堵的加剧就会产生大量的丢包，就对大量的超时重传，严重影响传输。</p><p>因此 TCP 引入了慢启动的机制，在开始发送数据的时候，先发送少量的数据探路，探清当前网络拥堵的状态后，在决定按照多大的数度发送数据。这时候引入了一个叫做<strong>拥塞窗口</strong>（cwnd）的概念。每次收到一个 ACK 应答，拥塞窗口加1，在发送数据之前，首先将拥塞窗口与接收端反馈的窗口大小比对，取较小的值作为实际发送的窗口。</p><p>TCP 的四种拥塞控制算法：</p><ol><li>慢开始</li><li>拥塞避免</li><li>快重传</li><li>快恢复</li></ol><h4 id="慢开始"><a href="#慢开始" class="headerlink" title="慢开始"></a>慢开始</h4><p>假设当前发送方拥塞窗口 cwnd 的值为 1，发送方当前发送一个数据报文段，接收方收到该数据报文段后，给发送方回复一个确认报文段，发送方收到该确认报文后，将拥塞窗口的值变为 2，发送方此时可以连续发送两个数据报文段，接收方收到该数据报文段后，给发送方返回 2 个确认报文段，发送方收到这两个确认报文后，将拥塞窗口的值加 2 变为 4，发送方此时可连续发送 4 个报文段，接收方收到 4 个报文段后，给发送方回复 4 个确认报文，发送方收到确认报文后，将拥塞窗口的值加 4 变为 8，发送方此时可以连续发送 8 个数据报文段…</p><p>当前的拥塞窗口 cwnd 的值已经等于慢开始门限值 ssthresh，之后改用拥塞避免算法。</p><p><img src="5.png" class="lazyload" data-srcset="5.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><h4 id="拥塞避免"><a href="#拥塞避免" class="headerlink" title="拥塞避免"></a>拥塞避免</h4><p>此时每个传输轮次，拥塞窗口 cwnd 只能线性加一，而不是像慢开始算法时，每个传输轮次，拥塞窗口 cwnd 按指数增长。同理：16+1… 直至到达 24，假设 24 个报文段在传输过程中丢失 4 个，接收方只收到 20 个报文段，给发送方依次回复 20 个确认报文段，一段时间后，丢失的 4 个报文段的重传计时器超时了，发送发判断可能出现拥塞，更改 $ssthresh = cwnd / 2、cwnd = 1$ 并重新开始慢开始算法。</p><h4 id="快重传"><a href="#快重传" class="headerlink" title="快重传"></a>快重传</h4><p><img src="6.png" class="lazyload" data-srcset="6.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>快重传算法规定，发送方只要一连收到三个重复确认（一共是四个，第一个 ACK 2 是正常的）就应当立即重传对方尚未收到的报文段 2，而不必继续等待为 2 设置的重传计时器到期进行超时重传。</p><p>因为超时重传需要重新开始慢启动算法，cwnd 重置未 1，太影响效率。</p><p><a href="https://www.zhihu.com/question/21789252">为什么是三个重复确认？</a></p><h4 id="快恢复"><a href="#快恢复" class="headerlink" title="快恢复"></a>快恢复</h4><p>与<strong>快重传</strong>配合使用：</p><ol><li>当发送方连续收到三个重复确认时，就执行“乘法减小”算法，把慢开始门限 ssthresh 减半。这是为了预防网络发生拥塞。请注意，接下去不执行慢开始算法。</li><li>由于发送方现在认为网络很可能没有发生拥塞（如果网络发生了严重的拥塞，就不会一连有好几个报文段连续到达接收方，也就不会导致接收方连续发送重复确认），因此与慢开始不同之处是现在不执行慢开始算法（即拥塞窗口 cwnd 现在不设置为 1），而是$cwnd = cwnd/2、sshthresh = cwnd$，然后开始执行拥塞避免算法，使拥塞窗口缓慢地线性增大。</li></ol><p><img src="7.png" class="lazyload" data-srcset="7.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=""></p><p>上图给出了快重传和快恢复的示意图，并标明了“TCP Reno版本”，这是目前使用得很广泛的版本。</p><p>图中还画出了已经废弃不用的虚线部分（TCP Tahoe 版本）。请注意它们的区别就是：新的 TCP Reno 版本在快重传之后采用快恢复算法而不是采用慢开始算法。</p><p>参考文章：</p><p><a href="https://blog.csdn.net/xuzhangze/article/details/80490362">TCP可靠性的保证机制总结</a></p><p><a href="https://zhuanlan.zhihu.com/p/261096328">TCP 面试系列之快重传与快恢复</a></p><p><a href="https://blog.csdn.net/whgtheone/article/details/80983882">TCP的快速重传机制</a></p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;众所周知，TCP 协议传输的特点主要就是面向字节流、传输可靠、面向连接。这篇文章，我们讨论以下 TCP 如何确保传输的可靠性的。&lt;/p&gt;
-&lt;h2 id=&quot;确保传输可靠性的方式&quot;&gt;&lt;a href=&quot;#确保传输可靠性的方式&quot; class=&quot;headerlink&quot; title=&quot;</summary>
-      
-    
-    
-    
-    <category term="网络" scheme="https://tang7o.cn/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-    <category term="TCP" scheme="https://tang7o.cn/categories/%E7%BD%91%E7%BB%9C/TCP/"/>
-    
-    
-    <category term="TCP" scheme="https://tang7o.cn/tags/TCP/"/>
     
   </entry>
   
